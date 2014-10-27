@@ -16,7 +16,18 @@ namespace GA_Data_Exporter
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            var mainForm = new Form1();
+            Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(
+                Application_ThreadException
+                );
+                {
+                    
+                };
+            Application.Run(mainForm);
+        }
+        static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
+        {
+            MessageBox.Show(e.Exception.Message);
         }
     }
 }
