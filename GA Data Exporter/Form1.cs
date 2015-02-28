@@ -24,6 +24,9 @@ namespace GA_Data_Exporter
     {
         private AnalyticsService service;
         private UserCredential credential;
+        private List<string> metricsItems = new List<string>();
+        private List<string> dimensionsItems = new List<string>();
+
         
         public Form1()
         {
@@ -31,6 +34,11 @@ namespace GA_Data_Exporter
             try
             {
                 auth();
+                getMetaData();
+                startDateTextBox.Text = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
+                endDateTextBox.Text = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
+                indexTextBox.Text = "1";
+
             }
             catch (AggregateException ex)
             {
@@ -54,8 +62,8 @@ namespace GA_Data_Exporter
             credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                            new ClientSecrets
                            {
-                               ClientId = "643412917207.apps.googleusercontent.com",
-                               ClientSecret = "NoEhLrjYIN10wIn41vUdCSB-"
+                               ClientId = "374992669151-gq3ge9ps7clrvdkr6r4kmqamlcbesqfp.apps.googleusercontent.com",
+                               ClientSecret = "mIUGfAhjITR1qqv7CgAXK4BY"
                            },
                            new[] { AnalyticsService.Scope.AnalyticsReadonly },
                            "user", CancellationToken.None, new FileDataStore("ga")).Result;
@@ -77,6 +85,7 @@ namespace GA_Data_Exporter
             for (int k = 0; k < metrics.Count; k++)
             {
                 var metric = metrics[k];
+                metricsItems.Add(metric.Id.Replace("ga:",""));
                 ListViewItem item = new ListViewItem(metric.Id.Replace("ga:", ""));
                 item.ToolTipText = metric.Attributes["group"] + ":" + metric.Attributes["description"] + ":" + metric.Attributes["uiName"];
                 listViewMetrics.Items.Add(item);
@@ -85,6 +94,7 @@ namespace GA_Data_Exporter
             for (int k = 0; k < dims.Count; k++)
             {
                 var dim = dims[k];
+                dimensionsItems.Add(dim.Id.Replace("ga:",""));
                 ListViewItem item = new ListViewItem(dim.Id.Replace("ga:", ""));
                 item.ToolTipText = dim.Attributes["group"] + ":" + dim.Attributes["description"] + ":" + dim.Attributes["uiName"];
                 listViewDimensions.Items.Add(item);
@@ -204,13 +214,13 @@ namespace GA_Data_Exporter
                 row[4] = views[i].WebPropertyId;
                 dt.Rows.Add(row);
             }
-            this.dataGridViewViews.DataSource = dt;
+            this.GaViewdataGridView.DataSource = dt;
         }
         private void dataGridViewViews_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            string aid = dataGridViewViews.Rows[e.RowIndex].Cells[3].Value.ToString();
-            string wid = dataGridViewViews.Rows[e.RowIndex].Cells[4].Value.ToString();
-            string vid = dataGridViewViews.Rows[e.RowIndex].Cells[0].Value.ToString();
+            string aid = GaViewdataGridView.Rows[e.RowIndex].Cells[3].Value.ToString();
+            string wid = GaViewdataGridView.Rows[e.RowIndex].Cells[4].Value.ToString();
+            string vid = GaViewdataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
             ManagementResource.GoalsResource.ListRequest req = service.Management.Goals.List(aid, wid, vid);
             Goals ret = req.Execute();
             IList<Goal> goals = ret.Items;
@@ -239,36 +249,97 @@ namespace GA_Data_Exporter
             this.dataGridViewGoals.DataSource = dt;
         }
 
+        private bool checkBeforeGetData(){
+            string id = GaViewdataGridView.SelectedCells[0].Value.ToString();
+            string metrics = metricsTextBox.Text;
+            bool state = true;
+            if (!System.Text.RegularExpressions.Regex.IsMatch(id, "^[0-9]+$"))
+            {
+                MessageBox.Show("viewのIDに問題あり");
+                state = false;
+            }
+            if (metrics == "")
+            {
+                MessageBox.Show("metrics required");
+                state = false;
+            }
+            if (!System.Text.RegularExpressions.Regex.IsMatch(startDateTextBox.Text, "[0-9]{4}-[0-9]{2}-[0-9]{2}"))
+            {
+                MessageBox.Show("invalid startDate");
+                state = false;
+            }
+            if (!System.Text.RegularExpressions.Regex.IsMatch(endDateTextBox.Text, "[0-9]{4}-[0-9]{2}-[0-9]{2}"))
+            {
+                MessageBox.Show("invalid endDate");
+                state = false;
+            }
+            return(state);
+        }
+        private void getAll_Click(object sender, EventArgs e)
+        {
+            if (!checkBeforeGetData())
+            {
+                return;
+            }
+            getData1000(10000);
+        }
+
+        private void get1000_Click(object sender, EventArgs e)
+        {
+            if(!checkBeforeGetData()){
+                return;
+            }
+            getData1000(1000);
+        }
 
 
-        private void tmp(){
-            /*
-            DataResource.GaResource.GetRequest req = service.Data.Ga.Get("ga:" + id, "2014-10-01", "2014-10-03", "ga:sessions");
-            req.MaxResults = 1000;
-            req.Dimensions = "ga:deviceCategory";
+        private void getData1000(int max){
+            string id = GaViewdataGridView.SelectedCells[0].Value.ToString();
+            string metrics = metricsTextBox.Text;
+
+            DataResource.GaResource.GetRequest req = service.Data.Ga.Get(
+                "ga:" + id,
+                startDateTextBox.Text,
+                endDateTextBox.Text,
+                metrics);
+            req.MaxResults = max;
+            req.StartIndex = int.Parse(indexTextBox.Text);
+            req.Dimensions = dimensionsTextBox.Text== "" ? null : dimensionsTextBox.Text;
+            req.Filters = filterTextBox.Text == "" ? null : filterTextBox.Text;
+            req.Sort = sortTextBox.Text == "" ? null : sortTextBox.Text;
             req.SamplingLevel = DataResource.GaResource.GetRequest.SamplingLevelEnum.DEFAULT;
             GaData ret = req.Execute();
-
+            queryTextBox.Text = ret.SelfLink;
+         
             DataTable dt = new DataTable();
             IList<GaData.ColumnHeadersData> cols = ret.ColumnHeaders;
             foreach(GaData.ColumnHeadersData col in cols){
                 if (col.DataType == "STRING")
                 {
-                    dt.Columns.Add(col.Name, typeof(string));
+                    dt.Columns.Add(col.Name.Replace("ga:", ""), typeof(string));
+                }
+                else if (col.DataType == "FLOAT")
+                {
+                    dt.Columns.Add(col.Name.Replace("ga:",""), typeof(float));
                 }
                 else
                 {
-                    dt.Columns.Add(col.Name, typeof(Int32));
+                    dt.Columns.Add(col.Name.Replace("ga:", ""), typeof(Int32));
                 }
             }
             GaData.DataTableData data = ret.DataTable;
+            int numCols = dt.Columns.Count;
             for (int i = 0; i < ret.Rows.Count; i++)
             {
                 DataRow row = dt.NewRow();
-             
+                for (int j = 0; j < numCols; j++)
+                {
+                    row[j] = ret.Rows[i][j];
+                }
+                dt.Rows.Add(row);
             }
-             */
-
+            gaDataGridViewData.DataSource = dt;
+      
         }
 
         private void listViewMetrics_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
@@ -278,13 +349,13 @@ namespace GA_Data_Exporter
             foreach(ListViewItem item in items){
                 ret += "ga:" + item.Text + ',';
             }
-            textBoxMetrics.Text = ret.TrimEnd(',');
+            metricsTextBox.Text = ret.TrimEnd(',');
             this.labelMetrics.Text = "metrics\n(" + items.Count.ToString() + "/10)";
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            this.textBoxMetrics.Clear();
+            this.metricsTextBox.Clear();
             var items = this.listViewMetrics.SelectedItems;
             this.labelMetrics.Text = "metrics\n(0/10)";
             foreach(ListViewItem item in items){
@@ -294,7 +365,7 @@ namespace GA_Data_Exporter
 
         private void buttonClearDims_Click(object sender, EventArgs e)
         {
-            this.textBoxDimensions.Clear();
+            this.dimensionsTextBox.Clear();
             var items = this.listViewDimensions.SelectedItems;
             foreach (ListViewItem item in items)
             {
@@ -302,6 +373,31 @@ namespace GA_Data_Exporter
             }
         }
 
+    
+        private void itemFilter_TextChanged(object sender, EventArgs e)
+        {
+            if (itemFilter.Text.Length < 1) { return; }
+            listViewDimensions.Items.Clear();
+            listViewDimensions.Items.AddRange(dimensionsItems.Where(i => i.ToLower().Contains(itemFilter.Text)).Select(c => new ListViewItem(c)).ToArray());
+            listViewMetrics.Items.Clear();
+            listViewMetrics.Items.AddRange(metricsItems.Where(i => i.ToLower().Contains(itemFilter.Text)).Select(c => new ListViewItem(c)).ToArray());
+        }
+
+        private void listViewDimensions_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            var items = listViewDimensions.SelectedItems;
+            string ret = "";
+            foreach (ListViewItem item in items)
+            {
+                ret += "ga:" + item.Text + ',';
+            }
+            dimensionsTextBox.Text = ret.TrimEnd(',');
+            this.labelDimensions.Text = "dims\n(" + items.Count.ToString() + "/10)";
+    
+        }
+
+  
+      
     
     }
 }

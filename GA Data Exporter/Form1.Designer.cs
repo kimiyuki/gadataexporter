@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.dataGridViewData = new System.Windows.Forms.DataGridView();
+            this.gaDataGridViewData = new System.Windows.Forms.DataGridView();
             this.dataGridViewAccount = new System.Windows.Forms.DataGridView();
             this.buttonGetAuth = new System.Windows.Forms.Button();
             this.dataGridViewWebProperty = new System.Windows.Forms.DataGridView();
@@ -46,27 +45,37 @@
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.dataGridViewViews = new System.Windows.Forms.DataGridView();
+            this.GaViewdataGridView = new System.Windows.Forms.DataGridView();
             this.buttonDeleteAuth = new System.Windows.Forms.Button();
             this.buttonAuthChange = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.queryTextBox = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.textBoxMetrics = new System.Windows.Forms.TextBox();
-            this.textBoxDimensions = new System.Windows.Forms.TextBox();
+            this.get1000 = new System.Windows.Forms.Button();
+            this.getAll = new System.Windows.Forms.Button();
+            this.metricsTextBox = new System.Windows.Forms.TextBox();
+            this.dimensionsTextBox = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.itemFilter = new System.Windows.Forms.TextBox();
+            this.filterTextBox = new System.Windows.Forms.TextBox();
             this.buttonClearMerics = new System.Windows.Forms.Button();
             this.buttonClearDims = new System.Windows.Forms.Button();
             this.labelDimensions = new System.Windows.Forms.Label();
             this.labelMetrics = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewData)).BeginInit();
+            this.endDateTextBox = new System.Windows.Forms.TextBox();
+            this.startDateTextBox = new System.Windows.Forms.TextBox();
+            this.dateLabel = new System.Windows.Forms.Label();
+            this.dateBetween = new System.Windows.Forms.Label();
+            this.segmentLabel = new System.Windows.Forms.Label();
+            this.sortTextBox = new System.Windows.Forms.TextBox();
+            this.indexTextBox = new System.Windows.Forms.TextBox();
+            this.filterLabel = new System.Windows.Forms.Label();
+            this.sortLabel = new System.Windows.Forms.Label();
+            this.indexLabel = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.gaDataGridViewData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWebProperty)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -75,18 +84,8 @@
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGoals)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewViews)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GaViewdataGridView)).BeginInit();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(311, 154);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
             // 
@@ -95,19 +94,19 @@
             this.textBox1.Size = new System.Drawing.Size(263, 19);
             this.textBox1.TabIndex = 1;
             // 
-            // dataGridViewData
+            // gaDataGridViewData
             // 
-            this.dataGridViewData.AllowUserToAddRows = false;
-            this.dataGridViewData.AllowUserToDeleteRows = false;
-            this.dataGridViewData.AllowUserToOrderColumns = true;
-            this.dataGridViewData.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
-            this.dataGridViewData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewData.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridViewData.Location = new System.Drawing.Point(6, 20);
-            this.dataGridViewData.Name = "dataGridViewData";
-            this.dataGridViewData.RowTemplate.Height = 21;
-            this.dataGridViewData.Size = new System.Drawing.Size(828, 574);
-            this.dataGridViewData.TabIndex = 2;
+            this.gaDataGridViewData.AllowUserToAddRows = false;
+            this.gaDataGridViewData.AllowUserToDeleteRows = false;
+            this.gaDataGridViewData.AllowUserToOrderColumns = true;
+            this.gaDataGridViewData.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+            this.gaDataGridViewData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gaDataGridViewData.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.gaDataGridViewData.Location = new System.Drawing.Point(6, 20);
+            this.gaDataGridViewData.Name = "gaDataGridViewData";
+            this.gaDataGridViewData.RowTemplate.Height = 21;
+            this.gaDataGridViewData.Size = new System.Drawing.Size(828, 574);
+            this.gaDataGridViewData.TabIndex = 2;
             // 
             // dataGridViewAccount
             // 
@@ -191,6 +190,7 @@
             this.listViewDimensions.TileSize = new System.Drawing.Size(131, 28);
             this.listViewDimensions.UseCompatibleStateImageBehavior = false;
             this.listViewDimensions.View = System.Windows.Forms.View.Tile;
+            this.listViewDimensions.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listViewDimensions_ItemSelectionChanged);
             // 
             // listViewMetrics
             // 
@@ -226,7 +226,7 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.dataGridViewData);
+            this.tabPage2.Controls.Add(this.gaDataGridViewData);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -300,20 +300,20 @@
             this.tabPage7.Text = "MCF";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
-            // dataGridViewViews
+            // GaViewdataGridView
             // 
-            this.dataGridViewViews.AllowUserToAddRows = false;
-            this.dataGridViewViews.AllowUserToDeleteRows = false;
-            this.dataGridViewViews.AllowUserToOrderColumns = true;
-            this.dataGridViewViews.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
-            this.dataGridViewViews.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewViews.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridViewViews.Location = new System.Drawing.Point(13, 471);
-            this.dataGridViewViews.Name = "dataGridViewViews";
-            this.dataGridViewViews.RowTemplate.Height = 21;
-            this.dataGridViewViews.Size = new System.Drawing.Size(291, 295);
-            this.dataGridViewViews.TabIndex = 8;
-            this.dataGridViewViews.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewViews_CellClick);
+            this.GaViewdataGridView.AllowUserToAddRows = false;
+            this.GaViewdataGridView.AllowUserToDeleteRows = false;
+            this.GaViewdataGridView.AllowUserToOrderColumns = true;
+            this.GaViewdataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+            this.GaViewdataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GaViewdataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.GaViewdataGridView.Location = new System.Drawing.Point(13, 471);
+            this.GaViewdataGridView.Name = "GaViewdataGridView";
+            this.GaViewdataGridView.RowTemplate.Height = 21;
+            this.GaViewdataGridView.Size = new System.Drawing.Size(291, 295);
+            this.GaViewdataGridView.TabIndex = 8;
+            this.GaViewdataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewViews_CellClick);
             // 
             // buttonDeleteAuth
             // 
@@ -351,12 +351,12 @@
             this.button3.Text = "GetAuth";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // queryTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(79, 12);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(1096, 19);
-            this.textBox2.TabIndex = 13;
+            this.queryTextBox.Location = new System.Drawing.Point(79, 12);
+            this.queryTextBox.Name = "queryTextBox";
+            this.queryTextBox.Size = new System.Drawing.Size(1096, 19);
+            this.queryTextBox.TabIndex = 13;
             // 
             // textBox3
             // 
@@ -383,58 +383,61 @@
             this.label2.TabIndex = 16;
             this.label2.Text = "Error";
             // 
-            // button4
+            // get1000
             // 
-            this.button4.Location = new System.Drawing.Point(311, 64);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 40);
-            this.button4.TabIndex = 17;
-            this.button4.Text = "Get 1000";
-            this.button4.UseVisualStyleBackColor = true;
+            this.get1000.Location = new System.Drawing.Point(311, 64);
+            this.get1000.Name = "get1000";
+            this.get1000.Size = new System.Drawing.Size(75, 40);
+            this.get1000.TabIndex = 17;
+            this.get1000.Text = "Get 1000";
+            this.get1000.UseVisualStyleBackColor = true;
+            this.get1000.Click += new System.EventHandler(this.get1000_Click);
             // 
-            // button5
+            // getAll
             // 
-            this.button5.Location = new System.Drawing.Point(311, 110);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 38);
-            this.button5.TabIndex = 18;
-            this.button5.Text = "Get All";
-            this.button5.UseVisualStyleBackColor = true;
+            this.getAll.Location = new System.Drawing.Point(311, 110);
+            this.getAll.Name = "getAll";
+            this.getAll.Size = new System.Drawing.Size(75, 38);
+            this.getAll.TabIndex = 18;
+            this.getAll.Text = "Get All";
+            this.getAll.UseVisualStyleBackColor = true;
+            this.getAll.Click += new System.EventHandler(this.getAll_Click);
             // 
-            // textBoxMetrics
+            // metricsTextBox
             // 
-            this.textBoxMetrics.Location = new System.Drawing.Point(481, 64);
-            this.textBoxMetrics.Name = "textBoxMetrics";
-            this.textBoxMetrics.Size = new System.Drawing.Size(702, 19);
-            this.textBoxMetrics.TabIndex = 19;
+            this.metricsTextBox.Location = new System.Drawing.Point(481, 64);
+            this.metricsTextBox.Name = "metricsTextBox";
+            this.metricsTextBox.Size = new System.Drawing.Size(702, 19);
+            this.metricsTextBox.TabIndex = 19;
             // 
-            // textBoxDimensions
+            // dimensionsTextBox
             // 
-            this.textBoxDimensions.Location = new System.Drawing.Point(481, 89);
-            this.textBoxDimensions.Name = "textBoxDimensions";
-            this.textBoxDimensions.Size = new System.Drawing.Size(702, 19);
-            this.textBoxDimensions.TabIndex = 20;
+            this.dimensionsTextBox.Location = new System.Drawing.Point(481, 89);
+            this.dimensionsTextBox.Name = "dimensionsTextBox";
+            this.dimensionsTextBox.Size = new System.Drawing.Size(702, 19);
+            this.dimensionsTextBox.TabIndex = 20;
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(442, 114);
+            this.textBox6.Location = new System.Drawing.Point(481, 114);
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(741, 19);
+            this.textBox6.Size = new System.Drawing.Size(702, 19);
             this.textBox6.TabIndex = 21;
             // 
-            // textBox7
+            // itemFilter
             // 
-            this.textBox7.Location = new System.Drawing.Point(442, 139);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(304, 19);
-            this.textBox7.TabIndex = 22;
+            this.itemFilter.Location = new System.Drawing.Point(311, 158);
+            this.itemFilter.Name = "itemFilter";
+            this.itemFilter.Size = new System.Drawing.Size(75, 19);
+            this.itemFilter.TabIndex = 22;
+            this.itemFilter.TextChanged += new System.EventHandler(this.itemFilter_TextChanged);
             // 
-            // textBox8
+            // filterTextBox
             // 
-            this.textBox8.Location = new System.Drawing.Point(879, 139);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(304, 19);
-            this.textBox8.TabIndex = 23;
+            this.filterTextBox.Location = new System.Drawing.Point(694, 135);
+            this.filterTextBox.Name = "filterTextBox";
+            this.filterTextBox.Size = new System.Drawing.Size(174, 19);
+            this.filterTextBox.TabIndex = 23;
             // 
             // buttonClearMerics
             // 
@@ -461,9 +464,9 @@
             this.labelDimensions.AutoSize = true;
             this.labelDimensions.Location = new System.Drawing.Point(392, 92);
             this.labelDimensions.Name = "labelDimensions";
-            this.labelDimensions.Size = new System.Drawing.Size(58, 24);
+            this.labelDimensions.Size = new System.Drawing.Size(31, 24);
             this.labelDimensions.TabIndex = 26;
-            this.labelDimensions.Text = "Dimension\r\n(0/7)";
+            this.labelDimensions.Text = "Dims\r\n(0/7)";
             // 
             // labelMetrics
             // 
@@ -474,41 +477,132 @@
             this.labelMetrics.TabIndex = 27;
             this.labelMetrics.Text = "Metrics\r\n(0/10)";
             // 
+            // endDateTextBox
+            // 
+            this.endDateTextBox.Location = new System.Drawing.Point(552, 136);
+            this.endDateTextBox.Name = "endDateTextBox";
+            this.endDateTextBox.Size = new System.Drawing.Size(86, 19);
+            this.endDateTextBox.TabIndex = 28;
+            // 
+            // startDateTextBox
+            // 
+            this.startDateTextBox.Location = new System.Drawing.Point(443, 136);
+            this.startDateTextBox.Name = "startDateTextBox";
+            this.startDateTextBox.Size = new System.Drawing.Size(95, 19);
+            this.startDateTextBox.TabIndex = 29;
+            // 
+            // dateLabel
+            // 
+            this.dateLabel.AutoSize = true;
+            this.dateLabel.Location = new System.Drawing.Point(404, 138);
+            this.dateLabel.Name = "dateLabel";
+            this.dateLabel.Size = new System.Drawing.Size(27, 12);
+            this.dateLabel.TabIndex = 30;
+            this.dateLabel.Text = "date";
+            // 
+            // dateBetween
+            // 
+            this.dateBetween.AutoSize = true;
+            this.dateBetween.Location = new System.Drawing.Point(540, 139);
+            this.dateBetween.Name = "dateBetween";
+            this.dateBetween.Size = new System.Drawing.Size(11, 12);
+            this.dateBetween.TabIndex = 31;
+            this.dateBetween.Text = "-";
+            // 
+            // segmentLabel
+            // 
+            this.segmentLabel.AutoSize = true;
+            this.segmentLabel.Location = new System.Drawing.Point(392, 118);
+            this.segmentLabel.Name = "segmentLabel";
+            this.segmentLabel.Size = new System.Drawing.Size(48, 12);
+            this.segmentLabel.TabIndex = 32;
+            this.segmentLabel.Text = "segment";
+            // 
+            // sortTextBox
+            // 
+            this.sortTextBox.Location = new System.Drawing.Point(907, 134);
+            this.sortTextBox.Name = "sortTextBox";
+            this.sortTextBox.Size = new System.Drawing.Size(174, 19);
+            this.sortTextBox.TabIndex = 33;
+            // 
+            // indexTextBox
+            // 
+            this.indexTextBox.Location = new System.Drawing.Point(1114, 134);
+            this.indexTextBox.Name = "indexTextBox";
+            this.indexTextBox.Size = new System.Drawing.Size(69, 19);
+            this.indexTextBox.TabIndex = 34;
+            // 
+            // filterLabel
+            // 
+            this.filterLabel.AutoSize = true;
+            this.filterLabel.Location = new System.Drawing.Point(644, 139);
+            this.filterLabel.Name = "filterLabel";
+            this.filterLabel.Size = new System.Drawing.Size(29, 12);
+            this.filterLabel.TabIndex = 35;
+            this.filterLabel.Text = "filter";
+            // 
+            // sortLabel
+            // 
+            this.sortLabel.AutoSize = true;
+            this.sortLabel.Location = new System.Drawing.Point(873, 137);
+            this.sortLabel.Name = "sortLabel";
+            this.sortLabel.Size = new System.Drawing.Size(25, 12);
+            this.sortLabel.TabIndex = 36;
+            this.sortLabel.Text = "sort";
+            // 
+            // indexLabel
+            // 
+            this.indexLabel.AutoSize = true;
+            this.indexLabel.Location = new System.Drawing.Point(1083, 137);
+            this.indexLabel.Name = "indexLabel";
+            this.indexLabel.Size = new System.Drawing.Size(32, 12);
+            this.indexLabel.TabIndex = 37;
+            this.indexLabel.Text = "index";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1183, 787);
+            this.Controls.Add(this.indexLabel);
+            this.Controls.Add(this.sortLabel);
+            this.Controls.Add(this.filterLabel);
+            this.Controls.Add(this.indexTextBox);
+            this.Controls.Add(this.sortTextBox);
+            this.Controls.Add(this.segmentLabel);
+            this.Controls.Add(this.dateBetween);
+            this.Controls.Add(this.dateLabel);
+            this.Controls.Add(this.startDateTextBox);
+            this.Controls.Add(this.endDateTextBox);
             this.Controls.Add(this.labelMetrics);
             this.Controls.Add(this.labelDimensions);
             this.Controls.Add(this.buttonClearDims);
             this.Controls.Add(this.buttonClearMerics);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.filterTextBox);
+            this.Controls.Add(this.itemFilter);
             this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBoxDimensions);
-            this.Controls.Add(this.textBoxMetrics);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.dimensionsTextBox);
+            this.Controls.Add(this.metricsTextBox);
+            this.Controls.Add(this.getAll);
+            this.Controls.Add(this.get1000);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.queryTextBox);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.buttonAuthChange);
             this.Controls.Add(this.buttonDeleteAuth);
-            this.Controls.Add(this.dataGridViewViews);
+            this.Controls.Add(this.GaViewdataGridView);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.dataGridViewWebProperty);
             this.Controls.Add(this.buttonGetAuth);
             this.Controls.Add(this.dataGridViewAccount);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gaDataGridViewData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWebProperty)).EndInit();
             this.tabControl1.ResumeLayout(false);
@@ -517,7 +611,7 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGoals)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewViews)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GaViewdataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -525,9 +619,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DataGridView dataGridViewData;
+        private System.Windows.Forms.DataGridView gaDataGridViewData;
         private System.Windows.Forms.DataGridView dataGridViewAccount;
         private System.Windows.Forms.Button buttonGetAuth;
         private System.Windows.Forms.DataGridView dataGridViewWebProperty;
@@ -535,7 +628,7 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.DataGridView dataGridViewDimMetrics;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.DataGridView dataGridViewViews;
+        private System.Windows.Forms.DataGridView GaViewdataGridView;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.DataGridView dataGridViewGoals;
         private System.Windows.Forms.TabPage tabPage4;
@@ -548,21 +641,31 @@
         private System.Windows.Forms.Button buttonAuthChange;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox queryTextBox;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.TextBox textBoxMetrics;
-        private System.Windows.Forms.TextBox textBoxDimensions;
+        private System.Windows.Forms.Button get1000;
+        private System.Windows.Forms.Button getAll;
+        private System.Windows.Forms.TextBox metricsTextBox;
+        private System.Windows.Forms.TextBox dimensionsTextBox;
         private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox itemFilter;
+        private System.Windows.Forms.TextBox filterTextBox;
         private System.Windows.Forms.Button buttonClearMerics;
         private System.Windows.Forms.Button buttonClearDims;
         private System.Windows.Forms.Label labelDimensions;
         private System.Windows.Forms.Label labelMetrics;
+        private System.Windows.Forms.TextBox endDateTextBox;
+        private System.Windows.Forms.TextBox startDateTextBox;
+        private System.Windows.Forms.Label dateLabel;
+        private System.Windows.Forms.Label dateBetween;
+        private System.Windows.Forms.Label segmentLabel;
+        private System.Windows.Forms.TextBox sortTextBox;
+        private System.Windows.Forms.TextBox indexTextBox;
+        private System.Windows.Forms.Label filterLabel;
+        private System.Windows.Forms.Label sortLabel;
+        private System.Windows.Forms.Label indexLabel;
     }
 }
 
