@@ -75,6 +75,8 @@
             this.filterLabel = new System.Windows.Forms.Label();
             this.sortLabel = new System.Windows.Forms.Label();
             this.indexLabel = new System.Windows.Forms.Label();
+            this.totalResultsNumtextBox = new System.Windows.Forms.TextBox();
+            this.actualRowsTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.gaDataGridViewData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWebProperty)).BeginInit();
@@ -426,10 +428,11 @@
             // 
             // itemFilter
             // 
-            this.itemFilter.Location = new System.Drawing.Point(311, 158);
+            this.itemFilter.Location = new System.Drawing.Point(482, 161);
             this.itemFilter.Name = "itemFilter";
-            this.itemFilter.Size = new System.Drawing.Size(75, 19);
+            this.itemFilter.Size = new System.Drawing.Size(94, 19);
             this.itemFilter.TabIndex = 22;
+            this.itemFilter.Text = "dimMetricsFilter";
             this.itemFilter.TextChanged += new System.EventHandler(this.itemFilter_TextChanged);
             // 
             // filterTextBox
@@ -559,12 +562,30 @@
             this.indexLabel.TabIndex = 37;
             this.indexLabel.Text = "index";
             // 
+            // totalResultsNumtextBox
+            // 
+            this.totalResultsNumtextBox.Location = new System.Drawing.Point(314, 161);
+            this.totalResultsNumtextBox.Name = "totalResultsNumtextBox";
+            this.totalResultsNumtextBox.Size = new System.Drawing.Size(75, 19);
+            this.totalResultsNumtextBox.TabIndex = 38;
+            this.totalResultsNumtextBox.Text = "total";
+            // 
+            // actualRowsTextBox
+            // 
+            this.actualRowsTextBox.Location = new System.Drawing.Point(395, 161);
+            this.actualRowsTextBox.Name = "actualRowsTextBox";
+            this.actualRowsTextBox.Size = new System.Drawing.Size(75, 19);
+            this.actualRowsTextBox.TabIndex = 39;
+            this.actualRowsTextBox.Text = "actual";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1183, 787);
+            this.Controls.Add(this.actualRowsTextBox);
+            this.Controls.Add(this.totalResultsNumtextBox);
             this.Controls.Add(this.indexLabel);
             this.Controls.Add(this.sortLabel);
             this.Controls.Add(this.filterLabel);
@@ -666,6 +687,8 @@
         private System.Windows.Forms.Label filterLabel;
         private System.Windows.Forms.Label sortLabel;
         private System.Windows.Forms.Label indexLabel;
+        private System.Windows.Forms.TextBox totalResultsNumtextBox;
+        private System.Windows.Forms.TextBox actualRowsTextBox;
     }
 }
 

@@ -281,7 +281,7 @@ namespace GA_Data_Exporter
             {
                 return;
             }
-            getData1000(10000);
+            getData(10000,1);
         }
 
         private void get1000_Click(object sender, EventArgs e)
@@ -289,11 +289,11 @@ namespace GA_Data_Exporter
             if(!checkBeforeGetData()){
                 return;
             }
-            getData1000(1000);
+            getData(1000,1);
         }
 
-
-        private void getData1000(int max){
+        private GaData getGaData(int max, int index)
+        {
             string id = GaViewdataGridView.SelectedCells[0].Value.ToString();
             string metrics = metricsTextBox.Text;
 
@@ -303,16 +303,39 @@ namespace GA_Data_Exporter
                 endDateTextBox.Text,
                 metrics);
             req.MaxResults = max;
-            req.StartIndex = int.Parse(indexTextBox.Text);
-            req.Dimensions = dimensionsTextBox.Text== "" ? null : dimensionsTextBox.Text;
+            req.StartIndex = index;
+            req.Dimensions = dimensionsTextBox.Text == "" ? null : dimensionsTextBox.Text;
             req.Filters = filterTextBox.Text == "" ? null : filterTextBox.Text;
             req.Sort = sortTextBox.Text == "" ? null : sortTextBox.Text;
             req.SamplingLevel = DataResource.GaResource.GetRequest.SamplingLevelEnum.DEFAULT;
-            GaData ret = req.Execute();
-            queryTextBox.Text = ret.SelfLink;
+            return(req.Execute());
+        }
+
+        private void getData(int max, int index){
+            List<GaData> ret = new List<GaData>();
+            ret.Add(getGaData(max, 1));
+            totalResultsNumtextBox.Text = ret[0].TotalResults.ToString();
+            if (ret[0].TotalResults > 10000 && max == 10000)
+            {
+                if (ret[0].TotalResults > 100000)
+                {
+                    DialogResult msg = MessageBox.Show("over 10,000 rows. want to continue?", "confirm", MessageBoxButtons.YesNo);
+                    if (msg == DialogResult.Yes)
+                    {
+                        return;
+                    }
+                }
+                for (int i = 10001; i < ret[0].TotalResults; i = i + 10000)
+                {
+                        ret.Add(getGaData(max, i));
+                        actualRowsTextBox.Text = i.ToString();
+                }                   
+            }
+            queryTextBox.Text = ret[(ret.Count-1)].SelfLink;
          
+
             DataTable dt = new DataTable();
-            IList<GaData.ColumnHeadersData> cols = ret.ColumnHeaders;
+            IList<GaData.ColumnHeadersData> cols = ret[0].ColumnHeaders;
             foreach(GaData.ColumnHeadersData col in cols){
                 if (col.DataType == "STRING")
                 {
@@ -327,18 +350,22 @@ namespace GA_Data_Exporter
                     dt.Columns.Add(col.Name.Replace("ga:", ""), typeof(Int32));
                 }
             }
-            GaData.DataTableData data = ret.DataTable;
             int numCols = dt.Columns.Count;
-            for (int i = 0; i < ret.Rows.Count; i++)
+          
+            foreach(var r in ret)
             {
-                DataRow row = dt.NewRow();
-                for (int j = 0; j < numCols; j++)
+                for (int i = 0; i < r.Rows.Count; i++)
                 {
-                    row[j] = ret.Rows[i][j];
+                    DataRow row = dt.NewRow();
+                    for (int j = 0; j < numCols; j++)
+                    {
+                        row[j] = r.Rows[i][j];
+                    }
+                    dt.Rows.Add(row);
                 }
-                dt.Rows.Add(row);
             }
             gaDataGridViewData.DataSource = dt;
+            actualRowsTextBox.Text = dt.Rows.Count.ToString();
       
         }
 
