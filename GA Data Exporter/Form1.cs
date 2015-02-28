@@ -413,11 +413,40 @@ namespace GA_Data_Exporter
     
         private void itemFilter_TextChanged(object sender, EventArgs e)
         {
-            if (itemFilter.Text.Length < 1) { return; }
-            listViewDimensions.Items.Clear();
-            listViewDimensions.Items.AddRange(dimensionsItems.Where(i => i.ToLower().Contains(itemFilter.Text)).Select(c => new ListViewItem(c)).ToArray());
+            if (itemFilter.Text.Length < 2) { return; }
+            List<string> dimItems = new List<string>();
+            List<string> metItems = new List<string>();
+
+            foreach (ListViewItem i in listViewDimensions.SelectedItems) { dimItems.Add(i.Name); }
+            foreach (ListViewItem i in listViewMetrics.SelectedItems) { metItems.Add(i.Name); }
+
             listViewMetrics.Items.Clear();
+            /*
+            foreach (string str in metItems)
+            {
+                listViewMetrics.Items.Add(str);
+            }
+            foreach(ListViewItem item in listViewMetrics.Items){
+                item.Selected = true;
+         
+            }
+            */
             listViewMetrics.Items.AddRange(metricsItems.Where(i => i.ToLower().Contains(itemFilter.Text)).Select(c => new ListViewItem(c)).ToArray());
+
+            listViewDimensions.Items.Clear();
+            /*
+            foreach (string str in dimItems)
+            {
+                listViewDimensions.Items.Add(str);
+            }
+            foreach (ListViewItem item in listViewDimensions.Items)
+            {
+                item.Selected = true;
+            }
+            */
+            listViewDimensions.Items.AddRange(dimensionsItems.Where(i => i.ToLower().Contains(itemFilter.Text)).Select(c => new ListViewItem(c)).ToArray());
+            
+
         }
 
         private void listViewDimensions_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)

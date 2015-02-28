@@ -434,7 +434,6 @@
             this.itemFilter.Name = "itemFilter";
             this.itemFilter.Size = new System.Drawing.Size(94, 19);
             this.itemFilter.TabIndex = 22;
-            this.itemFilter.Text = "dimMetricsFilter";
             this.itemFilter.TextChanged += new System.EventHandler(this.itemFilter_TextChanged);
             // 
             // filterTextBox
