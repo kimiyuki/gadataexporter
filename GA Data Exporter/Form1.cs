@@ -50,10 +50,19 @@ namespace GA_Data_Exporter
             }
         }
 
-
-        private void button1_Click(object sender, EventArgs e)
+        private void AuthChangeButton_Click(object sender, EventArgs e)
         {
-            getMetaData();
+            (new FileDataStore("ga")).ClearAsync();
+            auth();
+            getAccounts();
+        }
+        private void buttonDeleteAuth_Click(object sender, EventArgs e)
+        {
+            (new FileDataStore("ga")).ClearAsync();
+            //dataGridViewAccount.Rows.Clear();
+            //dataGridViewWebProperty.Rows.Clear();
+            //GaViewdataGridView.Rows.Clear();
+     
         }
 
         private void auth()
@@ -73,6 +82,7 @@ namespace GA_Data_Exporter
                     HttpClientInitializer = credential,
                     ApplicationName = "abc-analytics ga data exporter"
                 });
+             getAccounts();
         }
         private void getMetaData()
         {
@@ -143,9 +153,9 @@ namespace GA_Data_Exporter
 
         private void button2_Click(object sender, EventArgs e)
         {
-            getProperties();
+            getAccounts();
         }
-        private void getProperties()
+        private void getAccounts()
         {
             ManagementResource.AccountsResource.ListRequest req = service.Management.Accounts.List();
             Accounts accountList = req.Execute();
@@ -423,7 +433,7 @@ namespace GA_Data_Exporter
     
         }
 
-  
+       
       
     
     }

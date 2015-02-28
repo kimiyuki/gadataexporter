@@ -47,7 +47,7 @@
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.GaViewdataGridView = new System.Windows.Forms.DataGridView();
             this.buttonDeleteAuth = new System.Windows.Forms.Button();
-            this.buttonAuthChange = new System.Windows.Forms.Button();
+            this.AuthChangeButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.queryTextBox = new System.Windows.Forms.TextBox();
@@ -325,15 +325,17 @@
             this.buttonDeleteAuth.TabIndex = 9;
             this.buttonDeleteAuth.Text = "DeleteAuth";
             this.buttonDeleteAuth.UseVisualStyleBackColor = true;
+            this.buttonDeleteAuth.Click += new System.EventHandler(this.buttonDeleteAuth_Click);
             // 
-            // buttonAuthChange
+            // AuthChangeButton
             // 
-            this.buttonAuthChange.Location = new System.Drawing.Point(201, 176);
-            this.buttonAuthChange.Name = "buttonAuthChange";
-            this.buttonAuthChange.Size = new System.Drawing.Size(75, 23);
-            this.buttonAuthChange.TabIndex = 10;
-            this.buttonAuthChange.Text = "changeAuth";
-            this.buttonAuthChange.UseVisualStyleBackColor = true;
+            this.AuthChangeButton.Location = new System.Drawing.Point(201, 176);
+            this.AuthChangeButton.Name = "AuthChangeButton";
+            this.AuthChangeButton.Size = new System.Drawing.Size(75, 23);
+            this.AuthChangeButton.TabIndex = 10;
+            this.AuthChangeButton.Text = "changeAuth";
+            this.AuthChangeButton.UseVisualStyleBackColor = true;
+            this.AuthChangeButton.Click += new System.EventHandler(this.AuthChangeButton_Click);
             // 
             // button2
             // 
@@ -613,7 +615,7 @@
             this.Controls.Add(this.queryTextBox);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.buttonAuthChange);
+            this.Controls.Add(this.AuthChangeButton);
             this.Controls.Add(this.buttonDeleteAuth);
             this.Controls.Add(this.GaViewdataGridView);
             this.Controls.Add(this.tabControl1);
@@ -659,7 +661,7 @@
         private System.Windows.Forms.ListView listViewMetrics;
         private System.Windows.Forms.ListView listViewDimensions;
         private System.Windows.Forms.Button buttonDeleteAuth;
-        private System.Windows.Forms.Button buttonAuthChange;
+        private System.Windows.Forms.Button AuthChangeButton;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox queryTextBox;
