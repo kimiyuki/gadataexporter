@@ -83,6 +83,9 @@
             this.actualRowslabel = new System.Windows.Forms.Label();
             this.sampleLabel = new System.Windows.Forms.Label();
             this.sampleTextBox = new System.Windows.Forms.TextBox();
+            this.accountLabel = new System.Windows.Forms.Label();
+            this.propertyLabel = new System.Windows.Forms.Label();
+            this.viewLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gaDataGridViewData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWebProperty)).BeginInit();
@@ -124,10 +127,10 @@
             this.dataGridViewAccount.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             this.dataGridViewAccount.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewAccount.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridViewAccount.Location = new System.Drawing.Point(12, 205);
+            this.dataGridViewAccount.Location = new System.Drawing.Point(12, 228);
             this.dataGridViewAccount.Name = "dataGridViewAccount";
             this.dataGridViewAccount.RowTemplate.Height = 21;
-            this.dataGridViewAccount.Size = new System.Drawing.Size(292, 122);
+            this.dataGridViewAccount.Size = new System.Drawing.Size(292, 99);
             this.dataGridViewAccount.TabIndex = 4;
             this.dataGridViewAccount.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellClick);
             // 
@@ -149,10 +152,10 @@
             this.dataGridViewWebProperty.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             this.dataGridViewWebProperty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewWebProperty.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridViewWebProperty.Location = new System.Drawing.Point(13, 341);
+            this.dataGridViewWebProperty.Location = new System.Drawing.Point(13, 353);
             this.dataGridViewWebProperty.Name = "dataGridViewWebProperty";
             this.dataGridViewWebProperty.RowTemplate.Height = 21;
-            this.dataGridViewWebProperty.Size = new System.Drawing.Size(292, 124);
+            this.dataGridViewWebProperty.Size = new System.Drawing.Size(292, 112);
             this.dataGridViewWebProperty.TabIndex = 6;
             this.dataGridViewWebProperty.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewWebProperty_CellClick);
             // 
@@ -205,7 +208,7 @@
             this.listViewMetrics.FullRowSelect = true;
             this.listViewMetrics.GridLines = true;
             this.listViewMetrics.HideSelection = false;
-            this.listViewMetrics.Location = new System.Drawing.Point(10, 10);
+            this.listViewMetrics.Location = new System.Drawing.Point(6, 10);
             this.listViewMetrics.Name = "listViewMetrics";
             this.listViewMetrics.ShowItemToolTips = true;
             this.listViewMetrics.Size = new System.Drawing.Size(447, 567);
@@ -314,10 +317,10 @@
             this.GaViewdataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             this.GaViewdataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GaViewdataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.GaViewdataGridView.Location = new System.Drawing.Point(13, 483);
+            this.GaViewdataGridView.Location = new System.Drawing.Point(13, 492);
             this.GaViewdataGridView.Name = "GaViewdataGridView";
             this.GaViewdataGridView.RowTemplate.Height = 21;
-            this.GaViewdataGridView.Size = new System.Drawing.Size(291, 329);
+            this.GaViewdataGridView.Size = new System.Drawing.Size(291, 320);
             this.GaViewdataGridView.TabIndex = 8;
             this.GaViewdataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewViews_CellClick);
             // 
@@ -643,12 +646,42 @@
             this.sampleTextBox.Size = new System.Drawing.Size(108, 19);
             this.sampleTextBox.TabIndex = 49;
             // 
+            // accountLabel
+            // 
+            this.accountLabel.AutoSize = true;
+            this.accountLabel.Location = new System.Drawing.Point(12, 212);
+            this.accountLabel.Name = "accountLabel";
+            this.accountLabel.Size = new System.Drawing.Size(114, 12);
+            this.accountLabel.TabIndex = 51;
+            this.accountLabel.Text = "Account : SELECT ID";
+            // 
+            // propertyLabel
+            // 
+            this.propertyLabel.AutoSize = true;
+            this.propertyLabel.Location = new System.Drawing.Point(12, 338);
+            this.propertyLabel.Name = "propertyLabel";
+            this.propertyLabel.Size = new System.Drawing.Size(115, 12);
+            this.propertyLabel.TabIndex = 52;
+            this.propertyLabel.Text = "Property : SELECT ID";
+            // 
+            // viewLabel
+            // 
+            this.viewLabel.AutoSize = true;
+            this.viewLabel.Location = new System.Drawing.Point(11, 477);
+            this.viewLabel.Name = "viewLabel";
+            this.viewLabel.Size = new System.Drawing.Size(97, 12);
+            this.viewLabel.TabIndex = 53;
+            this.viewLabel.Text = "View : SELECT ID";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1225, 819);
+            this.Controls.Add(this.viewLabel);
+            this.Controls.Add(this.propertyLabel);
+            this.Controls.Add(this.accountLabel);
             this.Controls.Add(this.sampleLabel);
             this.Controls.Add(this.sampleTextBox);
             this.Controls.Add(this.actualRowslabel);
@@ -766,6 +799,9 @@
         private System.Windows.Forms.Label actualRowslabel;
         private System.Windows.Forms.Label sampleLabel;
         private System.Windows.Forms.TextBox sampleTextBox;
+        private System.Windows.Forms.Label accountLabel;
+        private System.Windows.Forms.Label propertyLabel;
+        private System.Windows.Forms.Label viewLabel;
     }
 }
 
