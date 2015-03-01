@@ -355,17 +355,17 @@ namespace GA_Data_Exporter
                 IList<GaData.ColumnHeadersData> cols = ret[0].ColumnHeaders;
                 foreach (GaData.ColumnHeadersData col in cols)
                 {
-                    if (col.DataType == "STRING")
-                    {
-                        dt.Columns.Add(col.Name.Replace("ga:", ""), typeof(string));
-                    }
-                    else if (col.DataType == "FLOAT" || col.DataType == "PERCENT")
+                    if (col.DataType == "FLOAT" || col.DataType == "PERCENT" || col.DataType == "CURRENCY")
                     {
                         dt.Columns.Add(col.Name.Replace("ga:", ""), typeof(float));
                     }
-                    else
+                    else if(col.DataType == "INTEGER")
                     {
                         dt.Columns.Add(col.Name.Replace("ga:", ""), typeof(Int32));
+                    }
+                    else
+                    {
+                        dt.Columns.Add(col.Name.Replace("ga:", ""), typeof(string));
                     }
                 }
                 int numCols = dt.Columns.Count;
@@ -503,6 +503,11 @@ namespace GA_Data_Exporter
         private void segmentLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://developers.google.com/analytics/devguides/reporting/core/v3/reference#segment");
+        }
+
+        private void queryLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://developers.google.com/analytics/devguides/reporting/core/v3/reference");
         }
 
        

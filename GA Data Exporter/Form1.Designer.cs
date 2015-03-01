@@ -52,7 +52,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.queryTextBox = new System.Windows.Forms.TextBox();
             this.errorTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.get1000 = new System.Windows.Forms.Button();
             this.getAll = new System.Windows.Forms.Button();
@@ -86,6 +85,7 @@
             this.accountLabel = new System.Windows.Forms.Label();
             this.propertyLabel = new System.Windows.Forms.Label();
             this.viewLabel = new System.Windows.Forms.Label();
+            this.queryLinkLabel = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.gaDataGridViewData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWebProperty)).BeginInit();
@@ -192,10 +192,10 @@
             this.listViewDimensions.BackgroundImageTiled = true;
             this.listViewDimensions.GridLines = true;
             this.listViewDimensions.HideSelection = false;
-            this.listViewDimensions.Location = new System.Drawing.Point(457, 10);
+            this.listViewDimensions.Location = new System.Drawing.Point(454, 10);
             this.listViewDimensions.Name = "listViewDimensions";
             this.listViewDimensions.ShowItemToolTips = true;
-            this.listViewDimensions.Size = new System.Drawing.Size(441, 567);
+            this.listViewDimensions.Size = new System.Drawing.Size(445, 567);
             this.listViewDimensions.TabIndex = 5;
             this.listViewDimensions.TileSize = new System.Drawing.Size(141, 28);
             this.listViewDimensions.UseCompatibleStateImageBehavior = false;
@@ -208,7 +208,7 @@
             this.listViewMetrics.FullRowSelect = true;
             this.listViewMetrics.GridLines = true;
             this.listViewMetrics.HideSelection = false;
-            this.listViewMetrics.Location = new System.Drawing.Point(6, 10);
+            this.listViewMetrics.Location = new System.Drawing.Point(3, 10);
             this.listViewMetrics.Name = "listViewMetrics";
             this.listViewMetrics.ShowItemToolTips = true;
             this.listViewMetrics.Size = new System.Drawing.Size(447, 567);
@@ -375,15 +375,6 @@
             this.errorTextBox.Name = "errorTextBox";
             this.errorTextBox.Size = new System.Drawing.Size(1098, 19);
             this.errorTextBox.TabIndex = 14;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 12);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "Query";
             // 
             // label2
             // 
@@ -673,12 +664,24 @@
             this.viewLabel.TabIndex = 53;
             this.viewLabel.Text = "View : SELECT ID";
             // 
+            // queryLinkLabel
+            // 
+            this.queryLinkLabel.AutoSize = true;
+            this.queryLinkLabel.Location = new System.Drawing.Point(27, 15);
+            this.queryLinkLabel.Name = "queryLinkLabel";
+            this.queryLinkLabel.Size = new System.Drawing.Size(35, 12);
+            this.queryLinkLabel.TabIndex = 54;
+            this.queryLinkLabel.TabStop = true;
+            this.queryLinkLabel.Text = "Query";
+            this.queryLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.queryLinkLabel_LinkClicked);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1225, 819);
+            this.Controls.Add(this.queryLinkLabel);
             this.Controls.Add(this.viewLabel);
             this.Controls.Add(this.propertyLabel);
             this.Controls.Add(this.accountLabel);
@@ -712,7 +715,6 @@
             this.Controls.Add(this.getAll);
             this.Controls.Add(this.get1000);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.errorTextBox);
             this.Controls.Add(this.queryTextBox);
             this.Controls.Add(this.button3);
@@ -726,7 +728,7 @@
             this.Controls.Add(this.dataGridViewAccount);
             this.Controls.Add(this.textBox1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Google Analytics Data Exporter";
             ((System.ComponentModel.ISupportInitialize)(this.gaDataGridViewData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWebProperty)).EndInit();
@@ -768,7 +770,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox queryTextBox;
         private System.Windows.Forms.TextBox errorTextBox;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button get1000;
         private System.Windows.Forms.Button getAll;
@@ -802,6 +803,7 @@
         private System.Windows.Forms.Label accountLabel;
         private System.Windows.Forms.Label propertyLabel;
         private System.Windows.Forms.Label viewLabel;
+        private System.Windows.Forms.LinkLabel queryLinkLabel;
     }
 }
 
