@@ -67,17 +67,22 @@
             this.labelMetrics = new System.Windows.Forms.Label();
             this.endDateTextBox = new System.Windows.Forms.TextBox();
             this.startDateTextBox = new System.Windows.Forms.TextBox();
-            this.dateLabel = new System.Windows.Forms.Label();
             this.dateBetween = new System.Windows.Forms.Label();
-            this.segmentLabel = new System.Windows.Forms.Label();
             this.sortTextBox = new System.Windows.Forms.TextBox();
             this.indexTextBox = new System.Windows.Forms.TextBox();
-            this.filterLabel = new System.Windows.Forms.Label();
-            this.sortLabel = new System.Windows.Forms.Label();
-            this.indexLabel = new System.Windows.Forms.Label();
             this.totalResultsNumtextBox = new System.Windows.Forms.TextBox();
             this.actualRowsTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.filterLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.sortLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.startLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.dateLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.segmentLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.metDimLabel = new System.Windows.Forms.Label();
+            this.totalResultslabel = new System.Windows.Forms.Label();
+            this.actualRowslabel = new System.Windows.Forms.Label();
+            this.sampleLabel = new System.Windows.Forms.Label();
+            this.sampleTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.gaDataGridViewData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWebProperty)).BeginInit();
@@ -160,7 +165,7 @@
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage7);
-            this.tabControl1.Location = new System.Drawing.Point(311, 183);
+            this.tabControl1.Location = new System.Drawing.Point(311, 206);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(885, 646);
@@ -309,10 +314,10 @@
             this.GaViewdataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             this.GaViewdataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GaViewdataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.GaViewdataGridView.Location = new System.Drawing.Point(13, 471);
+            this.GaViewdataGridView.Location = new System.Drawing.Point(13, 483);
             this.GaViewdataGridView.Name = "GaViewdataGridView";
             this.GaViewdataGridView.RowTemplate.Height = 21;
-            this.GaViewdataGridView.Size = new System.Drawing.Size(291, 295);
+            this.GaViewdataGridView.Size = new System.Drawing.Size(291, 329);
             this.GaViewdataGridView.TabIndex = 8;
             this.GaViewdataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewViews_CellClick);
             // 
@@ -429,7 +434,7 @@
             // 
             // itemFilter
             // 
-            this.itemFilter.Location = new System.Drawing.Point(482, 161);
+            this.itemFilter.Location = new System.Drawing.Point(310, 178);
             this.itemFilter.Name = "itemFilter";
             this.itemFilter.Size = new System.Drawing.Size(94, 19);
             this.itemFilter.TabIndex = 22;
@@ -494,15 +499,6 @@
             this.startDateTextBox.Size = new System.Drawing.Size(95, 19);
             this.startDateTextBox.TabIndex = 29;
             // 
-            // dateLabel
-            // 
-            this.dateLabel.AutoSize = true;
-            this.dateLabel.Location = new System.Drawing.Point(404, 138);
-            this.dateLabel.Name = "dateLabel";
-            this.dateLabel.Size = new System.Drawing.Size(27, 12);
-            this.dateLabel.TabIndex = 30;
-            this.dateLabel.Text = "date";
-            // 
             // dateBetween
             // 
             this.dateBetween.AutoSize = true;
@@ -511,15 +507,6 @@
             this.dateBetween.Size = new System.Drawing.Size(11, 12);
             this.dateBetween.TabIndex = 31;
             this.dateBetween.Text = "-";
-            // 
-            // segmentLabel
-            // 
-            this.segmentLabel.AutoSize = true;
-            this.segmentLabel.Location = new System.Drawing.Point(392, 118);
-            this.segmentLabel.Name = "segmentLabel";
-            this.segmentLabel.Size = new System.Drawing.Size(48, 12);
-            this.segmentLabel.TabIndex = 32;
-            this.segmentLabel.Text = "segment";
             // 
             // sortTextBox
             // 
@@ -535,48 +522,19 @@
             this.indexTextBox.Size = new System.Drawing.Size(69, 19);
             this.indexTextBox.TabIndex = 34;
             // 
-            // filterLabel
-            // 
-            this.filterLabel.AutoSize = true;
-            this.filterLabel.Location = new System.Drawing.Point(644, 139);
-            this.filterLabel.Name = "filterLabel";
-            this.filterLabel.Size = new System.Drawing.Size(29, 12);
-            this.filterLabel.TabIndex = 35;
-            this.filterLabel.Text = "filter";
-            // 
-            // sortLabel
-            // 
-            this.sortLabel.AutoSize = true;
-            this.sortLabel.Location = new System.Drawing.Point(873, 137);
-            this.sortLabel.Name = "sortLabel";
-            this.sortLabel.Size = new System.Drawing.Size(25, 12);
-            this.sortLabel.TabIndex = 36;
-            this.sortLabel.Text = "sort";
-            // 
-            // indexLabel
-            // 
-            this.indexLabel.AutoSize = true;
-            this.indexLabel.Location = new System.Drawing.Point(1083, 137);
-            this.indexLabel.Name = "indexLabel";
-            this.indexLabel.Size = new System.Drawing.Size(32, 12);
-            this.indexLabel.TabIndex = 37;
-            this.indexLabel.Text = "index";
-            // 
             // totalResultsNumtextBox
             // 
-            this.totalResultsNumtextBox.Location = new System.Drawing.Point(314, 161);
+            this.totalResultsNumtextBox.Location = new System.Drawing.Point(408, 178);
             this.totalResultsNumtextBox.Name = "totalResultsNumtextBox";
             this.totalResultsNumtextBox.Size = new System.Drawing.Size(75, 19);
             this.totalResultsNumtextBox.TabIndex = 38;
-            this.totalResultsNumtextBox.Text = "total";
             // 
             // actualRowsTextBox
             // 
-            this.actualRowsTextBox.Location = new System.Drawing.Point(395, 161);
+            this.actualRowsTextBox.Location = new System.Drawing.Point(491, 178);
             this.actualRowsTextBox.Name = "actualRowsTextBox";
             this.actualRowsTextBox.Size = new System.Drawing.Size(75, 19);
             this.actualRowsTextBox.TabIndex = 39;
-            this.actualRowsTextBox.Text = "actual";
             // 
             // label3
             // 
@@ -587,23 +545,126 @@
             this.label3.TabIndex = 40;
             this.label3.Text = "DownLoad Path";
             // 
+            // filterLinkLabel
+            // 
+            this.filterLinkLabel.AutoSize = true;
+            this.filterLinkLabel.Location = new System.Drawing.Point(660, 138);
+            this.filterLinkLabel.Name = "filterLinkLabel";
+            this.filterLinkLabel.Size = new System.Drawing.Size(25, 12);
+            this.filterLinkLabel.TabIndex = 41;
+            this.filterLinkLabel.TabStop = true;
+            this.filterLinkLabel.Text = "filer";
+            this.filterLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.filterLinkLabel_LinkClicked);
+            // 
+            // sortLinkLabel
+            // 
+            this.sortLinkLabel.AutoSize = true;
+            this.sortLinkLabel.Location = new System.Drawing.Point(874, 138);
+            this.sortLinkLabel.Name = "sortLinkLabel";
+            this.sortLinkLabel.Size = new System.Drawing.Size(25, 12);
+            this.sortLinkLabel.TabIndex = 42;
+            this.sortLinkLabel.TabStop = true;
+            this.sortLinkLabel.Text = "sort";
+            this.sortLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.sortLinkLabel_LinkClicked);
+            // 
+            // startLinkLabel
+            // 
+            this.startLinkLabel.AutoSize = true;
+            this.startLinkLabel.Location = new System.Drawing.Point(1083, 138);
+            this.startLinkLabel.Name = "startLinkLabel";
+            this.startLinkLabel.Size = new System.Drawing.Size(29, 12);
+            this.startLinkLabel.TabIndex = 43;
+            this.startLinkLabel.TabStop = true;
+            this.startLinkLabel.Text = "start";
+            this.startLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.startLinkLabel_LinkClicked);
+            // 
+            // dateLinkLabel
+            // 
+            this.dateLinkLabel.AutoSize = true;
+            this.dateLinkLabel.Location = new System.Drawing.Point(394, 139);
+            this.dateLinkLabel.Name = "dateLinkLabel";
+            this.dateLinkLabel.Size = new System.Drawing.Size(27, 12);
+            this.dateLinkLabel.TabIndex = 44;
+            this.dateLinkLabel.TabStop = true;
+            this.dateLinkLabel.Text = "date";
+            this.dateLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.dateLinkLabel_LinkClicked);
+            // 
+            // segmentLinkLabel
+            // 
+            this.segmentLinkLabel.AutoSize = true;
+            this.segmentLinkLabel.Location = new System.Drawing.Point(393, 121);
+            this.segmentLinkLabel.Name = "segmentLinkLabel";
+            this.segmentLinkLabel.Size = new System.Drawing.Size(48, 12);
+            this.segmentLinkLabel.TabIndex = 45;
+            this.segmentLinkLabel.TabStop = true;
+            this.segmentLinkLabel.Text = "segment";
+            this.segmentLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.segmentLinkLabel_LinkClicked);
+            // 
+            // metDimLabel
+            // 
+            this.metDimLabel.AutoSize = true;
+            this.metDimLabel.Location = new System.Drawing.Point(308, 163);
+            this.metDimLabel.Name = "metDimLabel";
+            this.metDimLabel.Size = new System.Drawing.Size(90, 12);
+            this.metDimLabel.TabIndex = 46;
+            this.metDimLabel.Text = "metricsDimFilter";
+            // 
+            // totalResultslabel
+            // 
+            this.totalResultslabel.AutoSize = true;
+            this.totalResultslabel.Location = new System.Drawing.Point(408, 163);
+            this.totalResultslabel.Name = "totalResultslabel";
+            this.totalResultslabel.Size = new System.Drawing.Size(67, 12);
+            this.totalResultslabel.TabIndex = 47;
+            this.totalResultslabel.Text = "totalResults";
+            // 
+            // actualRowslabel
+            // 
+            this.actualRowslabel.AutoSize = true;
+            this.actualRowslabel.Location = new System.Drawing.Point(489, 163);
+            this.actualRowslabel.Name = "actualRowslabel";
+            this.actualRowslabel.Size = new System.Drawing.Size(64, 12);
+            this.actualRowslabel.TabIndex = 48;
+            this.actualRowslabel.Text = "actualRows";
+            // 
+            // sampleLabel
+            // 
+            this.sampleLabel.AutoSize = true;
+            this.sampleLabel.Location = new System.Drawing.Point(575, 163);
+            this.sampleLabel.Name = "sampleLabel";
+            this.sampleLabel.Size = new System.Drawing.Size(46, 12);
+            this.sampleLabel.TabIndex = 50;
+            this.sampleLabel.Text = "sample?";
+            // 
+            // sampleTextBox
+            // 
+            this.sampleTextBox.Location = new System.Drawing.Point(577, 178);
+            this.sampleTextBox.Name = "sampleTextBox";
+            this.sampleTextBox.Size = new System.Drawing.Size(108, 19);
+            this.sampleTextBox.TabIndex = 49;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1183, 787);
+            this.ClientSize = new System.Drawing.Size(1183, 819);
+            this.Controls.Add(this.sampleLabel);
+            this.Controls.Add(this.sampleTextBox);
+            this.Controls.Add(this.actualRowslabel);
+            this.Controls.Add(this.totalResultslabel);
+            this.Controls.Add(this.metDimLabel);
+            this.Controls.Add(this.segmentLinkLabel);
+            this.Controls.Add(this.dateLinkLabel);
+            this.Controls.Add(this.startLinkLabel);
+            this.Controls.Add(this.sortLinkLabel);
+            this.Controls.Add(this.filterLinkLabel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.actualRowsTextBox);
             this.Controls.Add(this.totalResultsNumtextBox);
-            this.Controls.Add(this.indexLabel);
-            this.Controls.Add(this.sortLabel);
-            this.Controls.Add(this.filterLabel);
             this.Controls.Add(this.indexTextBox);
             this.Controls.Add(this.sortTextBox);
-            this.Controls.Add(this.segmentLabel);
             this.Controls.Add(this.dateBetween);
-            this.Controls.Add(this.dateLabel);
             this.Controls.Add(this.startDateTextBox);
             this.Controls.Add(this.endDateTextBox);
             this.Controls.Add(this.labelMetrics);
@@ -689,17 +750,22 @@
         private System.Windows.Forms.Label labelMetrics;
         private System.Windows.Forms.TextBox endDateTextBox;
         private System.Windows.Forms.TextBox startDateTextBox;
-        private System.Windows.Forms.Label dateLabel;
         private System.Windows.Forms.Label dateBetween;
-        private System.Windows.Forms.Label segmentLabel;
         private System.Windows.Forms.TextBox sortTextBox;
         private System.Windows.Forms.TextBox indexTextBox;
-        private System.Windows.Forms.Label filterLabel;
-        private System.Windows.Forms.Label sortLabel;
-        private System.Windows.Forms.Label indexLabel;
         private System.Windows.Forms.TextBox totalResultsNumtextBox;
         private System.Windows.Forms.TextBox actualRowsTextBox;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.LinkLabel filterLinkLabel;
+        private System.Windows.Forms.LinkLabel sortLinkLabel;
+        private System.Windows.Forms.LinkLabel startLinkLabel;
+        private System.Windows.Forms.LinkLabel dateLinkLabel;
+        private System.Windows.Forms.LinkLabel segmentLinkLabel;
+        private System.Windows.Forms.Label metDimLabel;
+        private System.Windows.Forms.Label totalResultslabel;
+        private System.Windows.Forms.Label actualRowslabel;
+        private System.Windows.Forms.Label sampleLabel;
+        private System.Windows.Forms.TextBox sampleTextBox;
     }
 }
 

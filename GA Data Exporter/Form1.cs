@@ -316,7 +316,14 @@ namespace GA_Data_Exporter
             req.Filters = filterTextBox.Text == "" ? null : filterTextBox.Text;
             req.Sort = sortTextBox.Text == "" ? null : sortTextBox.Text;
             req.SamplingLevel = DataResource.GaResource.GetRequest.SamplingLevelEnum.DEFAULT;
-            return(req.Execute());
+            GaData ret = req.Execute();
+            if(ret.ContainsSampledData.Value){
+                sampleTextBox.Text = Math.Round((decimal)((float)ret.SampleSize / (float)ret.SampleSpace)*100, 2).ToString() +
+                    "%(" + ret.SampleSize.ToString() + "/" + ret.SampleSpace.ToString() +")";
+            }else{
+                sampleTextBox.Text = "WholeData";
+            }
+            return(ret);
         }
 
         private void getData(int max, int index){
@@ -471,6 +478,31 @@ namespace GA_Data_Exporter
             dimensionsTextBox.Text = ret.TrimEnd(',');
             this.labelDimensions.Text = "dims\n(" + items.Count.ToString() + "/10)";
     
+        }
+
+        private void filterLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://developers.google.com/analytics/devguides/reporting/core/v3/reference#filters");
+        }
+
+        private void sortLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://developers.google.com/analytics/devguides/reporting/core/v3/reference#sort");
+        }
+
+        private void startLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://developers.google.com/analytics/devguides/reporting/core/v3/reference#startIndex");
+        }
+
+        private void dateLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://developers.google.com/analytics/devguides/reporting/core/v3/reference#startDate");
+        }
+
+        private void segmentLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://developers.google.com/analytics/devguides/reporting/core/v3/reference#segment");
         }
 
        
