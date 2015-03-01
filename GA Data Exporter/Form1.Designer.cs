@@ -51,7 +51,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.queryTextBox = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.errorTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.get1000 = new System.Windows.Forms.Button();
@@ -77,6 +77,7 @@
             this.indexLabel = new System.Windows.Forms.Label();
             this.totalResultsNumtextBox = new System.Windows.Forms.TextBox();
             this.actualRowsTextBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gaDataGridViewData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWebProperty)).BeginInit();
@@ -187,7 +188,6 @@
             this.listViewDimensions.Name = "listViewDimensions";
             this.listViewDimensions.ShowItemToolTips = true;
             this.listViewDimensions.Size = new System.Drawing.Size(421, 567);
-            this.listViewDimensions.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listViewDimensions.TabIndex = 5;
             this.listViewDimensions.TileSize = new System.Drawing.Size(131, 28);
             this.listViewDimensions.UseCompatibleStateImageBehavior = false;
@@ -204,7 +204,6 @@
             this.listViewMetrics.Name = "listViewMetrics";
             this.listViewMetrics.ShowItemToolTips = true;
             this.listViewMetrics.Size = new System.Drawing.Size(421, 567);
-            this.listViewMetrics.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listViewMetrics.TabIndex = 4;
             this.listViewMetrics.TileSize = new System.Drawing.Size(131, 28);
             this.listViewMetrics.UseCompatibleStateImageBehavior = false;
@@ -343,16 +342,16 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 11;
-            this.button2.Text = "GetAuth";
+            this.button2.Text = "not yet";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(156, 130);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(107, 23);
             this.button3.TabIndex = 12;
-            this.button3.Text = "GetAuth";
+            this.button3.Text = "not yet DL CSV";
             this.button3.UseVisualStyleBackColor = true;
             // 
             // queryTextBox
@@ -362,12 +361,12 @@
             this.queryTextBox.Size = new System.Drawing.Size(1096, 19);
             this.queryTextBox.TabIndex = 13;
             // 
-            // textBox3
+            // errorTextBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(79, 37);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(1098, 19);
-            this.textBox3.TabIndex = 14;
+            this.errorTextBox.Location = new System.Drawing.Point(79, 37);
+            this.errorTextBox.Name = "errorTextBox";
+            this.errorTextBox.Size = new System.Drawing.Size(1098, 19);
+            this.errorTextBox.TabIndex = 14;
             // 
             // label1
             // 
@@ -579,12 +578,22 @@
             this.actualRowsTextBox.TabIndex = 39;
             this.actualRowsTextBox.Text = "actual";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 78);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(84, 12);
+            this.label3.TabIndex = 40;
+            this.label3.Text = "DownLoad Path";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1183, 787);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.actualRowsTextBox);
             this.Controls.Add(this.totalResultsNumtextBox);
             this.Controls.Add(this.indexLabel);
@@ -610,7 +619,7 @@
             this.Controls.Add(this.get1000);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.errorTextBox);
             this.Controls.Add(this.queryTextBox);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -664,7 +673,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox queryTextBox;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox errorTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button get1000;
@@ -690,6 +699,7 @@
         private System.Windows.Forms.Label indexLabel;
         private System.Windows.Forms.TextBox totalResultsNumtextBox;
         private System.Windows.Forms.TextBox actualRowsTextBox;
+        private System.Windows.Forms.Label label3;
     }
 }
 

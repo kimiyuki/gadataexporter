@@ -26,28 +26,16 @@ namespace GA_Data_Exporter
         private UserCredential credential;
         private List<string> metricsItems = new List<string>();
         private List<string> dimensionsItems = new List<string>();
-
         
         public Form1()
         {
             InitializeComponent();
-            try
-            {
-                auth();
-                getMetaData();
-                startDateTextBox.Text = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
-                endDateTextBox.Text = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
-                indexTextBox.Text = "1";
+            auth();
+            getMetaData();
+            startDateTextBox.Text = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
+            endDateTextBox.Text = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
+            indexTextBox.Text = "1";
 
-            }
-            catch (AggregateException ex)
-            {
-                foreach (var ee in ex.InnerExceptions)
-                {
-                    MessageBox.Show(ee.Message);
-                    //Console.WriteLine("ERROR: " + ee.Message);
-                }
-            }
         }
 
         private void AuthChangeButton_Click(object sender, EventArgs e)
@@ -260,46 +248,56 @@ namespace GA_Data_Exporter
         }
 
         private bool checkBeforeGetData(){
-            string id = GaViewdataGridView.SelectedCells[0].Value.ToString();
-            string metrics = metricsTextBox.Text;
-            bool state = true;
-            if (!System.Text.RegularExpressions.Regex.IsMatch(id, "^[0-9]+$"))
+          
+            var cells = GaViewdataGridView.SelectedCells;
+            if(cells.Count==0){
+                MessageBox.Show("View ID is needed");
+                return(false);
+            }
+            if (!System.Text.RegularExpressions.Regex.IsMatch(cells[0].Value.ToString(), "^[0-9]+$"))
             {
                 MessageBox.Show("viewのIDに問題あり");
-                state = false;
+                return(false);
             }
-            if (metrics == "")
+          
+            if (metricsTextBox.Text == "")
             {
                 MessageBox.Show("metrics required");
-                state = false;
+                return (false);
             }
             if (!System.Text.RegularExpressions.Regex.IsMatch(startDateTextBox.Text, "[0-9]{4}-[0-9]{2}-[0-9]{2}"))
             {
                 MessageBox.Show("invalid startDate");
-                state = false;
+                return (false);
             }
             if (!System.Text.RegularExpressions.Regex.IsMatch(endDateTextBox.Text, "[0-9]{4}-[0-9]{2}-[0-9]{2}"))
             {
                 MessageBox.Show("invalid endDate");
-                state = false;
+                return (false);
             }
-            return(state);
+            return(true);
         }
         private void getAll_Click(object sender, EventArgs e)
         {
+            errorTextBox.Text = "";
             if (!checkBeforeGetData())
             {
                 return;
             }
+            getAll.Enabled = false;
             getData(10000,1);
+            getAll.Enabled = true;
         }
 
         private void get1000_Click(object sender, EventArgs e)
         {
+            errorTextBox.Text = "";
             if(!checkBeforeGetData()){
                 return;
             }
+            get1000.Enabled = false;
             getData(1000,1);
+            get1000.Enabled = true;
         }
 
         private GaData getGaData(int max, int index)
@@ -322,61 +320,69 @@ namespace GA_Data_Exporter
         }
 
         private void getData(int max, int index){
-            List<GaData> ret = new List<GaData>();
-            ret.Add(getGaData(max, 1));
-            totalResultsNumtextBox.Text = ret[0].TotalResults.ToString();
-            if (ret[0].TotalResults > 10000 && max == 10000)
+            try
             {
-                if (ret[0].TotalResults > 100000)
+                List<GaData> ret = new List<GaData>();
+                ret.Add(getGaData(max, 1));
+                totalResultsNumtextBox.Text = ret[0].TotalResults.ToString();
+                if (ret[0].TotalResults > 10000 && max == 10000)
                 {
-                    DialogResult msg = MessageBox.Show("over 10,000 rows. want to continue?", "confirm", MessageBoxButtons.YesNo);
-                    if (msg == DialogResult.Yes)
+                    if (ret[0].TotalResults > 100000)
                     {
-                        return;
+                        DialogResult msg = MessageBox.Show("over 10,000 rows. want to continue?", "confirm", MessageBoxButtons.YesNo);
+                        if (msg == DialogResult.Yes)
+                        {
+                            return;
+                        }
                     }
-                }
-                for (int i = 10001; i < ret[0].TotalResults; i = i + 10000)
-                {
+                    for (int i = 10001; i < ret[0].TotalResults; i = i + 10000)
+                    {
                         ret.Add(getGaData(max, i));
                         actualRowsTextBox.Text = i.ToString();
-                }                   
-            }
-            queryTextBox.Text = ret[(ret.Count-1)].SelfLink;
-         
-
-            DataTable dt = new DataTable();
-            IList<GaData.ColumnHeadersData> cols = ret[0].ColumnHeaders;
-            foreach(GaData.ColumnHeadersData col in cols){
-                if (col.DataType == "STRING")
-                {
-                    dt.Columns.Add(col.Name.Replace("ga:", ""), typeof(string));
-                }
-                else if (col.DataType == "FLOAT")
-                {
-                    dt.Columns.Add(col.Name.Replace("ga:",""), typeof(float));
-                }
-                else
-                {
-                    dt.Columns.Add(col.Name.Replace("ga:", ""), typeof(Int32));
-                }
-            }
-            int numCols = dt.Columns.Count;
-          
-            foreach(var r in ret)
-            {
-                for (int i = 0; i < r.Rows.Count; i++)
-                {
-                    DataRow row = dt.NewRow();
-                    for (int j = 0; j < numCols; j++)
-                    {
-                        row[j] = r.Rows[i][j];
                     }
-                    dt.Rows.Add(row);
                 }
+                queryTextBox.Text = ret[(ret.Count - 1)].SelfLink;
+
+
+                DataTable dt = new DataTable();
+                IList<GaData.ColumnHeadersData> cols = ret[0].ColumnHeaders;
+                foreach (GaData.ColumnHeadersData col in cols)
+                {
+                    if (col.DataType == "STRING")
+                    {
+                        dt.Columns.Add(col.Name.Replace("ga:", ""), typeof(string));
+                    }
+                    else if (col.DataType == "FLOAT" || col.DataType == "PERCENT")
+                    {
+                        dt.Columns.Add(col.Name.Replace("ga:", ""), typeof(float));
+                    }
+                    else
+                    {
+                        dt.Columns.Add(col.Name.Replace("ga:", ""), typeof(Int32));
+                    }
+                }
+                int numCols = dt.Columns.Count;
+
+                foreach (var r in ret)
+                {
+                    for (int i = 0; i < r.Rows.Count; i++)
+                    {
+                        DataRow row = dt.NewRow();
+                        for (int j = 0; j < numCols; j++)
+                        {
+                            row[j] = r.Rows[i][j];
+                        }
+                        dt.Rows.Add(row);
+                    }
+                }
+                gaDataGridViewData.DataSource = dt;
+                actualRowsTextBox.Text = dt.Rows.Count.ToString();
             }
-            gaDataGridViewData.DataSource = dt;
-            actualRowsTextBox.Text = dt.Rows.Count.ToString();
-      
+            catch (System.Exception ex)
+            {
+                errorTextBox.Text = ex.Message;
+                return;
+            }
         }
 
         private void listViewMetrics_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
@@ -413,28 +419,33 @@ namespace GA_Data_Exporter
     
         private void itemFilter_TextChanged(object sender, EventArgs e)
         {
-            if (itemFilter.Text.Length < 2) { return; }
-            List<string> dimItems = new List<string>();
+            if (itemFilter.Text.Length < 2) {
+                foreach (var m in metricsItems) { listViewMetrics.Items.Add(m); }
+                foreach (var d in dimensionsItems) { listViewMetrics.Items.Add(d); }
+                return;
+            }
+
+            //metrics
             List<string> metItems = new List<string>();
-
-            foreach (ListViewItem i in listViewDimensions.SelectedItems) { dimItems.Add(i.Name); }
-            foreach (ListViewItem i in listViewMetrics.SelectedItems) { metItems.Add(i.Name); }
-
+            foreach (ListViewItem i in listViewMetrics.SelectedItems) { metItems.Add(i.Text); }
             listViewMetrics.Items.Clear();
-            /*
             foreach (string str in metItems)
             {
                 listViewMetrics.Items.Add(str);
             }
             foreach(ListViewItem item in listViewMetrics.Items){
                 item.Selected = true;
-         
             }
-            */
-            listViewMetrics.Items.AddRange(metricsItems.Where(i => i.ToLower().Contains(itemFilter.Text)).Select(c => new ListViewItem(c)).ToArray());
+            var ar = metricsItems.Where(i => i.ToLower().Contains(itemFilter.Text)).Select(c => new ListViewItem(c)).ToArray();
+            foreach (var a in ar)
+            {
+                listViewMetrics.Items.Add(a.Text);
+            }
 
+            //dimensions
+            List<string> dimItems = new List<string>();
+            foreach (ListViewItem i in listViewDimensions.SelectedItems) { dimItems.Add(i.Text); }
             listViewDimensions.Items.Clear();
-            /*
             foreach (string str in dimItems)
             {
                 listViewDimensions.Items.Add(str);
@@ -443,10 +454,10 @@ namespace GA_Data_Exporter
             {
                 item.Selected = true;
             }
-            */
-            listViewDimensions.Items.AddRange(dimensionsItems.Where(i => i.ToLower().Contains(itemFilter.Text)).Select(c => new ListViewItem(c)).ToArray());
-            
-
+            ar = dimensionsItems.Where(i => i.ToLower().Contains(itemFilter.Text)).Select(c => new ListViewItem(c)).ToArray();
+            foreach(var a in ar){
+                listViewDimensions.Items.Add(a.Text);
+            }
         }
 
         private void listViewDimensions_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
