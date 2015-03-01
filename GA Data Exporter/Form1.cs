@@ -428,7 +428,7 @@ namespace GA_Data_Exporter
         {
             if (itemFilter.Text.Length < 2) {
                 foreach (var m in metricsItems) { listViewMetrics.Items.Add(m); }
-                foreach (var d in dimensionsItems) { listViewMetrics.Items.Add(d); }
+                foreach (var d in dimensionsItems) { listViewDimensions.Items.Add(d); }
                 return;
             }
 

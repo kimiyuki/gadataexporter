@@ -168,7 +168,7 @@
             this.tabControl1.Location = new System.Drawing.Point(311, 206);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(885, 646);
+            this.tabControl1.Size = new System.Drawing.Size(910, 646);
             this.tabControl1.TabIndex = 7;
             // 
             // tabPage1
@@ -179,7 +179,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(877, 620);
+            this.tabPage1.Size = new System.Drawing.Size(902, 620);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "DimMetrics";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -189,12 +189,12 @@
             this.listViewDimensions.BackgroundImageTiled = true;
             this.listViewDimensions.GridLines = true;
             this.listViewDimensions.HideSelection = false;
-            this.listViewDimensions.Location = new System.Drawing.Point(441, 10);
+            this.listViewDimensions.Location = new System.Drawing.Point(457, 10);
             this.listViewDimensions.Name = "listViewDimensions";
             this.listViewDimensions.ShowItemToolTips = true;
-            this.listViewDimensions.Size = new System.Drawing.Size(421, 567);
+            this.listViewDimensions.Size = new System.Drawing.Size(441, 567);
             this.listViewDimensions.TabIndex = 5;
-            this.listViewDimensions.TileSize = new System.Drawing.Size(131, 28);
+            this.listViewDimensions.TileSize = new System.Drawing.Size(141, 28);
             this.listViewDimensions.UseCompatibleStateImageBehavior = false;
             this.listViewDimensions.View = System.Windows.Forms.View.Tile;
             this.listViewDimensions.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listViewDimensions_ItemSelectionChanged);
@@ -208,9 +208,9 @@
             this.listViewMetrics.Location = new System.Drawing.Point(10, 10);
             this.listViewMetrics.Name = "listViewMetrics";
             this.listViewMetrics.ShowItemToolTips = true;
-            this.listViewMetrics.Size = new System.Drawing.Size(421, 567);
+            this.listViewMetrics.Size = new System.Drawing.Size(447, 567);
             this.listViewMetrics.TabIndex = 4;
-            this.listViewMetrics.TileSize = new System.Drawing.Size(131, 28);
+            this.listViewMetrics.TileSize = new System.Drawing.Size(141, 28);
             this.listViewMetrics.UseCompatibleStateImageBehavior = false;
             this.listViewMetrics.View = System.Windows.Forms.View.Tile;
             this.listViewMetrics.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listViewMetrics_ItemSelectionChanged);
@@ -224,10 +224,10 @@
             this.dataGridViewDimMetrics.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewDimMetrics.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridViewDimMetrics.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dataGridViewDimMetrics.Location = new System.Drawing.Point(4, -22);
+            this.dataGridViewDimMetrics.Location = new System.Drawing.Point(-6, -25);
             this.dataGridViewDimMetrics.Name = "dataGridViewDimMetrics";
             this.dataGridViewDimMetrics.RowTemplate.Height = 21;
-            this.dataGridViewDimMetrics.Size = new System.Drawing.Size(877, 606);
+            this.dataGridViewDimMetrics.Size = new System.Drawing.Size(912, 609);
             this.dataGridViewDimMetrics.TabIndex = 3;
             // 
             // tabPage2
@@ -648,7 +648,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1183, 819);
+            this.ClientSize = new System.Drawing.Size(1225, 819);
             this.Controls.Add(this.sampleLabel);
             this.Controls.Add(this.sampleTextBox);
             this.Controls.Add(this.actualRowslabel);
