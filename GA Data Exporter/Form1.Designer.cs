@@ -114,11 +114,11 @@
             this.gaDataGridViewData.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.gaDataGridViewData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gaDataGridViewData.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.gaDataGridViewData.Location = new System.Drawing.Point(6, 20);
+            this.gaDataGridViewData.Location = new System.Drawing.Point(6, 6);
             this.gaDataGridViewData.Name = "gaDataGridViewData";
             this.gaDataGridViewData.RowTemplate.Height = 21;
             this.gaDataGridViewData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.gaDataGridViewData.Size = new System.Drawing.Size(828, 574);
+            this.gaDataGridViewData.Size = new System.Drawing.Size(892, 588);
             this.gaDataGridViewData.TabIndex = 2;
             // 
             // dataGridViewAccount
