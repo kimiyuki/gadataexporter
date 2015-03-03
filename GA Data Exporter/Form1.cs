@@ -35,7 +35,13 @@ namespace GA_Data_Exporter
             startDateTextBox.Text = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
             endDateTextBox.Text = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
             indexTextBox.Text = "1";
-
+            if (Properties.Settings.Default.filepath == "") { 
+                filePathTextBox.Text = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal)+ "\\" + "ga.csv";
+            }
+            else
+            {
+                filePathTextBox.Text = Properties.Settings.Default.filepath;
+            }
         }
 
         private void AuthChangeButton_Click(object sender, EventArgs e)
@@ -165,6 +171,8 @@ namespace GA_Data_Exporter
 
         private void dataGridView3_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) return; //header時の対処
+
             //IDを取得するので、cell[0]
             DataGridViewCell cell = (DataGridViewCell)dataGridViewAccount.Rows[e.RowIndex].Cells[0];
             string id = cell.Value.ToString();
@@ -510,6 +518,83 @@ namespace GA_Data_Exporter
             System.Diagnostics.Process.Start("https://developers.google.com/analytics/devguides/reporting/core/v3/reference");
         }
 
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            string f = filePathTextBox.Text;
+            if (File.Exists(f))
+            {
+               DialogResult ret =  MessageBox.Show("ファイルが存在します。上書きしますか？", "上書きOK？", MessageBoxButtons.YesNo);
+               if (ret == DialogResult.No) { return; }
+            }
+            saveFile(f);
+        }
+
+        private void changePathAndSaveButton_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            string[] ar = filePathTextBox.Text.Split(new string[]{"\\"}, StringSplitOptions.None);
+            sfd.FileName = ar[ar.Length - 1];
+            sfd.InitialDirectory = System.Text.RegularExpressions.Regex.Replace(filePathTextBox.Text, @"\.*", "");
+            sfd.Filter = "csvファイル|*.csv";
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                saveFile(sfd.FileName);
+            }
+            
+        }
+
+        private void saveFile(string path){
+            using (StreamWriter writer = new StreamWriter(path, false, Encoding.GetEncoding("shift_jis")))
+            {
+                DataGridView dg = gaDataGridViewData;
+                int rowCount = dg.Rows.Count;
+
+                // ユーザによる行追加が許可されている場合は、最後に新規入力用の
+                // 1行分を差し引く
+                if (dg.AllowUserToAddRows == true)
+                {
+                    rowCount = rowCount - 1;
+                }
+
+                //header
+                List<string> colList = new List<string>();
+                foreach (DataGridViewColumn col in dg.Columns)
+                {
+                    colList.Add(col.HeaderText);
+                }
+                writer.WriteLine(String.Join(",", colList.ToArray()));
+
+                // rows
+                for (int i = 0; i < rowCount; i++)
+                {
+                    // リストの初期化
+                    List<String> strList = new List<String>();
+
+                    // 列
+                    for (int j = 0; j < dg.Columns.Count; j++)
+                    {
+                        strList.Add(dg[j, i].Value.ToString());
+                    }
+                    String[] strArray = strList.ToArray();  // 配列へ変換
+
+                    // CSV 形式に変換
+                    String strCsvData = String.Join(",", strArray);
+
+                    writer.WriteLine(strCsvData);
+                }
+            }
+            MessageBox.Show("has saved to " + path);
+            filePathTextBox.Text = path;
+            Properties.Settings.Default.filepath = path;
+            Properties.Settings.Default.Save();
+
+
+        }
+
+        private void プロジェクト情報ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
+        }
        
       
     

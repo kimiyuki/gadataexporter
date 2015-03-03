@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.filePathTextBox = new System.Windows.Forms.TextBox();
             this.gaDataGridViewData = new System.Windows.Forms.DataGridView();
             this.dataGridViewAccount = new System.Windows.Forms.DataGridView();
             this.buttonGetAuth = new System.Windows.Forms.Button();
@@ -48,8 +48,8 @@
             this.GaViewdataGridView = new System.Windows.Forms.DataGridView();
             this.buttonDeleteAuth = new System.Windows.Forms.Button();
             this.AuthChangeButton = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
+            this.changePathAndSaveButton = new System.Windows.Forms.Button();
             this.queryTextBox = new System.Windows.Forms.TextBox();
             this.errorTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -86,6 +86,8 @@
             this.propertyLabel = new System.Windows.Forms.Label();
             this.viewLabel = new System.Windows.Forms.Label();
             this.queryLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.プロジェクト情報ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gaDataGridViewData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWebProperty)).BeginInit();
@@ -96,26 +98,28 @@
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGoals)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GaViewdataGridView)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBox1
+            // filePathTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(13, 96);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(263, 19);
-            this.textBox1.TabIndex = 1;
+            this.filePathTextBox.Location = new System.Drawing.Point(13, 96);
+            this.filePathTextBox.Name = "filePathTextBox";
+            this.filePathTextBox.Size = new System.Drawing.Size(263, 19);
+            this.filePathTextBox.TabIndex = 1;
             // 
             // gaDataGridViewData
             // 
             this.gaDataGridViewData.AllowUserToAddRows = false;
             this.gaDataGridViewData.AllowUserToDeleteRows = false;
             this.gaDataGridViewData.AllowUserToOrderColumns = true;
-            this.gaDataGridViewData.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+            this.gaDataGridViewData.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.gaDataGridViewData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gaDataGridViewData.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.gaDataGridViewData.Location = new System.Drawing.Point(6, 20);
             this.gaDataGridViewData.Name = "gaDataGridViewData";
             this.gaDataGridViewData.RowTemplate.Height = 21;
+            this.gaDataGridViewData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.gaDataGridViewData.Size = new System.Drawing.Size(828, 574);
             this.gaDataGridViewData.TabIndex = 2;
             // 
@@ -239,7 +243,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(877, 620);
+            this.tabPage2.Size = new System.Drawing.Size(902, 620);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Data";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -250,7 +254,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(877, 620);
+            this.tabPage3.Size = new System.Drawing.Size(902, 620);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Goals";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -274,7 +278,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(877, 620);
+            this.tabPage4.Size = new System.Drawing.Size(902, 620);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "ViewDetails";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -284,7 +288,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(877, 620);
+            this.tabPage5.Size = new System.Drawing.Size(902, 620);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Filters";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -294,7 +298,7 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(877, 620);
+            this.tabPage6.Size = new System.Drawing.Size(902, 620);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Segments";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -304,7 +308,7 @@
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(877, 620);
+            this.tabPage7.Size = new System.Drawing.Size(902, 620);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "MCF";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -344,23 +348,25 @@
             this.AuthChangeButton.UseVisualStyleBackColor = true;
             this.AuthChangeButton.Click += new System.EventHandler(this.AuthChangeButton_Click);
             // 
-            // button2
+            // saveButton
             // 
-            this.button2.Location = new System.Drawing.Point(54, 130);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "not yet";
-            this.button2.UseVisualStyleBackColor = true;
+            this.saveButton.Location = new System.Drawing.Point(14, 121);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(103, 23);
+            this.saveButton.TabIndex = 11;
+            this.saveButton.Text = "simpleSave";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
-            // button3
+            // changePathAndSaveButton
             // 
-            this.button3.Location = new System.Drawing.Point(156, 130);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(107, 23);
-            this.button3.TabIndex = 12;
-            this.button3.Text = "not yet DL CSV";
-            this.button3.UseVisualStyleBackColor = true;
+            this.changePathAndSaveButton.Location = new System.Drawing.Point(138, 121);
+            this.changePathAndSaveButton.Name = "changePathAndSaveButton";
+            this.changePathAndSaveButton.Size = new System.Drawing.Size(135, 23);
+            this.changePathAndSaveButton.TabIndex = 12;
+            this.changePathAndSaveButton.Text = "change Path and Save";
+            this.changePathAndSaveButton.UseVisualStyleBackColor = true;
+            this.changePathAndSaveButton.Click += new System.EventHandler(this.changePathAndSaveButton_Click);
             // 
             // queryTextBox
             // 
@@ -379,7 +385,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(24, 41);
+            this.label2.Location = new System.Drawing.Point(27, 41);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(30, 12);
             this.label2.TabIndex = 16;
@@ -669,11 +675,28 @@
             this.queryLinkLabel.AutoSize = true;
             this.queryLinkLabel.Location = new System.Drawing.Point(27, 15);
             this.queryLinkLabel.Name = "queryLinkLabel";
-            this.queryLinkLabel.Size = new System.Drawing.Size(35, 12);
+            this.queryLinkLabel.Size = new System.Drawing.Size(9, 12);
             this.queryLinkLabel.TabIndex = 54;
             this.queryLinkLabel.TabStop = true;
-            this.queryLinkLabel.Text = "Query";
+            this.queryLinkLabel.Text = " ";
             this.queryLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.queryLinkLabel_LinkClicked);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.プロジェクト情報ToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1225, 26);
+            this.menuStrip1.TabIndex = 55;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // プロジェクト情報ToolStripMenuItem
+            // 
+            this.プロジェクト情報ToolStripMenuItem.Name = "プロジェクト情報ToolStripMenuItem";
+            this.プロジェクト情報ToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.プロジェクト情報ToolStripMenuItem.Text = "プロジェクト情報";
+            this.プロジェクト情報ToolStripMenuItem.Click += new System.EventHandler(this.プロジェクト情報ToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -717,8 +740,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.errorTextBox);
             this.Controls.Add(this.queryTextBox);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.changePathAndSaveButton);
+            this.Controls.Add(this.saveButton);
             this.Controls.Add(this.AuthChangeButton);
             this.Controls.Add(this.buttonDeleteAuth);
             this.Controls.Add(this.GaViewdataGridView);
@@ -726,7 +749,8 @@
             this.Controls.Add(this.dataGridViewWebProperty);
             this.Controls.Add(this.buttonGetAuth);
             this.Controls.Add(this.dataGridViewAccount);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.filePathTextBox);
+            this.Controls.Add(this.menuStrip1);
             this.Name = "Form1";
             this.Text = "Google Analytics Data Exporter";
             ((System.ComponentModel.ISupportInitialize)(this.gaDataGridViewData)).EndInit();
@@ -739,6 +763,8 @@
             this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGoals)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GaViewdataGridView)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -746,7 +772,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox filePathTextBox;
         private System.Windows.Forms.DataGridView gaDataGridViewData;
         private System.Windows.Forms.DataGridView dataGridViewAccount;
         private System.Windows.Forms.Button buttonGetAuth;
@@ -766,8 +792,8 @@
         private System.Windows.Forms.ListView listViewDimensions;
         private System.Windows.Forms.Button buttonDeleteAuth;
         private System.Windows.Forms.Button AuthChangeButton;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.Button changePathAndSaveButton;
         private System.Windows.Forms.TextBox queryTextBox;
         private System.Windows.Forms.TextBox errorTextBox;
         private System.Windows.Forms.Label label2;
@@ -804,6 +830,8 @@
         private System.Windows.Forms.Label propertyLabel;
         private System.Windows.Forms.Label viewLabel;
         private System.Windows.Forms.LinkLabel queryLinkLabel;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem プロジェクト情報ToolStripMenuItem;
     }
 }
 
