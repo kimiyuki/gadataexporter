@@ -87,7 +87,6 @@
             this.viewLabel = new System.Windows.Forms.Label();
             this.queryLinkLabel = new System.Windows.Forms.LinkLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.プロジェクト情報ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gaDataGridViewData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWebProperty)).BeginInit();
@@ -98,7 +97,6 @@
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGoals)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GaViewdataGridView)).BeginInit();
-            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // filePathTextBox
@@ -675,28 +673,19 @@
             this.queryLinkLabel.AutoSize = true;
             this.queryLinkLabel.Location = new System.Drawing.Point(27, 15);
             this.queryLinkLabel.Name = "queryLinkLabel";
-            this.queryLinkLabel.Size = new System.Drawing.Size(9, 12);
+            this.queryLinkLabel.Size = new System.Drawing.Size(35, 12);
             this.queryLinkLabel.TabIndex = 54;
             this.queryLinkLabel.TabStop = true;
-            this.queryLinkLabel.Text = " ";
+            this.queryLinkLabel.Text = "Query";
             this.queryLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.queryLinkLabel_LinkClicked);
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.プロジェクト情報ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1225, 26);
+            this.menuStrip1.Size = new System.Drawing.Size(1225, 24);
             this.menuStrip1.TabIndex = 55;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // プロジェクト情報ToolStripMenuItem
-            // 
-            this.プロジェクト情報ToolStripMenuItem.Name = "プロジェクト情報ToolStripMenuItem";
-            this.プロジェクト情報ToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
-            this.プロジェクト情報ToolStripMenuItem.Text = "プロジェクト情報";
-            this.プロジェクト情報ToolStripMenuItem.Click += new System.EventHandler(this.プロジェクト情報ToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -763,8 +752,6 @@
             this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGoals)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GaViewdataGridView)).EndInit();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -831,7 +818,6 @@
         private System.Windows.Forms.Label viewLabel;
         private System.Windows.Forms.LinkLabel queryLinkLabel;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem プロジェクト情報ToolStripMenuItem;
     }
 }
 
