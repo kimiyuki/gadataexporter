@@ -24,9 +24,9 @@ namespace GA_Data_Exporter
     {
         private AnalyticsService service;
         private UserCredential credential;
-        private List<string> metricsItems = new List<string>();
         private List<string> dimensionsItems = new List<string>();
-        
+        private List<string> metricsItems = new List<string>();
+
         public Form1()
         {
             InitializeComponent();
@@ -89,19 +89,54 @@ namespace GA_Data_Exporter
             for (int k = 0; k < metrics.Count; k++)
             {
                 var metric = metrics[k];
-                metricsItems.Add(metric.Id.Replace("ga:",""));
-                ListViewItem item = new ListViewItem(metric.Id.Replace("ga:", ""));
-                item.ToolTipText = metric.Attributes["group"] + ":" + metric.Attributes["description"] + ":" + metric.Attributes["uiName"];
-                listViewMetrics.Items.Add(item);
+                if (metric.Attributes.ContainsKey("minTemplateIndex"))
+                {
+                    for (var i = Convert.ToInt32(metric.Attributes["minTemplateIndex"]); i < Convert.ToInt32(metric.Attributes["maxTemplateIndex"]) + 1; i++)
+                    {
+                        metricsItems.Add(metric.Id.Replace("ga:", "").Replace("XX",i.ToString()) + "," + metric.Attributes["group"]);
+                        ListViewItem item = new ListViewItem(metric.Id.Replace("ga:", "").Replace("XX",i.ToString()));
+                        item.ToolTipText = metric.Attributes["group"] + ":" + metric.Attributes["description"] + ":" + metric.Attributes["uiName"];
+                        listViewMetrics.Items.Add(item);
+                    }
+
+                }
+                else
+                {
+                    metricsItems.Add(metric.Id.Replace("ga:", "") + "," + metric.Attributes["group"]);
+                    ListViewItem item = new ListViewItem(metric.Id.Replace("ga:", ""));
+                    item.ToolTipText = metric.Attributes["group"] + ":" + metric.Attributes["description"] + ":" + metric.Attributes["uiName"];
+                    listViewMetrics.Items.Add(item);
+                }
+              
             }
             var dims = sitems.Where(c => c.Attributes["type"] == "DIMENSION").ToList();
             for (int k = 0; k < dims.Count; k++)
             {
                 var dim = dims[k];
-                dimensionsItems.Add(dim.Id.Replace("ga:",""));
-                ListViewItem item = new ListViewItem(dim.Id.Replace("ga:", ""));
-                item.ToolTipText = dim.Attributes["group"] + ":" + dim.Attributes["description"] + ":" + dim.Attributes["uiName"];
-                listViewDimensions.Items.Add(item);
+                if (dim.Attributes.ContainsKey("minTemplateIndex"))
+                {
+                    for (var i = Convert.ToInt32(dim.Attributes["minTemplateIndex"]); i < Convert.ToInt32(dim.Attributes["maxTemplateIndex"]); i++)
+                    {
+                        dimensionsItems.Add(dim.Id.Replace("ga:", "").Replace("XX",i.ToString()) + "," + dim.Attributes["group"]);
+                        ListViewItem item = new ListViewItem(dim.Id.Replace("ga:", "").Replace("XX",i.ToString()));
+                        item.ToolTipText = dim.Attributes["group"] + ":" + dim.Attributes["description"] + ":" + dim.Attributes["uiName"];
+                        listViewDimensions.Items.Add(item);
+                    }
+                }
+                else
+                {
+                    dimensionsItems.Add(dim.Id.Replace("ga:", "") + "," + dim.Attributes["group"]);
+                    ListViewItem item = new ListViewItem(dim.Id.Replace("ga:", ""));
+                    item.ToolTipText = dim.Attributes["group"] + ":" + dim.Attributes["description"] + ":" + dim.Attributes["uiName"];
+                    listViewDimensions.Items.Add(item);
+                }
+            }
+            var group1 = metricsItems.Select(c =>    System.Text.RegularExpressions.Regex.Replace(c, @".*,", ""));
+            var group2 = dimensionsItems.Select(c => System.Text.RegularExpressions.Regex.Replace(c, @".*,", ""));
+            var groups = group1.Concat(group2).Distinct();
+            foreach (string g in groups)
+            {
+                groupComboBox.Items.Add(g);
             }
         }
 
@@ -434,44 +469,65 @@ namespace GA_Data_Exporter
     
         private void itemFilter_TextChanged(object sender, EventArgs e)
         {
-            if (itemFilter.Text.Length < 2) {
-                foreach (var m in metricsItems) { listViewMetrics.Items.Add(m); }
-                foreach (var d in dimensionsItems) { listViewDimensions.Items.Add(d); }
-                return;
-            }
+            var str = itemFilter.Text;
+            _itemFilter(str);
+            
+        }
+        private void groupComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var str = groupComboBox.SelectedItem.ToString().ToLower();
+            _itemFilter(str);
 
-            //metrics
+        }
+    
+        private void _itemFilter(string str)
+        {
             List<string> metItems = new List<string>();
             foreach (ListViewItem i in listViewMetrics.SelectedItems) { metItems.Add(i.Text); }
             listViewMetrics.Items.Clear();
-            foreach (string str in metItems)
+            foreach (string s in metItems)
             {
-                listViewMetrics.Items.Add(str);
+                listViewMetrics.Items.Add(s);
             }
-            foreach(ListViewItem item in listViewMetrics.Items){
+            foreach (ListViewItem item in listViewMetrics.Items)
+            {
                 item.Selected = true;
             }
-            var ar = metricsItems.Where(i => i.ToLower().Contains(itemFilter.Text)).Select(c => new ListViewItem(c)).ToArray();
-            foreach (var a in ar)
-            {
-                listViewMetrics.Items.Add(a.Text);
-            }
 
-            //dimensions
             List<string> dimItems = new List<string>();
             foreach (ListViewItem i in listViewDimensions.SelectedItems) { dimItems.Add(i.Text); }
             listViewDimensions.Items.Clear();
-            foreach (string str in dimItems)
+            foreach (string s in dimItems)
             {
-                listViewDimensions.Items.Add(str);
+                listViewDimensions.Items.Add(s);
             }
             foreach (ListViewItem item in listViewDimensions.Items)
             {
                 item.Selected = true;
             }
-            ar = dimensionsItems.Where(i => i.ToLower().Contains(itemFilter.Text)).Select(c => new ListViewItem(c)).ToArray();
-            foreach(var a in ar){
-                listViewDimensions.Items.Add(a.Text);
+
+
+            if (str.Length < 2)
+            {
+                foreach (var e in metricsItems) { listViewMetrics.Items.Add(System.Text.RegularExpressions.Regex.Replace(e, @",.*","")); }
+                foreach (var e in dimensionsItems) { listViewDimensions.Items.Add(System.Text.RegularExpressions.Regex.Replace(e, @",.*","")); }
+                return;
+            }
+
+            //metrics
+       
+            var ar = metricsItems.Where(i => i.ToLower().Contains(str)).Select(c => System.Text.RegularExpressions.Regex.Replace(c, @",.*", ""));
+            foreach (var a in ar)
+            {
+                listViewMetrics.Items.Add(a);
+            }
+
+            //dimensions
+            
+            ar = dimensionsItems.Where(i => i.ToLower().Contains(str)).Select(c => System.Text.RegularExpressions.Regex.Replace(c, @",.*", ""));
+            foreach (var a in ar)
+            {
+                listViewDimensions.Items.Add(a);
             }
         }
 
@@ -595,6 +651,7 @@ namespace GA_Data_Exporter
         {
            
         }
+
        
       
     

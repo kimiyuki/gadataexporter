@@ -87,6 +87,7 @@
             this.viewLabel = new System.Windows.Forms.Label();
             this.queryLinkLabel = new System.Windows.Forms.LinkLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.groupComboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.gaDataGridViewData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWebProperty)).BeginInit();
@@ -432,7 +433,7 @@
             // 
             // itemFilter
             // 
-            this.itemFilter.Location = new System.Drawing.Point(310, 178);
+            this.itemFilter.Location = new System.Drawing.Point(430, 178);
             this.itemFilter.Name = "itemFilter";
             this.itemFilter.Size = new System.Drawing.Size(94, 19);
             this.itemFilter.TabIndex = 22;
@@ -522,14 +523,14 @@
             // 
             // totalResultsNumtextBox
             // 
-            this.totalResultsNumtextBox.Location = new System.Drawing.Point(408, 178);
+            this.totalResultsNumtextBox.Location = new System.Drawing.Point(528, 178);
             this.totalResultsNumtextBox.Name = "totalResultsNumtextBox";
             this.totalResultsNumtextBox.Size = new System.Drawing.Size(75, 19);
             this.totalResultsNumtextBox.TabIndex = 38;
             // 
             // actualRowsTextBox
             // 
-            this.actualRowsTextBox.Location = new System.Drawing.Point(491, 178);
+            this.actualRowsTextBox.Location = new System.Drawing.Point(611, 178);
             this.actualRowsTextBox.Name = "actualRowsTextBox";
             this.actualRowsTextBox.Size = new System.Drawing.Size(75, 19);
             this.actualRowsTextBox.TabIndex = 39;
@@ -601,7 +602,7 @@
             // metDimLabel
             // 
             this.metDimLabel.AutoSize = true;
-            this.metDimLabel.Location = new System.Drawing.Point(308, 163);
+            this.metDimLabel.Location = new System.Drawing.Point(428, 163);
             this.metDimLabel.Name = "metDimLabel";
             this.metDimLabel.Size = new System.Drawing.Size(90, 12);
             this.metDimLabel.TabIndex = 46;
@@ -610,7 +611,7 @@
             // totalResultslabel
             // 
             this.totalResultslabel.AutoSize = true;
-            this.totalResultslabel.Location = new System.Drawing.Point(408, 163);
+            this.totalResultslabel.Location = new System.Drawing.Point(528, 163);
             this.totalResultslabel.Name = "totalResultslabel";
             this.totalResultslabel.Size = new System.Drawing.Size(67, 12);
             this.totalResultslabel.TabIndex = 47;
@@ -619,7 +620,7 @@
             // actualRowslabel
             // 
             this.actualRowslabel.AutoSize = true;
-            this.actualRowslabel.Location = new System.Drawing.Point(489, 163);
+            this.actualRowslabel.Location = new System.Drawing.Point(609, 163);
             this.actualRowslabel.Name = "actualRowslabel";
             this.actualRowslabel.Size = new System.Drawing.Size(64, 12);
             this.actualRowslabel.TabIndex = 48;
@@ -628,7 +629,7 @@
             // sampleLabel
             // 
             this.sampleLabel.AutoSize = true;
-            this.sampleLabel.Location = new System.Drawing.Point(575, 163);
+            this.sampleLabel.Location = new System.Drawing.Point(695, 163);
             this.sampleLabel.Name = "sampleLabel";
             this.sampleLabel.Size = new System.Drawing.Size(46, 12);
             this.sampleLabel.TabIndex = 50;
@@ -636,7 +637,7 @@
             // 
             // sampleTextBox
             // 
-            this.sampleTextBox.Location = new System.Drawing.Point(577, 178);
+            this.sampleTextBox.Location = new System.Drawing.Point(697, 178);
             this.sampleTextBox.Name = "sampleTextBox";
             this.sampleTextBox.Size = new System.Drawing.Size(108, 19);
             this.sampleTextBox.TabIndex = 49;
@@ -687,12 +688,24 @@
             this.menuStrip1.TabIndex = 55;
             this.menuStrip1.Text = "menuStrip1";
             // 
+            // groupComboBox
+            // 
+            this.groupComboBox.FormattingEnabled = true;
+            this.groupComboBox.Items.AddRange(new object[] {
+            "-"});
+            this.groupComboBox.Location = new System.Drawing.Point(311, 177);
+            this.groupComboBox.Name = "groupComboBox";
+            this.groupComboBox.Size = new System.Drawing.Size(110, 20);
+            this.groupComboBox.TabIndex = 56;
+            this.groupComboBox.SelectedIndexChanged += new System.EventHandler(this.groupComboBox_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1225, 819);
+            this.Controls.Add(this.groupComboBox);
             this.Controls.Add(this.queryLinkLabel);
             this.Controls.Add(this.viewLabel);
             this.Controls.Add(this.propertyLabel);
@@ -818,6 +831,7 @@
         private System.Windows.Forms.Label viewLabel;
         private System.Windows.Forms.LinkLabel queryLinkLabel;
         private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ComboBox groupComboBox;
     }
 }
 
