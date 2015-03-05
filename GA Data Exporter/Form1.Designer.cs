@@ -30,9 +30,9 @@
         {
             this.filePathTextBox = new System.Windows.Forms.TextBox();
             this.gaDataGridViewData = new System.Windows.Forms.DataGridView();
-            this.dataGridViewAccount = new System.Windows.Forms.DataGridView();
+            this.accountDataGridView = new System.Windows.Forms.DataGridView();
             this.buttonGetAuth = new System.Windows.Forms.Button();
-            this.dataGridViewWebProperty = new System.Windows.Forms.DataGridView();
+            this.propertyDataGridView = new System.Windows.Forms.DataGridView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.listViewDimensions = new System.Windows.Forms.ListView();
@@ -45,7 +45,7 @@
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.GaViewdataGridView = new System.Windows.Forms.DataGridView();
+            this.GaViewDataGridView = new System.Windows.Forms.DataGridView();
             this.buttonDeleteAuth = new System.Windows.Forms.Button();
             this.AuthChangeButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
@@ -88,16 +88,19 @@
             this.queryLinkLabel = new System.Windows.Forms.LinkLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.groupComboBox = new System.Windows.Forms.ComboBox();
+            this.AccountTextBox = new System.Windows.Forms.TextBox();
+            this.propertyTextBox = new System.Windows.Forms.TextBox();
+            this.viewTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.gaDataGridViewData)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWebProperty)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.accountDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.propertyDataGridView)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDimMetrics)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGoals)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GaViewdataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GaViewDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // filePathTextBox
@@ -122,20 +125,20 @@
             this.gaDataGridViewData.Size = new System.Drawing.Size(892, 588);
             this.gaDataGridViewData.TabIndex = 2;
             // 
-            // dataGridViewAccount
+            // accountDataGridView
             // 
-            this.dataGridViewAccount.AllowUserToAddRows = false;
-            this.dataGridViewAccount.AllowUserToDeleteRows = false;
-            this.dataGridViewAccount.AllowUserToOrderColumns = true;
-            this.dataGridViewAccount.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
-            this.dataGridViewAccount.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewAccount.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridViewAccount.Location = new System.Drawing.Point(12, 228);
-            this.dataGridViewAccount.Name = "dataGridViewAccount";
-            this.dataGridViewAccount.RowTemplate.Height = 21;
-            this.dataGridViewAccount.Size = new System.Drawing.Size(292, 99);
-            this.dataGridViewAccount.TabIndex = 4;
-            this.dataGridViewAccount.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellClick);
+            this.accountDataGridView.AllowUserToAddRows = false;
+            this.accountDataGridView.AllowUserToDeleteRows = false;
+            this.accountDataGridView.AllowUserToOrderColumns = true;
+            this.accountDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+            this.accountDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.accountDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.accountDataGridView.Location = new System.Drawing.Point(12, 228);
+            this.accountDataGridView.Name = "accountDataGridView";
+            this.accountDataGridView.RowTemplate.Height = 21;
+            this.accountDataGridView.Size = new System.Drawing.Size(292, 99);
+            this.accountDataGridView.TabIndex = 4;
+            this.accountDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellClick);
             // 
             // buttonGetAuth
             // 
@@ -147,20 +150,20 @@
             this.buttonGetAuth.UseVisualStyleBackColor = true;
             this.buttonGetAuth.Click += new System.EventHandler(this.button2_Click);
             // 
-            // dataGridViewWebProperty
+            // propertyDataGridView
             // 
-            this.dataGridViewWebProperty.AllowUserToAddRows = false;
-            this.dataGridViewWebProperty.AllowUserToDeleteRows = false;
-            this.dataGridViewWebProperty.AllowUserToOrderColumns = true;
-            this.dataGridViewWebProperty.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
-            this.dataGridViewWebProperty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewWebProperty.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridViewWebProperty.Location = new System.Drawing.Point(13, 353);
-            this.dataGridViewWebProperty.Name = "dataGridViewWebProperty";
-            this.dataGridViewWebProperty.RowTemplate.Height = 21;
-            this.dataGridViewWebProperty.Size = new System.Drawing.Size(292, 112);
-            this.dataGridViewWebProperty.TabIndex = 6;
-            this.dataGridViewWebProperty.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewWebProperty_CellClick);
+            this.propertyDataGridView.AllowUserToAddRows = false;
+            this.propertyDataGridView.AllowUserToDeleteRows = false;
+            this.propertyDataGridView.AllowUserToOrderColumns = true;
+            this.propertyDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+            this.propertyDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.propertyDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.propertyDataGridView.Location = new System.Drawing.Point(13, 353);
+            this.propertyDataGridView.Name = "propertyDataGridView";
+            this.propertyDataGridView.RowTemplate.Height = 21;
+            this.propertyDataGridView.Size = new System.Drawing.Size(292, 112);
+            this.propertyDataGridView.TabIndex = 6;
+            this.propertyDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewWebProperty_CellClick);
             // 
             // tabControl1
             // 
@@ -312,20 +315,20 @@
             this.tabPage7.Text = "MCF";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
-            // GaViewdataGridView
+            // GaViewDataGridView
             // 
-            this.GaViewdataGridView.AllowUserToAddRows = false;
-            this.GaViewdataGridView.AllowUserToDeleteRows = false;
-            this.GaViewdataGridView.AllowUserToOrderColumns = true;
-            this.GaViewdataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
-            this.GaViewdataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GaViewdataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.GaViewdataGridView.Location = new System.Drawing.Point(13, 492);
-            this.GaViewdataGridView.Name = "GaViewdataGridView";
-            this.GaViewdataGridView.RowTemplate.Height = 21;
-            this.GaViewdataGridView.Size = new System.Drawing.Size(291, 320);
-            this.GaViewdataGridView.TabIndex = 8;
-            this.GaViewdataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewViews_CellClick);
+            this.GaViewDataGridView.AllowUserToAddRows = false;
+            this.GaViewDataGridView.AllowUserToDeleteRows = false;
+            this.GaViewDataGridView.AllowUserToOrderColumns = true;
+            this.GaViewDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+            this.GaViewDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GaViewDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.GaViewDataGridView.Location = new System.Drawing.Point(13, 492);
+            this.GaViewDataGridView.Name = "GaViewDataGridView";
+            this.GaViewDataGridView.RowTemplate.Height = 21;
+            this.GaViewDataGridView.Size = new System.Drawing.Size(291, 320);
+            this.GaViewDataGridView.TabIndex = 8;
+            this.GaViewDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewViews_CellClick);
             // 
             // buttonDeleteAuth
             // 
@@ -699,12 +702,39 @@
             this.groupComboBox.TabIndex = 56;
             this.groupComboBox.SelectedIndexChanged += new System.EventHandler(this.groupComboBox_SelectedIndexChanged);
             // 
+            // AccountTextBox
+            // 
+            this.AccountTextBox.Location = new System.Drawing.Point(131, 206);
+            this.AccountTextBox.Name = "AccountTextBox";
+            this.AccountTextBox.Size = new System.Drawing.Size(94, 19);
+            this.AccountTextBox.TabIndex = 57;
+            this.AccountTextBox.TextChanged += new System.EventHandler(this.AccountTextBox_TextChanged);
+            // 
+            // propertyTextBox
+            // 
+            this.propertyTextBox.Location = new System.Drawing.Point(132, 333);
+            this.propertyTextBox.Name = "propertyTextBox";
+            this.propertyTextBox.Size = new System.Drawing.Size(94, 19);
+            this.propertyTextBox.TabIndex = 58;
+            this.propertyTextBox.TextChanged += new System.EventHandler(this.propertyTextBox_TextChanged);
+            // 
+            // viewTextBox
+            // 
+            this.viewTextBox.Location = new System.Drawing.Point(131, 472);
+            this.viewTextBox.Name = "viewTextBox";
+            this.viewTextBox.Size = new System.Drawing.Size(94, 19);
+            this.viewTextBox.TabIndex = 59;
+            this.viewTextBox.TextChanged += new System.EventHandler(this.viewTextBox_TextChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1225, 819);
+            this.Controls.Add(this.viewTextBox);
+            this.Controls.Add(this.propertyTextBox);
+            this.Controls.Add(this.AccountTextBox);
             this.Controls.Add(this.groupComboBox);
             this.Controls.Add(this.queryLinkLabel);
             this.Controls.Add(this.viewLabel);
@@ -746,25 +776,25 @@
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.AuthChangeButton);
             this.Controls.Add(this.buttonDeleteAuth);
-            this.Controls.Add(this.GaViewdataGridView);
+            this.Controls.Add(this.GaViewDataGridView);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.dataGridViewWebProperty);
+            this.Controls.Add(this.propertyDataGridView);
             this.Controls.Add(this.buttonGetAuth);
-            this.Controls.Add(this.dataGridViewAccount);
+            this.Controls.Add(this.accountDataGridView);
             this.Controls.Add(this.filePathTextBox);
             this.Controls.Add(this.menuStrip1);
             this.Name = "Form1";
             this.Text = "Google Analytics Data Exporter";
             ((System.ComponentModel.ISupportInitialize)(this.gaDataGridViewData)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWebProperty)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.accountDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.propertyDataGridView)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDimMetrics)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGoals)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GaViewdataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GaViewDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -774,14 +804,14 @@
 
         private System.Windows.Forms.TextBox filePathTextBox;
         private System.Windows.Forms.DataGridView gaDataGridViewData;
-        private System.Windows.Forms.DataGridView dataGridViewAccount;
+        private System.Windows.Forms.DataGridView accountDataGridView;
         private System.Windows.Forms.Button buttonGetAuth;
-        private System.Windows.Forms.DataGridView dataGridViewWebProperty;
+        private System.Windows.Forms.DataGridView propertyDataGridView;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.DataGridView dataGridViewDimMetrics;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.DataGridView GaViewdataGridView;
+        private System.Windows.Forms.DataGridView GaViewDataGridView;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.DataGridView dataGridViewGoals;
         private System.Windows.Forms.TabPage tabPage4;
@@ -832,6 +862,9 @@
         private System.Windows.Forms.LinkLabel queryLinkLabel;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ComboBox groupComboBox;
+        private System.Windows.Forms.TextBox AccountTextBox;
+        private System.Windows.Forms.TextBox propertyTextBox;
+        private System.Windows.Forms.TextBox viewTextBox;
     }
 }
 

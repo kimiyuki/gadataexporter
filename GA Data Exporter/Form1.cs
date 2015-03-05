@@ -141,6 +141,7 @@ namespace GA_Data_Exporter
         }
 
 
+
         private void getMetaData1()
         {
             MetadataResource.ColumnsResource.ListRequest req = service.Metadata.Columns.List("ga");
@@ -200,7 +201,7 @@ namespace GA_Data_Exporter
                 row[2] = acs[i].Updated;
                 dt1.Rows.Add(row);
             }
-            this.dataGridViewAccount.DataSource = dt1;
+            this.accountDataGridView.DataSource = dt1;
 
         }
 
@@ -209,7 +210,7 @@ namespace GA_Data_Exporter
             if (e.RowIndex < 0) return; //header時の対処
 
             //IDを取得するので、cell[0]
-            DataGridViewCell cell = (DataGridViewCell)dataGridViewAccount.Rows[e.RowIndex].Cells[0];
+            DataGridViewCell cell = (DataGridViewCell)accountDataGridView.Rows[e.RowIndex].Cells[0];
             string id = cell.Value.ToString();
             ManagementResource.WebpropertiesResource.ListRequest req = service.Management.Webproperties.List(id);
             Webproperties wpr = req.Execute();
@@ -230,12 +231,13 @@ namespace GA_Data_Exporter
                 row[4] = wps[i].AccountId;
                 dt.Rows.Add(row);
             }
-            this.dataGridViewWebProperty.DataSource = dt;
+            this.propertyDataGridView.DataSource = dt;
         }
         private void dataGridViewWebProperty_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            string wid =  dataGridViewWebProperty.Rows[e.RowIndex].Cells[0].Value.ToString();
-            string aid = dataGridViewWebProperty.Rows[e.RowIndex].Cells[4].Value.ToString();
+            if (e.RowIndex < 0) return; //header時の対処
+            string wid =  propertyDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+            string aid = propertyDataGridView.Rows[e.RowIndex].Cells[4].Value.ToString();
             ManagementResource.ProfilesResource.ListRequest req = service.Management.Profiles.List(aid, wid);
             Profiles ret = req.Execute();
             IList<Profile> views = ret.Items;
@@ -255,13 +257,14 @@ namespace GA_Data_Exporter
                 row[4] = views[i].WebPropertyId;
                 dt.Rows.Add(row);
             }
-            this.GaViewdataGridView.DataSource = dt;
+            this.GaViewDataGridView.DataSource = dt;
         }
         private void dataGridViewViews_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            string aid = GaViewdataGridView.Rows[e.RowIndex].Cells[3].Value.ToString();
-            string wid = GaViewdataGridView.Rows[e.RowIndex].Cells[4].Value.ToString();
-            string vid = GaViewdataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+            if (e.RowIndex < 0) return; //header時の対処
+            string aid = GaViewDataGridView.Rows[e.RowIndex].Cells[3].Value.ToString();
+            string wid = GaViewDataGridView.Rows[e.RowIndex].Cells[4].Value.ToString();
+            string vid = GaViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
             ManagementResource.GoalsResource.ListRequest req = service.Management.Goals.List(aid, wid, vid);
             Goals ret = req.Execute();
             IList<Goal> goals = ret.Items;
@@ -292,7 +295,7 @@ namespace GA_Data_Exporter
 
         private bool checkBeforeGetData(){
           
-            var cells = GaViewdataGridView.SelectedCells;
+            var cells = GaViewDataGridView.SelectedCells;
             if(cells.Count==0){
                 MessageBox.Show("View ID is needed");
                 return(false);
@@ -345,7 +348,7 @@ namespace GA_Data_Exporter
 
         private GaData getGaData(int max, int index)
         {
-            string id = GaViewdataGridView.SelectedCells[0].Value.ToString();
+            string id = GaViewDataGridView.SelectedCells[0].Value.ToString();
             string metrics = metricsTextBox.Text;
 
             DataResource.GaResource.GetRequest req = service.Data.Ga.Get(
@@ -650,6 +653,48 @@ namespace GA_Data_Exporter
         private void プロジェクト情報ToolStripMenuItem_Click(object sender, EventArgs e)
         {
            
+        }
+
+        private void AccountTextBox_TextChanged(object sender, EventArgs e)
+        {
+            string str = AccountTextBox.Text;
+            if (str.Length > 0)
+            {
+                (accountDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format("id LIKE '%{0}%' OR name LIKE '%{0}%'", str);
+            }
+            else
+            {
+                (accountDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Empty;
+            }
+           
+         
+        }
+
+        private void propertyTextBox_TextChanged(object sender, EventArgs e)
+        {
+            string str = propertyTextBox.Text;
+            if (str.Length > 0)
+            {
+                (propertyDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format("id LIKE '%{0}%' OR name LIKE '%{0}%'", str);
+            }
+            else
+            {
+                (propertyDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Empty;
+            }
+      
+        }
+
+        private void viewTextBox_TextChanged(object sender, EventArgs e)
+        {
+            string str = viewTextBox.Text;
+            if (str.Length > 0)
+            {
+                (GaViewDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format("id LIKE '%{0}%' OR name LIKE '%{0}%'", str);
+            }
+            else
+            {
+                (GaViewDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Empty;
+            }
         }
 
        
