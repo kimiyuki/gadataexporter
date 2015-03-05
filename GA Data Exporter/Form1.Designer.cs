@@ -40,7 +40,7 @@
             this.dataGridViewDimMetrics = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.dataGridViewGoals = new System.Windows.Forms.DataGridView();
+            this.goalDataGridView = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tabPage6 = new System.Windows.Forms.TabPage();
@@ -57,7 +57,7 @@
             this.getAll = new System.Windows.Forms.Button();
             this.metricsTextBox = new System.Windows.Forms.TextBox();
             this.dimensionsTextBox = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.segmentTextBox = new System.Windows.Forms.TextBox();
             this.itemFilter = new System.Windows.Forms.TextBox();
             this.filterTextBox = new System.Windows.Forms.TextBox();
             this.buttonClearMerics = new System.Windows.Forms.Button();
@@ -86,11 +86,14 @@
             this.propertyLabel = new System.Windows.Forms.Label();
             this.viewLabel = new System.Windows.Forms.Label();
             this.queryLinkLabel = new System.Windows.Forms.LinkLabel();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.groupComboBox = new System.Windows.Forms.ComboBox();
             this.AccountTextBox = new System.Windows.Forms.TextBox();
             this.propertyTextBox = new System.Windows.Forms.TextBox();
             this.viewTextBox = new System.Windows.Forms.TextBox();
+            this.viewDetailDataGridView = new System.Windows.Forms.DataGridView();
+            this.segmentDataGridView = new System.Windows.Forms.DataGridView();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.queryHistoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gaDataGridViewData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accountDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.propertyDataGridView)).BeginInit();
@@ -99,8 +102,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDimMetrics)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGoals)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.goalDataGridView)).BeginInit();
+            this.tabPage4.SuspendLayout();
+            this.tabPage6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GaViewDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.viewDetailDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.segmentDataGridView)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // filePathTextBox
@@ -252,7 +260,7 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.dataGridViewGoals);
+            this.tabPage3.Controls.Add(this.goalDataGridView);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -261,22 +269,23 @@
             this.tabPage3.Text = "Goals";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // dataGridViewGoals
+            // goalDataGridView
             // 
-            this.dataGridViewGoals.AllowUserToAddRows = false;
-            this.dataGridViewGoals.AllowUserToDeleteRows = false;
-            this.dataGridViewGoals.AllowUserToOrderColumns = true;
-            this.dataGridViewGoals.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
-            this.dataGridViewGoals.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewGoals.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridViewGoals.Location = new System.Drawing.Point(0, 6);
-            this.dataGridViewGoals.Name = "dataGridViewGoals";
-            this.dataGridViewGoals.RowTemplate.Height = 21;
-            this.dataGridViewGoals.Size = new System.Drawing.Size(831, 582);
-            this.dataGridViewGoals.TabIndex = 9;
+            this.goalDataGridView.AllowUserToAddRows = false;
+            this.goalDataGridView.AllowUserToDeleteRows = false;
+            this.goalDataGridView.AllowUserToOrderColumns = true;
+            this.goalDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+            this.goalDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.goalDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.goalDataGridView.Location = new System.Drawing.Point(2, 5);
+            this.goalDataGridView.Name = "goalDataGridView";
+            this.goalDataGridView.RowTemplate.Height = 21;
+            this.goalDataGridView.Size = new System.Drawing.Size(896, 582);
+            this.goalDataGridView.TabIndex = 9;
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.viewDetailDataGridView);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
@@ -297,6 +306,7 @@
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.segmentDataGridView);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
@@ -379,6 +389,7 @@
             // 
             // errorTextBox
             // 
+            this.errorTextBox.ForeColor = System.Drawing.Color.Red;
             this.errorTextBox.Location = new System.Drawing.Point(79, 37);
             this.errorTextBox.Name = "errorTextBox";
             this.errorTextBox.Size = new System.Drawing.Size(1098, 19);
@@ -427,12 +438,12 @@
             this.dimensionsTextBox.Size = new System.Drawing.Size(702, 19);
             this.dimensionsTextBox.TabIndex = 20;
             // 
-            // textBox6
+            // segmentTextBox
             // 
-            this.textBox6.Location = new System.Drawing.Point(481, 114);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(702, 19);
-            this.textBox6.TabIndex = 21;
+            this.segmentTextBox.Location = new System.Drawing.Point(481, 114);
+            this.segmentTextBox.Name = "segmentTextBox";
+            this.segmentTextBox.Size = new System.Drawing.Size(702, 19);
+            this.segmentTextBox.TabIndex = 21;
             // 
             // itemFilter
             // 
@@ -683,14 +694,6 @@
             this.queryLinkLabel.Text = "Query";
             this.queryLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.queryLinkLabel_LinkClicked);
             // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1225, 24);
-            this.menuStrip1.TabIndex = 55;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
             // groupComboBox
             // 
             this.groupComboBox.FormattingEnabled = true;
@@ -725,6 +728,55 @@
             this.viewTextBox.Size = new System.Drawing.Size(94, 19);
             this.viewTextBox.TabIndex = 59;
             this.viewTextBox.TextChanged += new System.EventHandler(this.viewTextBox_TextChanged);
+            // 
+            // viewDetailDataGridView
+            // 
+            this.viewDetailDataGridView.AllowUserToAddRows = false;
+            this.viewDetailDataGridView.AllowUserToDeleteRows = false;
+            this.viewDetailDataGridView.AllowUserToOrderColumns = true;
+            this.viewDetailDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+            this.viewDetailDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.viewDetailDataGridView.Cursor = System.Windows.Forms.Cursors.Default;
+            this.viewDetailDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.viewDetailDataGridView.Location = new System.Drawing.Point(3, 3);
+            this.viewDetailDataGridView.Name = "viewDetailDataGridView";
+            this.viewDetailDataGridView.RowHeadersWidth = 150;
+            this.viewDetailDataGridView.RowTemplate.Height = 21;
+            this.viewDetailDataGridView.Size = new System.Drawing.Size(896, 582);
+            this.viewDetailDataGridView.TabIndex = 10;
+            // 
+            // segmentDataGridView
+            // 
+            this.segmentDataGridView.AllowUserToAddRows = false;
+            this.segmentDataGridView.AllowUserToDeleteRows = false;
+            this.segmentDataGridView.AllowUserToOrderColumns = true;
+            this.segmentDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+            this.segmentDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.segmentDataGridView.Cursor = System.Windows.Forms.Cursors.Default;
+            this.segmentDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.segmentDataGridView.Location = new System.Drawing.Point(3, 5);
+            this.segmentDataGridView.Name = "segmentDataGridView";
+            this.segmentDataGridView.RowHeadersWidth = 10;
+            this.segmentDataGridView.RowTemplate.Height = 21;
+            this.segmentDataGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.segmentDataGridView.Size = new System.Drawing.Size(896, 582);
+            this.segmentDataGridView.TabIndex = 11;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.queryHistoriesToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1225, 26);
+            this.menuStrip1.TabIndex = 60;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // queryHistoriesToolStripMenuItem
+            // 
+            this.queryHistoriesToolStripMenuItem.Name = "queryHistoriesToolStripMenuItem";
+            this.queryHistoriesToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.queryHistoriesToolStripMenuItem.Text = "QueryHistories";
             // 
             // Form1
             // 
@@ -764,7 +816,7 @@
             this.Controls.Add(this.buttonClearMerics);
             this.Controls.Add(this.filterTextBox);
             this.Controls.Add(this.itemFilter);
-            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.segmentTextBox);
             this.Controls.Add(this.dimensionsTextBox);
             this.Controls.Add(this.metricsTextBox);
             this.Controls.Add(this.getAll);
@@ -793,8 +845,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDimMetrics)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewGoals)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.goalDataGridView)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GaViewDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.viewDetailDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.segmentDataGridView)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -813,7 +871,7 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DataGridView GaViewDataGridView;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.DataGridView dataGridViewGoals;
+        private System.Windows.Forms.DataGridView goalDataGridView;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.TabPage tabPage6;
@@ -831,7 +889,7 @@
         private System.Windows.Forms.Button getAll;
         private System.Windows.Forms.TextBox metricsTextBox;
         private System.Windows.Forms.TextBox dimensionsTextBox;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox segmentTextBox;
         private System.Windows.Forms.TextBox itemFilter;
         private System.Windows.Forms.TextBox filterTextBox;
         private System.Windows.Forms.Button buttonClearMerics;
@@ -860,11 +918,14 @@
         private System.Windows.Forms.Label propertyLabel;
         private System.Windows.Forms.Label viewLabel;
         private System.Windows.Forms.LinkLabel queryLinkLabel;
-        private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ComboBox groupComboBox;
         private System.Windows.Forms.TextBox AccountTextBox;
         private System.Windows.Forms.TextBox propertyTextBox;
         private System.Windows.Forms.TextBox viewTextBox;
+        private System.Windows.Forms.DataGridView viewDetailDataGridView;
+        private System.Windows.Forms.DataGridView segmentDataGridView;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem queryHistoriesToolStripMenuItem;
     }
 }
 

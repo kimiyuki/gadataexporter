@@ -35,6 +35,8 @@ namespace GA_Data_Exporter
             startDateTextBox.Text = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
             endDateTextBox.Text = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
             indexTextBox.Text = "1";
+            getSegments();
+            
             if (Properties.Settings.Default.filepath == "") { 
                 filePathTextBox.Text = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal)+ "\\" + "ga.csv";
             }
@@ -207,12 +209,38 @@ namespace GA_Data_Exporter
 
         private void dataGridView3_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0) return; //header時の対処
+              if (e.RowIndex < 0) return; //header時の対処
+              DataGridViewCell cell = (DataGridViewCell)accountDataGridView.Rows[e.RowIndex].Cells[0];
+              string id = cell.Value.ToString();
+              getWebProperty(id);
 
+        }
+        private void getSegments()
+        {
+            ManagementResource.SegmentsResource.ListRequest req = service.Management.Segments.List();
+            Segments segs =  req.Execute();
+            DataTable dt = new DataTable();
+            dt.Columns.Add("name",typeof(string));
+            dt.Columns.Add("segmentId", typeof(string));
+            dt.Columns.Add("updated", typeof(string));
+            dt.Columns.Add("definition", typeof(string));
+            foreach (var item in segs.Items)
+            {
+               DataRow row = dt.NewRow();
+               row[0] = item.Name;
+               row[1] = item.SegmentId;
+               row[2] = item.Updated.HasValue ? item.Updated.ToString() : "";
+               row[3] = item.Definition;
+               dt.Rows.Add(row);
+            }
+            segmentDataGridView.DataSource = dt;
+        }
+
+
+        private void getWebProperty(string aid){
+          
             //IDを取得するので、cell[0]
-            DataGridViewCell cell = (DataGridViewCell)accountDataGridView.Rows[e.RowIndex].Cells[0];
-            string id = cell.Value.ToString();
-            ManagementResource.WebpropertiesResource.ListRequest req = service.Management.Webproperties.List(id);
+            ManagementResource.WebpropertiesResource.ListRequest req = service.Management.Webproperties.List(aid);
             Webproperties wpr = req.Execute();
             IList<Webproperty> wps = wpr.Items;
             DataTable dt = new DataTable();
@@ -265,6 +293,40 @@ namespace GA_Data_Exporter
             string aid = GaViewDataGridView.Rows[e.RowIndex].Cells[3].Value.ToString();
             string wid = GaViewDataGridView.Rows[e.RowIndex].Cells[4].Value.ToString();
             string vid = GaViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+            getGoals(aid, wid, vid);
+            getViewConf(aid, wid, vid);
+        }
+
+        private void getViewConf(string aid, string wid, string vid)
+        {
+            ManagementResource.ProfilesResource.GetRequest req = service.Management.Profiles.Get(aid, wid, vid);
+            Profile ret = req.Execute();
+            DataTable dt = makeTable(ret);
+            viewDetailDataGridView.DataSource = dt;
+        }
+        private DataTable makeTable(Profile ret){
+            DataTable dt = new DataTable();
+            dt.Columns.Add("key", typeof(string));
+            dt.Columns.Add("value", typeof(string));
+            DataRow row = dt.NewRow(); 
+            row[0] = "viewName"; row[1] = ret.Name; dt.Rows.Add(row);
+            row = dt.NewRow(); row[0] = "url"; row[1] = ret.WebsiteUrl; dt.Rows.Add(row);
+            row = dt.NewRow(); row[0] = "timeZone"; row[1] = ret.Timezone; dt.Rows.Add(row);
+            row = dt.NewRow(); row[0] = "defaultPage"; row[1] = ret.DefaultPage; dt.Rows.Add(row);
+            row = dt.NewRow(); row[0] = "exclude parameters"; row[1] = ret.ExcludeQueryParameters; dt.Rows.Add(row);
+            row = dt.NewRow(); row[0] = "currency"; row[1] = ret.Currency; dt.Rows.Add(row);
+            row = dt.NewRow(); row[0] = "siteSearch"; row[1] = ret.SiteSearchQueryParameters; dt.Rows.Add(row);
+            row = dt.NewRow(); row[0] = "stripSiteSearchParam"; row[1] = ret.StripSiteSearchQueryParameters; dt.Rows.Add(row);
+            row = dt.NewRow(); row[0] = "siteSearchCategory"; row[1] = ret.SiteSearchCategoryParameters; dt.Rows.Add(row);
+            row = dt.NewRow(); row[0] = "stripSiteSearchCategoryParam"; row[1] = ret.StripSiteSearchCategoryParameters; dt.Rows.Add(row);
+            row = dt.NewRow(); row[0] = "ecommerce"; row[1] = ret.ECommerceTracking; dt.Rows.Add(row);
+            row = dt.NewRow(); row[0] = "enhancedEcommerce"; row[1] = ret.EnhancedECommerceTracking; dt.Rows.Add(row);
+
+
+ 
+            return dt;
+        }
+        private void getGoals(string aid, string wid, string vid){
             ManagementResource.GoalsResource.ListRequest req = service.Management.Goals.List(aid, wid, vid);
             Goals ret = req.Execute();
             IList<Goal> goals = ret.Items;
@@ -272,10 +334,13 @@ namespace GA_Data_Exporter
             DataTable dt = new DataTable();
             dt.Columns.Add("no", typeof(string));
             dt.Columns.Add("name", typeof(string));
-            dt.Columns.Add("updated", typeof(string));
+            dt.Columns.Add("matchType", typeof(string));
+            dt.Columns.Add("target", typeof(string));
             dt.Columns.Add("value", typeof(string));
             dt.Columns.Add("active", typeof(string));
             dt.Columns.Add("type", typeof(string));
+            dt.Columns.Add("updated", typeof(string));
+           
             if (goals != null)
             {
                 for (int i = 0; i < goals.Count; i++)
@@ -283,14 +348,37 @@ namespace GA_Data_Exporter
                     DataRow row = dt.NewRow();
                     row[0] = goals[i].Id;
                     row[1] = goals[i].Name;
-                    row[2] = goals[i].Updated;
-                    row[3] = goals[i].Value;
-                    row[4] = goals[i].Active;
-                    row[5] = goals[i].Type;
+                    if (goals[i].Type == "EVENT")
+                    {
+                        row[2] = "";
+                        row[3] = string.Join(":  ", goals[i].EventDetails.EventConditions.Select(g => g.Type + " " + g.MatchType + " " + g.Expression + " " +  g.ComparisonType + " " + g.ComparisonValue));
+                    }
+                    else if (goals[i].Type == "URL_DESTINATION")
+                    {
+                        row[2] = goals[i].UrlDestinationDetails.MatchType + ":" + goals[i].UrlDestinationDetails.CaseSensitive;
+                        row[3] = goals[i].UrlDestinationDetails.Url;
+                    }
+                    else if (goals[i].Type == "VISIT_TIME_ON_SITE")
+                    {
+                        row[3] = goals[i].VisitTimeOnSiteDetails.ComparisonType + " " + goals[i].VisitTimeOnSiteDetails.ComparisonValue;
+                    }
+                    else if (goals[i].Type == "VISIT_NUM_PAGES")
+                    {
+                        row[3] = goals[i].VisitNumPagesDetails.ComparisonType + " " + goals[i].VisitNumPagesDetails.ComparisonValue;
+                    }
+                    else
+                    {
+                        row[3] = "special";
+                    }
+                    row[4] = goals[i].Value;
+                    row[5] = goals[i].Active;
+                    row[6] = goals[i].Type;
+                    row[7] = goals[i].Updated;
+           
                     dt.Rows.Add(row);
                 }
             }
-            this.dataGridViewGoals.DataSource = dt;
+            this.goalDataGridView.DataSource = dt;
         }
 
         private bool checkBeforeGetData(){
@@ -323,6 +411,19 @@ namespace GA_Data_Exporter
             }
             return(true);
         }
+        private void afterGetData(){
+            ToolStripMenuItem item = new ToolStripMenuItem();
+            item.Text = queryTextBox.Text;
+            //item.Click += new EventHandler(item_Click);
+            //item.Tag = Action;
+            queryHistoriesToolStripMenuItem.DropDownItems.Insert(queryHistoriesToolStripMenuItem.DropDownItems.Count,item);
+        }
+        private void queryHistoriesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
+            string args = menuItem.Tag.ToString();
+
+        }
         private void getAll_Click(object sender, EventArgs e)
         {
             errorTextBox.Text = "";
@@ -333,6 +434,7 @@ namespace GA_Data_Exporter
             getAll.Enabled = false;
             getData(10000,1);
             getAll.Enabled = true;
+            afterGetData();
         }
 
         private void get1000_Click(object sender, EventArgs e)
@@ -344,6 +446,7 @@ namespace GA_Data_Exporter
             get1000.Enabled = false;
             getData(1000,1);
             get1000.Enabled = true;
+            afterGetData();
         }
 
         private GaData getGaData(int max, int index)
@@ -361,6 +464,7 @@ namespace GA_Data_Exporter
             req.Dimensions = dimensionsTextBox.Text == "" ? null : dimensionsTextBox.Text;
             req.Filters = filterTextBox.Text == "" ? null : filterTextBox.Text;
             req.Sort = sortTextBox.Text == "" ? null : sortTextBox.Text;
+            req.Segment = segmentTextBox.Text == "" ? null : segmentTextBox.Text;
             req.SamplingLevel = DataResource.GaResource.GetRequest.SamplingLevelEnum.DEFAULT;
             GaData ret = req.Execute();
             if(ret.ContainsSampledData.Value){
