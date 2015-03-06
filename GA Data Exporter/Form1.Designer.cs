@@ -42,8 +42,10 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.goalDataGridView = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.viewDetailDataGridView = new System.Windows.Forms.DataGridView();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.segmentDataGridView = new System.Windows.Forms.DataGridView();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.GaViewDataGridView = new System.Windows.Forms.DataGridView();
             this.buttonDeleteAuth = new System.Windows.Forms.Button();
@@ -90,9 +92,7 @@
             this.AccountTextBox = new System.Windows.Forms.TextBox();
             this.propertyTextBox = new System.Windows.Forms.TextBox();
             this.viewTextBox = new System.Windows.Forms.TextBox();
-            this.viewDetailDataGridView = new System.Windows.Forms.DataGridView();
-            this.segmentDataGridView = new System.Windows.Forms.DataGridView();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.queryHistoryMenuStrip = new System.Windows.Forms.MenuStrip();
             this.queryHistoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gaDataGridViewData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accountDataGridView)).BeginInit();
@@ -104,16 +104,16 @@
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.goalDataGridView)).BeginInit();
             this.tabPage4.SuspendLayout();
-            this.tabPage6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GaViewDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewDetailDataGridView)).BeginInit();
+            this.tabPage6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.segmentDataGridView)).BeginInit();
-            this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GaViewDataGridView)).BeginInit();
+            this.queryHistoryMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // filePathTextBox
             // 
-            this.filePathTextBox.Location = new System.Drawing.Point(13, 96);
+            this.filePathTextBox.Location = new System.Drawing.Point(13, 118);
             this.filePathTextBox.Name = "filePathTextBox";
             this.filePathTextBox.Size = new System.Drawing.Size(263, 19);
             this.filePathTextBox.TabIndex = 1;
@@ -123,6 +123,9 @@
             this.gaDataGridViewData.AllowUserToAddRows = false;
             this.gaDataGridViewData.AllowUserToDeleteRows = false;
             this.gaDataGridViewData.AllowUserToOrderColumns = true;
+            this.gaDataGridViewData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gaDataGridViewData.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.gaDataGridViewData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gaDataGridViewData.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -141,7 +144,7 @@
             this.accountDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             this.accountDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.accountDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.accountDataGridView.Location = new System.Drawing.Point(12, 228);
+            this.accountDataGridView.Location = new System.Drawing.Point(12, 250);
             this.accountDataGridView.Name = "accountDataGridView";
             this.accountDataGridView.RowTemplate.Height = 21;
             this.accountDataGridView.Size = new System.Drawing.Size(292, 99);
@@ -150,7 +153,7 @@
             // 
             // buttonGetAuth
             // 
-            this.buttonGetAuth.Location = new System.Drawing.Point(13, 176);
+            this.buttonGetAuth.Location = new System.Drawing.Point(13, 198);
             this.buttonGetAuth.Name = "buttonGetAuth";
             this.buttonGetAuth.Size = new System.Drawing.Size(75, 23);
             this.buttonGetAuth.TabIndex = 5;
@@ -166,7 +169,7 @@
             this.propertyDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             this.propertyDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.propertyDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.propertyDataGridView.Location = new System.Drawing.Point(13, 353);
+            this.propertyDataGridView.Location = new System.Drawing.Point(13, 375);
             this.propertyDataGridView.Name = "propertyDataGridView";
             this.propertyDataGridView.RowTemplate.Height = 21;
             this.propertyDataGridView.Size = new System.Drawing.Size(292, 112);
@@ -175,6 +178,9 @@
             // 
             // tabControl1
             // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
@@ -182,7 +188,7 @@
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage7);
-            this.tabControl1.Location = new System.Drawing.Point(311, 206);
+            this.tabControl1.Location = new System.Drawing.Point(311, 228);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(910, 646);
@@ -203,13 +209,16 @@
             // 
             // listViewDimensions
             // 
+            this.listViewDimensions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewDimensions.BackgroundImageTiled = true;
             this.listViewDimensions.GridLines = true;
             this.listViewDimensions.HideSelection = false;
-            this.listViewDimensions.Location = new System.Drawing.Point(454, 10);
+            this.listViewDimensions.Location = new System.Drawing.Point(454, 6);
             this.listViewDimensions.Name = "listViewDimensions";
             this.listViewDimensions.ShowItemToolTips = true;
-            this.listViewDimensions.Size = new System.Drawing.Size(445, 567);
+            this.listViewDimensions.Size = new System.Drawing.Size(445, 593);
             this.listViewDimensions.TabIndex = 5;
             this.listViewDimensions.TileSize = new System.Drawing.Size(141, 28);
             this.listViewDimensions.UseCompatibleStateImageBehavior = false;
@@ -218,14 +227,17 @@
             // 
             // listViewMetrics
             // 
+            this.listViewMetrics.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewMetrics.BackgroundImageTiled = true;
             this.listViewMetrics.FullRowSelect = true;
             this.listViewMetrics.GridLines = true;
             this.listViewMetrics.HideSelection = false;
-            this.listViewMetrics.Location = new System.Drawing.Point(3, 10);
+            this.listViewMetrics.Location = new System.Drawing.Point(3, 6);
             this.listViewMetrics.Name = "listViewMetrics";
             this.listViewMetrics.ShowItemToolTips = true;
-            this.listViewMetrics.Size = new System.Drawing.Size(447, 567);
+            this.listViewMetrics.Size = new System.Drawing.Size(447, 593);
             this.listViewMetrics.TabIndex = 4;
             this.listViewMetrics.TileSize = new System.Drawing.Size(141, 28);
             this.listViewMetrics.UseCompatibleStateImageBehavior = false;
@@ -237,11 +249,12 @@
             this.dataGridViewDimMetrics.AllowUserToAddRows = false;
             this.dataGridViewDimMetrics.AllowUserToDeleteRows = false;
             this.dataGridViewDimMetrics.AllowUserToOrderColumns = true;
+            this.dataGridViewDimMetrics.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewDimMetrics.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             this.dataGridViewDimMetrics.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewDimMetrics.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridViewDimMetrics.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dataGridViewDimMetrics.Location = new System.Drawing.Point(-6, -25);
+            this.dataGridViewDimMetrics.Location = new System.Drawing.Point(-6, -3);
             this.dataGridViewDimMetrics.Name = "dataGridViewDimMetrics";
             this.dataGridViewDimMetrics.RowTemplate.Height = 21;
             this.dataGridViewDimMetrics.Size = new System.Drawing.Size(912, 609);
@@ -274,13 +287,16 @@
             this.goalDataGridView.AllowUserToAddRows = false;
             this.goalDataGridView.AllowUserToDeleteRows = false;
             this.goalDataGridView.AllowUserToOrderColumns = true;
+            this.goalDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.goalDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             this.goalDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.goalDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.goalDataGridView.Location = new System.Drawing.Point(2, 5);
+            this.goalDataGridView.Location = new System.Drawing.Point(2, 6);
             this.goalDataGridView.Name = "goalDataGridView";
             this.goalDataGridView.RowTemplate.Height = 21;
-            this.goalDataGridView.Size = new System.Drawing.Size(896, 582);
+            this.goalDataGridView.Size = new System.Drawing.Size(896, 603);
             this.goalDataGridView.TabIndex = 9;
             // 
             // tabPage4
@@ -293,6 +309,22 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "ViewDetails";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // viewDetailDataGridView
+            // 
+            this.viewDetailDataGridView.AllowUserToAddRows = false;
+            this.viewDetailDataGridView.AllowUserToDeleteRows = false;
+            this.viewDetailDataGridView.AllowUserToOrderColumns = true;
+            this.viewDetailDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+            this.viewDetailDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.viewDetailDataGridView.Cursor = System.Windows.Forms.Cursors.Default;
+            this.viewDetailDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.viewDetailDataGridView.Location = new System.Drawing.Point(3, 25);
+            this.viewDetailDataGridView.Name = "viewDetailDataGridView";
+            this.viewDetailDataGridView.RowHeadersWidth = 150;
+            this.viewDetailDataGridView.RowTemplate.Height = 21;
+            this.viewDetailDataGridView.Size = new System.Drawing.Size(896, 582);
+            this.viewDetailDataGridView.TabIndex = 10;
             // 
             // tabPage5
             // 
@@ -315,6 +347,23 @@
             this.tabPage6.Text = "Segments";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
+            // segmentDataGridView
+            // 
+            this.segmentDataGridView.AllowUserToAddRows = false;
+            this.segmentDataGridView.AllowUserToDeleteRows = false;
+            this.segmentDataGridView.AllowUserToOrderColumns = true;
+            this.segmentDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+            this.segmentDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.segmentDataGridView.Cursor = System.Windows.Forms.Cursors.Default;
+            this.segmentDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.segmentDataGridView.Location = new System.Drawing.Point(3, 27);
+            this.segmentDataGridView.Name = "segmentDataGridView";
+            this.segmentDataGridView.RowHeadersWidth = 10;
+            this.segmentDataGridView.RowTemplate.Height = 21;
+            this.segmentDataGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.segmentDataGridView.Size = new System.Drawing.Size(896, 582);
+            this.segmentDataGridView.TabIndex = 11;
+            // 
             // tabPage7
             // 
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
@@ -333,7 +382,7 @@
             this.GaViewDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             this.GaViewDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GaViewDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.GaViewDataGridView.Location = new System.Drawing.Point(13, 492);
+            this.GaViewDataGridView.Location = new System.Drawing.Point(13, 514);
             this.GaViewDataGridView.Name = "GaViewDataGridView";
             this.GaViewDataGridView.RowTemplate.Height = 21;
             this.GaViewDataGridView.Size = new System.Drawing.Size(291, 320);
@@ -342,7 +391,7 @@
             // 
             // buttonDeleteAuth
             // 
-            this.buttonDeleteAuth.Location = new System.Drawing.Point(106, 176);
+            this.buttonDeleteAuth.Location = new System.Drawing.Point(106, 198);
             this.buttonDeleteAuth.Name = "buttonDeleteAuth";
             this.buttonDeleteAuth.Size = new System.Drawing.Size(75, 23);
             this.buttonDeleteAuth.TabIndex = 9;
@@ -352,7 +401,7 @@
             // 
             // AuthChangeButton
             // 
-            this.AuthChangeButton.Location = new System.Drawing.Point(201, 176);
+            this.AuthChangeButton.Location = new System.Drawing.Point(201, 198);
             this.AuthChangeButton.Name = "AuthChangeButton";
             this.AuthChangeButton.Size = new System.Drawing.Size(75, 23);
             this.AuthChangeButton.TabIndex = 10;
@@ -362,7 +411,7 @@
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(14, 121);
+            this.saveButton.Location = new System.Drawing.Point(14, 143);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(103, 23);
             this.saveButton.TabIndex = 11;
@@ -372,7 +421,7 @@
             // 
             // changePathAndSaveButton
             // 
-            this.changePathAndSaveButton.Location = new System.Drawing.Point(138, 121);
+            this.changePathAndSaveButton.Location = new System.Drawing.Point(138, 143);
             this.changePathAndSaveButton.Name = "changePathAndSaveButton";
             this.changePathAndSaveButton.Size = new System.Drawing.Size(135, 23);
             this.changePathAndSaveButton.TabIndex = 12;
@@ -382,23 +431,28 @@
             // 
             // queryTextBox
             // 
-            this.queryTextBox.Location = new System.Drawing.Point(79, 12);
+            this.queryTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.queryTextBox.Location = new System.Drawing.Point(79, 34);
             this.queryTextBox.Name = "queryTextBox";
-            this.queryTextBox.Size = new System.Drawing.Size(1096, 19);
+            this.queryTextBox.Size = new System.Drawing.Size(1124, 19);
             this.queryTextBox.TabIndex = 13;
             // 
             // errorTextBox
             // 
+            this.errorTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.errorTextBox.ForeColor = System.Drawing.Color.Red;
-            this.errorTextBox.Location = new System.Drawing.Point(79, 37);
+            this.errorTextBox.Location = new System.Drawing.Point(79, 59);
             this.errorTextBox.Name = "errorTextBox";
-            this.errorTextBox.Size = new System.Drawing.Size(1098, 19);
+            this.errorTextBox.Size = new System.Drawing.Size(1124, 19);
             this.errorTextBox.TabIndex = 14;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(27, 41);
+            this.label2.Location = new System.Drawing.Point(27, 63);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(30, 12);
             this.label2.TabIndex = 16;
@@ -406,7 +460,7 @@
             // 
             // get1000
             // 
-            this.get1000.Location = new System.Drawing.Point(311, 64);
+            this.get1000.Location = new System.Drawing.Point(311, 86);
             this.get1000.Name = "get1000";
             this.get1000.Size = new System.Drawing.Size(75, 40);
             this.get1000.TabIndex = 17;
@@ -416,7 +470,7 @@
             // 
             // getAll
             // 
-            this.getAll.Location = new System.Drawing.Point(311, 110);
+            this.getAll.Location = new System.Drawing.Point(311, 132);
             this.getAll.Name = "getAll";
             this.getAll.Size = new System.Drawing.Size(75, 38);
             this.getAll.TabIndex = 18;
@@ -426,28 +480,34 @@
             // 
             // metricsTextBox
             // 
-            this.metricsTextBox.Location = new System.Drawing.Point(481, 64);
+            this.metricsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.metricsTextBox.Location = new System.Drawing.Point(481, 86);
             this.metricsTextBox.Name = "metricsTextBox";
-            this.metricsTextBox.Size = new System.Drawing.Size(702, 19);
+            this.metricsTextBox.Size = new System.Drawing.Size(722, 19);
             this.metricsTextBox.TabIndex = 19;
             // 
             // dimensionsTextBox
             // 
-            this.dimensionsTextBox.Location = new System.Drawing.Point(481, 89);
+            this.dimensionsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dimensionsTextBox.Location = new System.Drawing.Point(481, 111);
             this.dimensionsTextBox.Name = "dimensionsTextBox";
-            this.dimensionsTextBox.Size = new System.Drawing.Size(702, 19);
+            this.dimensionsTextBox.Size = new System.Drawing.Size(722, 19);
             this.dimensionsTextBox.TabIndex = 20;
             // 
             // segmentTextBox
             // 
-            this.segmentTextBox.Location = new System.Drawing.Point(481, 114);
+            this.segmentTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.segmentTextBox.Location = new System.Drawing.Point(481, 136);
             this.segmentTextBox.Name = "segmentTextBox";
-            this.segmentTextBox.Size = new System.Drawing.Size(702, 19);
+            this.segmentTextBox.Size = new System.Drawing.Size(722, 19);
             this.segmentTextBox.TabIndex = 21;
             // 
             // itemFilter
             // 
-            this.itemFilter.Location = new System.Drawing.Point(430, 178);
+            this.itemFilter.Location = new System.Drawing.Point(430, 200);
             this.itemFilter.Name = "itemFilter";
             this.itemFilter.Size = new System.Drawing.Size(94, 19);
             this.itemFilter.TabIndex = 22;
@@ -455,14 +515,14 @@
             // 
             // filterTextBox
             // 
-            this.filterTextBox.Location = new System.Drawing.Point(694, 135);
+            this.filterTextBox.Location = new System.Drawing.Point(694, 157);
             this.filterTextBox.Name = "filterTextBox";
             this.filterTextBox.Size = new System.Drawing.Size(174, 19);
             this.filterTextBox.TabIndex = 23;
             // 
             // buttonClearMerics
             // 
-            this.buttonClearMerics.Location = new System.Drawing.Point(446, 62);
+            this.buttonClearMerics.Location = new System.Drawing.Point(446, 84);
             this.buttonClearMerics.Name = "buttonClearMerics";
             this.buttonClearMerics.Size = new System.Drawing.Size(29, 23);
             this.buttonClearMerics.TabIndex = 24;
@@ -472,7 +532,7 @@
             // 
             // buttonClearDims
             // 
-            this.buttonClearDims.Location = new System.Drawing.Point(446, 89);
+            this.buttonClearDims.Location = new System.Drawing.Point(446, 111);
             this.buttonClearDims.Name = "buttonClearDims";
             this.buttonClearDims.Size = new System.Drawing.Size(29, 23);
             this.buttonClearDims.TabIndex = 25;
@@ -483,7 +543,7 @@
             // labelDimensions
             // 
             this.labelDimensions.AutoSize = true;
-            this.labelDimensions.Location = new System.Drawing.Point(392, 92);
+            this.labelDimensions.Location = new System.Drawing.Point(392, 114);
             this.labelDimensions.Name = "labelDimensions";
             this.labelDimensions.Size = new System.Drawing.Size(31, 24);
             this.labelDimensions.TabIndex = 26;
@@ -492,7 +552,7 @@
             // labelMetrics
             // 
             this.labelMetrics.AutoSize = true;
-            this.labelMetrics.Location = new System.Drawing.Point(392, 64);
+            this.labelMetrics.Location = new System.Drawing.Point(392, 86);
             this.labelMetrics.Name = "labelMetrics";
             this.labelMetrics.Size = new System.Drawing.Size(43, 24);
             this.labelMetrics.TabIndex = 27;
@@ -500,14 +560,14 @@
             // 
             // endDateTextBox
             // 
-            this.endDateTextBox.Location = new System.Drawing.Point(552, 136);
+            this.endDateTextBox.Location = new System.Drawing.Point(552, 158);
             this.endDateTextBox.Name = "endDateTextBox";
             this.endDateTextBox.Size = new System.Drawing.Size(86, 19);
             this.endDateTextBox.TabIndex = 28;
             // 
             // startDateTextBox
             // 
-            this.startDateTextBox.Location = new System.Drawing.Point(443, 136);
+            this.startDateTextBox.Location = new System.Drawing.Point(443, 158);
             this.startDateTextBox.Name = "startDateTextBox";
             this.startDateTextBox.Size = new System.Drawing.Size(95, 19);
             this.startDateTextBox.TabIndex = 29;
@@ -515,7 +575,7 @@
             // dateBetween
             // 
             this.dateBetween.AutoSize = true;
-            this.dateBetween.Location = new System.Drawing.Point(540, 139);
+            this.dateBetween.Location = new System.Drawing.Point(540, 161);
             this.dateBetween.Name = "dateBetween";
             this.dateBetween.Size = new System.Drawing.Size(11, 12);
             this.dateBetween.TabIndex = 31;
@@ -523,28 +583,28 @@
             // 
             // sortTextBox
             // 
-            this.sortTextBox.Location = new System.Drawing.Point(907, 134);
+            this.sortTextBox.Location = new System.Drawing.Point(907, 156);
             this.sortTextBox.Name = "sortTextBox";
             this.sortTextBox.Size = new System.Drawing.Size(174, 19);
             this.sortTextBox.TabIndex = 33;
             // 
             // indexTextBox
             // 
-            this.indexTextBox.Location = new System.Drawing.Point(1114, 134);
+            this.indexTextBox.Location = new System.Drawing.Point(1134, 156);
             this.indexTextBox.Name = "indexTextBox";
             this.indexTextBox.Size = new System.Drawing.Size(69, 19);
             this.indexTextBox.TabIndex = 34;
             // 
             // totalResultsNumtextBox
             // 
-            this.totalResultsNumtextBox.Location = new System.Drawing.Point(528, 178);
+            this.totalResultsNumtextBox.Location = new System.Drawing.Point(528, 200);
             this.totalResultsNumtextBox.Name = "totalResultsNumtextBox";
             this.totalResultsNumtextBox.Size = new System.Drawing.Size(75, 19);
             this.totalResultsNumtextBox.TabIndex = 38;
             // 
             // actualRowsTextBox
             // 
-            this.actualRowsTextBox.Location = new System.Drawing.Point(611, 178);
+            this.actualRowsTextBox.Location = new System.Drawing.Point(611, 200);
             this.actualRowsTextBox.Name = "actualRowsTextBox";
             this.actualRowsTextBox.Size = new System.Drawing.Size(75, 19);
             this.actualRowsTextBox.TabIndex = 39;
@@ -552,7 +612,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 78);
+            this.label3.Location = new System.Drawing.Point(12, 100);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(84, 12);
             this.label3.TabIndex = 40;
@@ -561,7 +621,7 @@
             // filterLinkLabel
             // 
             this.filterLinkLabel.AutoSize = true;
-            this.filterLinkLabel.Location = new System.Drawing.Point(660, 138);
+            this.filterLinkLabel.Location = new System.Drawing.Point(660, 160);
             this.filterLinkLabel.Name = "filterLinkLabel";
             this.filterLinkLabel.Size = new System.Drawing.Size(25, 12);
             this.filterLinkLabel.TabIndex = 41;
@@ -572,7 +632,7 @@
             // sortLinkLabel
             // 
             this.sortLinkLabel.AutoSize = true;
-            this.sortLinkLabel.Location = new System.Drawing.Point(874, 138);
+            this.sortLinkLabel.Location = new System.Drawing.Point(874, 160);
             this.sortLinkLabel.Name = "sortLinkLabel";
             this.sortLinkLabel.Size = new System.Drawing.Size(25, 12);
             this.sortLinkLabel.TabIndex = 42;
@@ -583,7 +643,7 @@
             // startLinkLabel
             // 
             this.startLinkLabel.AutoSize = true;
-            this.startLinkLabel.Location = new System.Drawing.Point(1083, 138);
+            this.startLinkLabel.Location = new System.Drawing.Point(1098, 160);
             this.startLinkLabel.Name = "startLinkLabel";
             this.startLinkLabel.Size = new System.Drawing.Size(29, 12);
             this.startLinkLabel.TabIndex = 43;
@@ -594,7 +654,7 @@
             // dateLinkLabel
             // 
             this.dateLinkLabel.AutoSize = true;
-            this.dateLinkLabel.Location = new System.Drawing.Point(394, 139);
+            this.dateLinkLabel.Location = new System.Drawing.Point(394, 161);
             this.dateLinkLabel.Name = "dateLinkLabel";
             this.dateLinkLabel.Size = new System.Drawing.Size(27, 12);
             this.dateLinkLabel.TabIndex = 44;
@@ -605,7 +665,7 @@
             // segmentLinkLabel
             // 
             this.segmentLinkLabel.AutoSize = true;
-            this.segmentLinkLabel.Location = new System.Drawing.Point(393, 121);
+            this.segmentLinkLabel.Location = new System.Drawing.Point(393, 143);
             this.segmentLinkLabel.Name = "segmentLinkLabel";
             this.segmentLinkLabel.Size = new System.Drawing.Size(48, 12);
             this.segmentLinkLabel.TabIndex = 45;
@@ -616,7 +676,7 @@
             // metDimLabel
             // 
             this.metDimLabel.AutoSize = true;
-            this.metDimLabel.Location = new System.Drawing.Point(428, 163);
+            this.metDimLabel.Location = new System.Drawing.Point(428, 185);
             this.metDimLabel.Name = "metDimLabel";
             this.metDimLabel.Size = new System.Drawing.Size(90, 12);
             this.metDimLabel.TabIndex = 46;
@@ -625,7 +685,7 @@
             // totalResultslabel
             // 
             this.totalResultslabel.AutoSize = true;
-            this.totalResultslabel.Location = new System.Drawing.Point(528, 163);
+            this.totalResultslabel.Location = new System.Drawing.Point(528, 185);
             this.totalResultslabel.Name = "totalResultslabel";
             this.totalResultslabel.Size = new System.Drawing.Size(67, 12);
             this.totalResultslabel.TabIndex = 47;
@@ -634,7 +694,7 @@
             // actualRowslabel
             // 
             this.actualRowslabel.AutoSize = true;
-            this.actualRowslabel.Location = new System.Drawing.Point(609, 163);
+            this.actualRowslabel.Location = new System.Drawing.Point(609, 185);
             this.actualRowslabel.Name = "actualRowslabel";
             this.actualRowslabel.Size = new System.Drawing.Size(64, 12);
             this.actualRowslabel.TabIndex = 48;
@@ -643,7 +703,7 @@
             // sampleLabel
             // 
             this.sampleLabel.AutoSize = true;
-            this.sampleLabel.Location = new System.Drawing.Point(695, 163);
+            this.sampleLabel.Location = new System.Drawing.Point(695, 185);
             this.sampleLabel.Name = "sampleLabel";
             this.sampleLabel.Size = new System.Drawing.Size(46, 12);
             this.sampleLabel.TabIndex = 50;
@@ -651,7 +711,7 @@
             // 
             // sampleTextBox
             // 
-            this.sampleTextBox.Location = new System.Drawing.Point(697, 178);
+            this.sampleTextBox.Location = new System.Drawing.Point(697, 200);
             this.sampleTextBox.Name = "sampleTextBox";
             this.sampleTextBox.Size = new System.Drawing.Size(108, 19);
             this.sampleTextBox.TabIndex = 49;
@@ -659,7 +719,7 @@
             // accountLabel
             // 
             this.accountLabel.AutoSize = true;
-            this.accountLabel.Location = new System.Drawing.Point(12, 212);
+            this.accountLabel.Location = new System.Drawing.Point(12, 234);
             this.accountLabel.Name = "accountLabel";
             this.accountLabel.Size = new System.Drawing.Size(114, 12);
             this.accountLabel.TabIndex = 51;
@@ -668,7 +728,7 @@
             // propertyLabel
             // 
             this.propertyLabel.AutoSize = true;
-            this.propertyLabel.Location = new System.Drawing.Point(12, 338);
+            this.propertyLabel.Location = new System.Drawing.Point(12, 360);
             this.propertyLabel.Name = "propertyLabel";
             this.propertyLabel.Size = new System.Drawing.Size(115, 12);
             this.propertyLabel.TabIndex = 52;
@@ -677,7 +737,7 @@
             // viewLabel
             // 
             this.viewLabel.AutoSize = true;
-            this.viewLabel.Location = new System.Drawing.Point(11, 477);
+            this.viewLabel.Location = new System.Drawing.Point(11, 499);
             this.viewLabel.Name = "viewLabel";
             this.viewLabel.Size = new System.Drawing.Size(97, 12);
             this.viewLabel.TabIndex = 53;
@@ -686,7 +746,7 @@
             // queryLinkLabel
             // 
             this.queryLinkLabel.AutoSize = true;
-            this.queryLinkLabel.Location = new System.Drawing.Point(27, 15);
+            this.queryLinkLabel.Location = new System.Drawing.Point(27, 37);
             this.queryLinkLabel.Name = "queryLinkLabel";
             this.queryLinkLabel.Size = new System.Drawing.Size(35, 12);
             this.queryLinkLabel.TabIndex = 54;
@@ -699,7 +759,7 @@
             this.groupComboBox.FormattingEnabled = true;
             this.groupComboBox.Items.AddRange(new object[] {
             "-"});
-            this.groupComboBox.Location = new System.Drawing.Point(311, 177);
+            this.groupComboBox.Location = new System.Drawing.Point(311, 199);
             this.groupComboBox.Name = "groupComboBox";
             this.groupComboBox.Size = new System.Drawing.Size(110, 20);
             this.groupComboBox.TabIndex = 56;
@@ -707,7 +767,7 @@
             // 
             // AccountTextBox
             // 
-            this.AccountTextBox.Location = new System.Drawing.Point(131, 206);
+            this.AccountTextBox.Location = new System.Drawing.Point(131, 228);
             this.AccountTextBox.Name = "AccountTextBox";
             this.AccountTextBox.Size = new System.Drawing.Size(94, 19);
             this.AccountTextBox.TabIndex = 57;
@@ -715,7 +775,7 @@
             // 
             // propertyTextBox
             // 
-            this.propertyTextBox.Location = new System.Drawing.Point(132, 333);
+            this.propertyTextBox.Location = new System.Drawing.Point(132, 355);
             this.propertyTextBox.Name = "propertyTextBox";
             this.propertyTextBox.Size = new System.Drawing.Size(94, 19);
             this.propertyTextBox.TabIndex = 58;
@@ -723,54 +783,21 @@
             // 
             // viewTextBox
             // 
-            this.viewTextBox.Location = new System.Drawing.Point(131, 472);
+            this.viewTextBox.Location = new System.Drawing.Point(131, 494);
             this.viewTextBox.Name = "viewTextBox";
             this.viewTextBox.Size = new System.Drawing.Size(94, 19);
             this.viewTextBox.TabIndex = 59;
             this.viewTextBox.TextChanged += new System.EventHandler(this.viewTextBox_TextChanged);
             // 
-            // viewDetailDataGridView
+            // queryHistoryMenuStrip
             // 
-            this.viewDetailDataGridView.AllowUserToAddRows = false;
-            this.viewDetailDataGridView.AllowUserToDeleteRows = false;
-            this.viewDetailDataGridView.AllowUserToOrderColumns = true;
-            this.viewDetailDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
-            this.viewDetailDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.viewDetailDataGridView.Cursor = System.Windows.Forms.Cursors.Default;
-            this.viewDetailDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.viewDetailDataGridView.Location = new System.Drawing.Point(3, 3);
-            this.viewDetailDataGridView.Name = "viewDetailDataGridView";
-            this.viewDetailDataGridView.RowHeadersWidth = 150;
-            this.viewDetailDataGridView.RowTemplate.Height = 21;
-            this.viewDetailDataGridView.Size = new System.Drawing.Size(896, 582);
-            this.viewDetailDataGridView.TabIndex = 10;
-            // 
-            // segmentDataGridView
-            // 
-            this.segmentDataGridView.AllowUserToAddRows = false;
-            this.segmentDataGridView.AllowUserToDeleteRows = false;
-            this.segmentDataGridView.AllowUserToOrderColumns = true;
-            this.segmentDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            this.segmentDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.segmentDataGridView.Cursor = System.Windows.Forms.Cursors.Default;
-            this.segmentDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.segmentDataGridView.Location = new System.Drawing.Point(3, 5);
-            this.segmentDataGridView.Name = "segmentDataGridView";
-            this.segmentDataGridView.RowHeadersWidth = 10;
-            this.segmentDataGridView.RowTemplate.Height = 21;
-            this.segmentDataGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.segmentDataGridView.Size = new System.Drawing.Size(896, 582);
-            this.segmentDataGridView.TabIndex = 11;
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.queryHistoryMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.queryHistoriesToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1225, 26);
-            this.menuStrip1.TabIndex = 60;
-            this.menuStrip1.Text = "menuStrip1";
+            this.queryHistoryMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.queryHistoryMenuStrip.Name = "queryHistoryMenuStrip";
+            this.queryHistoryMenuStrip.Size = new System.Drawing.Size(1225, 26);
+            this.queryHistoryMenuStrip.TabIndex = 60;
+            this.queryHistoryMenuStrip.Text = "menuStrip1";
             // 
             // queryHistoriesToolStripMenuItem
             // 
@@ -783,7 +810,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1225, 819);
+            this.ClientSize = new System.Drawing.Size(1225, 850);
             this.Controls.Add(this.viewTextBox);
             this.Controls.Add(this.propertyTextBox);
             this.Controls.Add(this.AccountTextBox);
@@ -834,7 +861,7 @@
             this.Controls.Add(this.buttonGetAuth);
             this.Controls.Add(this.accountDataGridView);
             this.Controls.Add(this.filePathTextBox);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.queryHistoryMenuStrip);
             this.Name = "Form1";
             this.Text = "Google Analytics Data Exporter";
             ((System.ComponentModel.ISupportInitialize)(this.gaDataGridViewData)).EndInit();
@@ -847,12 +874,12 @@
             this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.goalDataGridView)).EndInit();
             this.tabPage4.ResumeLayout(false);
-            this.tabPage6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.GaViewDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewDetailDataGridView)).EndInit();
+            this.tabPage6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.segmentDataGridView)).EndInit();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GaViewDataGridView)).EndInit();
+            this.queryHistoryMenuStrip.ResumeLayout(false);
+            this.queryHistoryMenuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -924,7 +951,7 @@
         private System.Windows.Forms.TextBox viewTextBox;
         private System.Windows.Forms.DataGridView viewDetailDataGridView;
         private System.Windows.Forms.DataGridView segmentDataGridView;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip queryHistoryMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem queryHistoriesToolStripMenuItem;
     }
 }

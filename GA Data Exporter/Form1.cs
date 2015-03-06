@@ -17,7 +17,6 @@ using Google.Apis.Services;
 using Google.Apis.Requests;
 using Google.Apis.Analytics.v3.Data;
 
-
 namespace GA_Data_Exporter
 {
     public partial class Form1 : Form
@@ -26,6 +25,7 @@ namespace GA_Data_Exporter
         private UserCredential credential;
         private List<string> dimensionsItems = new List<string>();
         private List<string> metricsItems = new List<string>();
+        private AppSettings appSettings = null;
 
         public Form1()
         {
@@ -36,7 +36,6 @@ namespace GA_Data_Exporter
             endDateTextBox.Text = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
             indexTextBox.Text = "1";
             getSegments();
-            
             if (Properties.Settings.Default.filepath == "") { 
                 filePathTextBox.Text = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal)+ "\\" + "ga.csv";
             }
@@ -44,6 +43,14 @@ namespace GA_Data_Exporter
             {
                 filePathTextBox.Text = Properties.Settings.Default.filepath;
             }
+            if (Properties.Settings.Default.query != null )
+            {
+                foreach (string s in Properties.Settings.Default.query.Cast<string>().ToList().Take(10)) 
+                {
+                    putQueryHistory(s);
+                } 
+            }
+            putQueryHistoryClear();
         }
 
         private void AuthChangeButton_Click(object sender, EventArgs e)
@@ -52,13 +59,10 @@ namespace GA_Data_Exporter
             auth();
             getAccounts();
         }
+
         private void buttonDeleteAuth_Click(object sender, EventArgs e)
         {
-            (new FileDataStore("ga")).ClearAsync();
-            //dataGridViewAccount.Rows.Clear();
-            //dataGridViewWebProperty.Rows.Clear();
-            //GaViewdataGridView.Rows.Clear();
-     
+            (new FileDataStore("ga")).ClearAsync();   
         }
 
         private void auth()
@@ -321,9 +325,6 @@ namespace GA_Data_Exporter
             row = dt.NewRow(); row[0] = "stripSiteSearchCategoryParam"; row[1] = ret.StripSiteSearchCategoryParameters; dt.Rows.Add(row);
             row = dt.NewRow(); row[0] = "ecommerce"; row[1] = ret.ECommerceTracking; dt.Rows.Add(row);
             row = dt.NewRow(); row[0] = "enhancedEcommerce"; row[1] = ret.EnhancedECommerceTracking; dt.Rows.Add(row);
-
-
- 
             return dt;
         }
         private void getGoals(string aid, string wid, string vid){
@@ -411,17 +412,40 @@ namespace GA_Data_Exporter
             }
             return(true);
         }
-        private void afterGetData(){
+        private void putQueryHistory(string prm){
             ToolStripMenuItem item = new ToolStripMenuItem();
-            item.Text = queryTextBox.Text;
-            //item.Click += new EventHandler(item_Click);
-            //item.Tag = Action;
-            queryHistoriesToolStripMenuItem.DropDownItems.Insert(queryHistoriesToolStripMenuItem.DropDownItems.Count,item);
+            item.Text = prm;
+            item.Tag = prm;
+            item.Click += new EventHandler(queryHistoriesToolStripMenuItem_Click);
+            //queryHistoryMenuStrip.Items.Add(item);
+            //last position
+            queryHistoriesToolStripMenuItem.DropDownItems.Insert(0,item);
+            Properties.Settings.Default.query.Add(prm);
+            Properties.Settings.Default.Save();
         }
+        private void putQueryHistoryClear()
+        {
+            ToolStripMenuItem item = new ToolStripMenuItem();
+            item.Text = "CLEAR";
+            item.Tag = "CLEAR";
+            item.Click += new EventHandler(queryHistoriesToolStripMenuItem_Click);
+            queryHistoriesToolStripMenuItem.DropDownItems.Insert(0, item);           
+  
+        }
+
         private void queryHistoriesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
             string args = menuItem.Tag.ToString();
+            if (args == "CLEAR")
+            {
+                Properties.Settings.Default.query.Clear();
+                queryHistoriesToolStripMenuItem.DropDownItems.Clear();
+                putQueryHistoryClear();
+                return;
+            }
+            var match = System.Text.RegularExpressions.Regex.Match(args, @"metrics\=(.*?)\&");
+            metricsTextBox.Text = match.Captures[0].Value;
 
         }
         private void getAll_Click(object sender, EventArgs e)
@@ -434,7 +458,8 @@ namespace GA_Data_Exporter
             getAll.Enabled = false;
             getData(10000,1);
             getAll.Enabled = true;
-            afterGetData();
+            string prm =  System.Text.RegularExpressions.Regex.Replace(queryTextBox.Text, @".*ids\=ga:[0-9]+","");
+            putQueryHistory(prm);
         }
 
         private void get1000_Click(object sender, EventArgs e)
@@ -446,7 +471,8 @@ namespace GA_Data_Exporter
             get1000.Enabled = false;
             getData(1000,1);
             get1000.Enabled = true;
-            afterGetData();
+            string prm = System.Text.RegularExpressions.Regex.Replace(queryTextBox.Text, @".*ids\=ga:[0-9]+", "");
+            putQueryHistory(prm);
         }
 
         private GaData getGaData(int max, int index)
