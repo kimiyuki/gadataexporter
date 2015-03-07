@@ -107,7 +107,12 @@ namespace GA_Data_Exporter
             dic = m.Select(c => c.Split('=')).Where(c => c.Length > 1).ToDictionary(e => e[0], e => e[1]);
             if (dic.ContainsKey("metrics")) metricsTextBox.Text = dic["metrics"];
             if (dic.ContainsKey("start-date")) startDateTextBox.Text = dic["start-date"];
-      }
+            if (dic.ContainsKey("end-date")) endDateTextBox.Text = dic["end-date"];
+            if (dic.ContainsKey("dimensions")) dimensionsTextBox.Text = dic["dimensions"];
+            if (dic.ContainsKey("filter")) filterTextBox.Text = dic["filter"];
+            if (dic.ContainsKey("segment")) segmentTextBox.Text = dic["segment"];
+            if (dic.ContainsKey("segment")) sortTextBox.Text = dic["sort"];
+        }
 
         private void AuthChangeButton_Click(object sender, EventArgs e)
         {
