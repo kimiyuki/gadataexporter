@@ -40,12 +40,23 @@ namespace GA_Data_Exporter.Properties {
         [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
             "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
             "tring>CLEAR</string>\r\n</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection query {
+        public global::System.Collections.Specialized.StringCollection queryHistories {
             get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["query"]));
+                return ((global::System.Collections.Specialized.StringCollection)(this["queryHistories"]));
             }
             set {
-                this["query"] = value;
+                this["queryHistories"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection queryKeeped {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["queryKeeped"]));
+            }
+            set {
+                this["queryKeeped"] = value;
             }
         }
     }

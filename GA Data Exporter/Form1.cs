@@ -43,15 +43,71 @@ namespace GA_Data_Exporter
             {
                 filePathTextBox.Text = Properties.Settings.Default.filepath;
             }
-            if (Properties.Settings.Default.query != null )
+            if (Properties.Settings.Default.queryHistories != null )
             {
-                foreach (string s in Properties.Settings.Default.query.Cast<string>().ToList().Take(10)) 
+                foreach (string s in Properties.Settings.Default.queryHistories.Cast<string>().ToList().Take(10)) 
                 {
                     putQueryHistory(s);
                 } 
             }
             putQueryHistoryClear();
         }
+
+        private void putQueryHistory(string s)
+        {
+            saveQueryToSystem(s);
+            string prm = DateTime.Now.ToString("yyyy/MM/dd H:mm") + " : " + System.Text.RegularExpressions.Regex.Replace(s, @".*ids\=ga:[0-9]+", "");
+            ToolStripMenuItem item = new ToolStripMenuItem();
+            item.Text = prm;
+            item.Tag = s;
+            item.Click += new EventHandler(queryHistoriesToolStripMenuItem_Click);
+            //queryHistoryMenuStrip.Items.Add(item);
+            //last position
+            queryHistoriesToolStripMenuItem.DropDownItems.Insert(0, item);
+        }
+
+        private void saveQueryToSystem(string s)
+        {
+            Properties.Settings.Default.queryHistories.Add(s);
+            Properties.Settings.Default.Save();
+        }
+        private string _querySpliter(string q)
+        {
+            return "a";
+        }
+
+        private void putQueryHistoryClear()
+        {
+            ToolStripMenuItem item = new ToolStripMenuItem();
+            item.Text = "CLEAR";
+            item.Tag = "CLEAR";
+            item.Click += new EventHandler(queryHistoriesToolStripMenuItem_Click);
+            queryHistoriesToolStripMenuItem.DropDownItems.Insert(0, item);
+
+        }
+
+        private void queryHistoriesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
+            string args = menuItem.Tag.ToString();
+            if (args == "CLEAR")
+            {
+                Properties.Settings.Default.queryHistories.Clear();
+                queryHistoriesToolStripMenuItem.DropDownItems.Clear();
+                putQueryHistoryClear();
+                return;
+            }
+            putParametersByMenu(args);
+        }
+
+        private void putParametersByMenu(string s)
+        {
+            var m = System.Text.RegularExpressions.Regex.Split(s, @"\?|\&");
+            Dictionary<string,string> dic = new Dictionary<string,string>();
+            dic = m.Select(c => c.Split('=')).Where(c => c.Length > 1).ToDictionary(e => e[0], e => e[1]);
+            if (dic.ContainsKey("metrics")) metricsTextBox.Text = dic["metrics"];
+            if (dic.ContainsKey("start-date")) startDateTextBox.Text = dic["start-date"];
+      }
 
         private void AuthChangeButton_Click(object sender, EventArgs e)
         {
@@ -62,12 +118,12 @@ namespace GA_Data_Exporter
 
         private void buttonDeleteAuth_Click(object sender, EventArgs e)
         {
-            (new FileDataStore("ga")).ClearAsync();   
+            (new FileDataStore("ga")).ClearAsync();
         }
 
         private void auth()
         {
-            
+
             credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                            new ClientSecrets
                            {
@@ -76,14 +132,15 @@ namespace GA_Data_Exporter
                            },
                            new[] { AnalyticsService.Scope.AnalyticsReadonly },
                            "user", CancellationToken.None, new FileDataStore("ga")).Result;
-             service = new AnalyticsService(
-                new BaseClientService.Initializer()
-                {
-                    HttpClientInitializer = credential,
-                    ApplicationName = "abc-analytics ga data exporter"
-                });
-             getAccounts();
+            service = new AnalyticsService(
+               new BaseClientService.Initializer()
+               {
+                   HttpClientInitializer = credential,
+                   ApplicationName = "abc-analytics ga data exporter"
+               });
+            getAccounts();
         }
+   
         private void getMetaData()
         {
             MetadataResource.ColumnsResource.ListRequest req = service.Metadata.Columns.List("ga");
@@ -335,7 +392,7 @@ namespace GA_Data_Exporter
             DataTable dt = new DataTable();
             dt.Columns.Add("no", typeof(string));
             dt.Columns.Add("name", typeof(string));
-            dt.Columns.Add("matchType", typeof(string));
+            dt.Columns.Add("matchType:CaseSensitive", typeof(string));
             dt.Columns.Add("target", typeof(string));
             dt.Columns.Add("value", typeof(string));
             dt.Columns.Add("active", typeof(string));
@@ -356,7 +413,7 @@ namespace GA_Data_Exporter
                     }
                     else if (goals[i].Type == "URL_DESTINATION")
                     {
-                        row[2] = goals[i].UrlDestinationDetails.MatchType + ":" + goals[i].UrlDestinationDetails.CaseSensitive;
+                        row[2] = goals[i].UrlDestinationDetails.MatchType + " : " + goals[i].UrlDestinationDetails.CaseSensitive;
                         row[3] = goals[i].UrlDestinationDetails.Url;
                     }
                     else if (goals[i].Type == "VISIT_TIME_ON_SITE")
@@ -373,8 +430,8 @@ namespace GA_Data_Exporter
                     }
                     row[4] = goals[i].Value;
                     row[5] = goals[i].Active;
-                    row[6] = goals[i].Type;
-                    row[7] = goals[i].Updated;
+                    row[6] = System.Text.RegularExpressions.Regex.Replace(goals[i].Type,@"_.*","");
+                    row[7] = System.Text.RegularExpressions.Regex.Replace(goals[i].Updated.ToString(), @"...$","");
            
                     dt.Rows.Add(row);
                 }
@@ -412,43 +469,7 @@ namespace GA_Data_Exporter
             }
             return(true);
         }
-        private void putQueryHistory(string prm){
-            ToolStripMenuItem item = new ToolStripMenuItem();
-            item.Text = prm;
-            item.Tag = prm;
-            item.Click += new EventHandler(queryHistoriesToolStripMenuItem_Click);
-            //queryHistoryMenuStrip.Items.Add(item);
-            //last position
-            queryHistoriesToolStripMenuItem.DropDownItems.Insert(0,item);
-            Properties.Settings.Default.query.Add(prm);
-            Properties.Settings.Default.Save();
-        }
-        private void putQueryHistoryClear()
-        {
-            ToolStripMenuItem item = new ToolStripMenuItem();
-            item.Text = "CLEAR";
-            item.Tag = "CLEAR";
-            item.Click += new EventHandler(queryHistoriesToolStripMenuItem_Click);
-            queryHistoriesToolStripMenuItem.DropDownItems.Insert(0, item);           
-  
-        }
-
-        private void queryHistoriesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
-            string args = menuItem.Tag.ToString();
-            if (args == "CLEAR")
-            {
-                Properties.Settings.Default.query.Clear();
-                queryHistoriesToolStripMenuItem.DropDownItems.Clear();
-                putQueryHistoryClear();
-                return;
-            }
-            var match = System.Text.RegularExpressions.Regex.Match(args, @"metrics\=(.*?)\&");
-            metricsTextBox.Text = match.Captures[0].Value;
-
-        }
-        private void getAll_Click(object sender, EventArgs e)
+          private void getAll_Click(object sender, EventArgs e)
         {
             errorTextBox.Text = "";
             if (!checkBeforeGetData())
@@ -458,8 +479,7 @@ namespace GA_Data_Exporter
             getAll.Enabled = false;
             getData(10000,1);
             getAll.Enabled = true;
-            string prm =  System.Text.RegularExpressions.Regex.Replace(queryTextBox.Text, @".*ids\=ga:[0-9]+","");
-            putQueryHistory(prm);
+            putQueryHistory(queryTextBox.Text);
         }
 
         private void get1000_Click(object sender, EventArgs e)
@@ -471,8 +491,7 @@ namespace GA_Data_Exporter
             get1000.Enabled = false;
             getData(1000,1);
             get1000.Enabled = true;
-            string prm = System.Text.RegularExpressions.Regex.Replace(queryTextBox.Text, @".*ids\=ga:[0-9]+", "");
-            putQueryHistory(prm);
+            putQueryHistory(queryTextBox.Text);
         }
 
         private GaData getGaData(int max, int index)

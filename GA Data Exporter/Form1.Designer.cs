@@ -94,6 +94,8 @@
             this.viewTextBox = new System.Windows.Forms.TextBox();
             this.queryHistoryMenuStrip = new System.Windows.Forms.MenuStrip();
             this.queryHistoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.queryBookmarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gaDataGridViewData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accountDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.propertyDataGridView)).BeginInit();
@@ -126,6 +128,8 @@
             this.gaDataGridViewData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gaDataGridViewData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gaDataGridViewData.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.gaDataGridViewData.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.gaDataGridViewData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gaDataGridViewData.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -191,7 +195,7 @@
             this.tabControl1.Location = new System.Drawing.Point(311, 228);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(910, 646);
+            this.tabControl1.Size = new System.Drawing.Size(942, 654);
             this.tabControl1.TabIndex = 7;
             // 
             // tabPage1
@@ -202,7 +206,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(902, 620);
+            this.tabPage1.Size = new System.Drawing.Size(934, 628);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "DimMetrics";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -215,10 +219,10 @@
             this.listViewDimensions.BackgroundImageTiled = true;
             this.listViewDimensions.GridLines = true;
             this.listViewDimensions.HideSelection = false;
-            this.listViewDimensions.Location = new System.Drawing.Point(454, 6);
+            this.listViewDimensions.Location = new System.Drawing.Point(463, 6);
             this.listViewDimensions.Name = "listViewDimensions";
             this.listViewDimensions.ShowItemToolTips = true;
-            this.listViewDimensions.Size = new System.Drawing.Size(445, 593);
+            this.listViewDimensions.Size = new System.Drawing.Size(468, 601);
             this.listViewDimensions.TabIndex = 5;
             this.listViewDimensions.TileSize = new System.Drawing.Size(141, 28);
             this.listViewDimensions.UseCompatibleStateImageBehavior = false;
@@ -234,10 +238,10 @@
             this.listViewMetrics.FullRowSelect = true;
             this.listViewMetrics.GridLines = true;
             this.listViewMetrics.HideSelection = false;
-            this.listViewMetrics.Location = new System.Drawing.Point(3, 6);
+            this.listViewMetrics.Location = new System.Drawing.Point(6, 6);
             this.listViewMetrics.Name = "listViewMetrics";
             this.listViewMetrics.ShowItemToolTips = true;
-            this.listViewMetrics.Size = new System.Drawing.Size(447, 593);
+            this.listViewMetrics.Size = new System.Drawing.Size(454, 601);
             this.listViewMetrics.TabIndex = 4;
             this.listViewMetrics.TileSize = new System.Drawing.Size(141, 28);
             this.listViewMetrics.UseCompatibleStateImageBehavior = false;
@@ -254,10 +258,10 @@
             this.dataGridViewDimMetrics.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewDimMetrics.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridViewDimMetrics.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dataGridViewDimMetrics.Location = new System.Drawing.Point(-6, -3);
+            this.dataGridViewDimMetrics.Location = new System.Drawing.Point(3, 5);
             this.dataGridViewDimMetrics.Name = "dataGridViewDimMetrics";
             this.dataGridViewDimMetrics.RowTemplate.Height = 21;
-            this.dataGridViewDimMetrics.Size = new System.Drawing.Size(912, 609);
+            this.dataGridViewDimMetrics.Size = new System.Drawing.Size(935, 609);
             this.dataGridViewDimMetrics.TabIndex = 3;
             // 
             // tabPage2
@@ -266,7 +270,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(902, 620);
+            this.tabPage2.Size = new System.Drawing.Size(934, 628);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Data";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -277,7 +281,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(902, 620);
+            this.tabPage3.Size = new System.Drawing.Size(934, 628);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Goals";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -290,13 +294,16 @@
             this.goalDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.goalDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+            this.goalDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.goalDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.goalDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.goalDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.goalDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.goalDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.goalDataGridView.Location = new System.Drawing.Point(2, 6);
             this.goalDataGridView.Name = "goalDataGridView";
+            this.goalDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.goalDataGridView.RowTemplate.Height = 21;
-            this.goalDataGridView.Size = new System.Drawing.Size(896, 603);
+            this.goalDataGridView.Size = new System.Drawing.Size(913, 608);
             this.goalDataGridView.TabIndex = 9;
             // 
             // tabPage4
@@ -305,7 +312,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(902, 620);
+            this.tabPage4.Size = new System.Drawing.Size(934, 628);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "ViewDetails";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -331,7 +338,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(902, 620);
+            this.tabPage5.Size = new System.Drawing.Size(934, 628);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Filters";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -342,7 +349,7 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(902, 620);
+            this.tabPage6.Size = new System.Drawing.Size(934, 628);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Segments";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -352,16 +359,18 @@
             this.segmentDataGridView.AllowUserToAddRows = false;
             this.segmentDataGridView.AllowUserToDeleteRows = false;
             this.segmentDataGridView.AllowUserToOrderColumns = true;
+            this.segmentDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.segmentDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.segmentDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.segmentDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.segmentDataGridView.Cursor = System.Windows.Forms.Cursors.Default;
             this.segmentDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.segmentDataGridView.Location = new System.Drawing.Point(3, 27);
+            this.segmentDataGridView.Location = new System.Drawing.Point(3, 0);
             this.segmentDataGridView.Name = "segmentDataGridView";
             this.segmentDataGridView.RowHeadersWidth = 10;
             this.segmentDataGridView.RowTemplate.Height = 21;
             this.segmentDataGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.segmentDataGridView.Size = new System.Drawing.Size(896, 582);
+            this.segmentDataGridView.Size = new System.Drawing.Size(896, 609);
             this.segmentDataGridView.TabIndex = 11;
             // 
             // tabPage7
@@ -369,7 +378,7 @@
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(902, 620);
+            this.tabPage7.Size = new System.Drawing.Size(934, 628);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "MCF";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -434,9 +443,9 @@
             this.queryTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.queryTextBox.Location = new System.Drawing.Point(79, 34);
+            this.queryTextBox.Location = new System.Drawing.Point(90, 34);
             this.queryTextBox.Name = "queryTextBox";
-            this.queryTextBox.Size = new System.Drawing.Size(1124, 19);
+            this.queryTextBox.Size = new System.Drawing.Size(1156, 19);
             this.queryTextBox.TabIndex = 13;
             // 
             // errorTextBox
@@ -444,15 +453,15 @@
             this.errorTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.errorTextBox.ForeColor = System.Drawing.Color.Red;
-            this.errorTextBox.Location = new System.Drawing.Point(79, 59);
+            this.errorTextBox.Location = new System.Drawing.Point(90, 59);
             this.errorTextBox.Name = "errorTextBox";
-            this.errorTextBox.Size = new System.Drawing.Size(1124, 19);
+            this.errorTextBox.Size = new System.Drawing.Size(1156, 19);
             this.errorTextBox.TabIndex = 14;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(27, 63);
+            this.label2.Location = new System.Drawing.Point(51, 63);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(30, 12);
             this.label2.TabIndex = 16;
@@ -484,7 +493,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.metricsTextBox.Location = new System.Drawing.Point(481, 86);
             this.metricsTextBox.Name = "metricsTextBox";
-            this.metricsTextBox.Size = new System.Drawing.Size(722, 19);
+            this.metricsTextBox.Size = new System.Drawing.Size(764, 19);
             this.metricsTextBox.TabIndex = 19;
             // 
             // dimensionsTextBox
@@ -493,7 +502,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dimensionsTextBox.Location = new System.Drawing.Point(481, 111);
             this.dimensionsTextBox.Name = "dimensionsTextBox";
-            this.dimensionsTextBox.Size = new System.Drawing.Size(722, 19);
+            this.dimensionsTextBox.Size = new System.Drawing.Size(765, 19);
             this.dimensionsTextBox.TabIndex = 20;
             // 
             // segmentTextBox
@@ -502,7 +511,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.segmentTextBox.Location = new System.Drawing.Point(481, 136);
             this.segmentTextBox.Name = "segmentTextBox";
-            this.segmentTextBox.Size = new System.Drawing.Size(722, 19);
+            this.segmentTextBox.Size = new System.Drawing.Size(764, 19);
             this.segmentTextBox.TabIndex = 21;
             // 
             // itemFilter
@@ -746,7 +755,7 @@
             // queryLinkLabel
             // 
             this.queryLinkLabel.AutoSize = true;
-            this.queryLinkLabel.Location = new System.Drawing.Point(27, 37);
+            this.queryLinkLabel.Location = new System.Drawing.Point(6, 37);
             this.queryLinkLabel.Name = "queryLinkLabel";
             this.queryLinkLabel.Size = new System.Drawing.Size(35, 12);
             this.queryLinkLabel.TabIndex = 54;
@@ -792,10 +801,11 @@
             // queryHistoryMenuStrip
             // 
             this.queryHistoryMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.queryHistoriesToolStripMenuItem});
+            this.queryHistoriesToolStripMenuItem,
+            this.queryBookmarkToolStripMenuItem});
             this.queryHistoryMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.queryHistoryMenuStrip.Name = "queryHistoryMenuStrip";
-            this.queryHistoryMenuStrip.Size = new System.Drawing.Size(1225, 26);
+            this.queryHistoryMenuStrip.Size = new System.Drawing.Size(1257, 26);
             this.queryHistoryMenuStrip.TabIndex = 60;
             this.queryHistoryMenuStrip.Text = "menuStrip1";
             // 
@@ -805,12 +815,28 @@
             this.queryHistoriesToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
             this.queryHistoriesToolStripMenuItem.Text = "QueryHistories";
             // 
+            // queryBookmarkToolStripMenuItem
+            // 
+            this.queryBookmarkToolStripMenuItem.Name = "queryBookmarkToolStripMenuItem";
+            this.queryBookmarkToolStripMenuItem.Size = new System.Drawing.Size(63, 22);
+            this.queryBookmarkToolStripMenuItem.Text = "Keeped";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(49, 30);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(39, 25);
+            this.button1.TabIndex = 61;
+            this.button1.Text = "keep";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1225, 850);
+            this.ClientSize = new System.Drawing.Size(1257, 858);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.viewTextBox);
             this.Controls.Add(this.propertyTextBox);
             this.Controls.Add(this.AccountTextBox);
@@ -953,6 +979,8 @@
         private System.Windows.Forms.DataGridView segmentDataGridView;
         private System.Windows.Forms.MenuStrip queryHistoryMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem queryHistoriesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem queryBookmarkToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
     }
 }
 
