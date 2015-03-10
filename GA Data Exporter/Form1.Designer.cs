@@ -62,7 +62,7 @@
             this.segmentTextBox = new System.Windows.Forms.TextBox();
             this.itemFilter = new System.Windows.Forms.TextBox();
             this.filterTextBox = new System.Windows.Forms.TextBox();
-            this.buttonClearMerics = new System.Windows.Forms.Button();
+            this.metricsClearButton = new System.Windows.Forms.Button();
             this.buttonClearDims = new System.Windows.Forms.Button();
             this.labelDimensions = new System.Windows.Forms.Label();
             this.labelMetrics = new System.Windows.Forms.Label();
@@ -192,10 +192,10 @@
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage7);
-            this.tabControl1.Location = new System.Drawing.Point(311, 228);
+            this.tabControl1.Location = new System.Drawing.Point(311, 252);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(942, 654);
+            this.tabControl1.Size = new System.Drawing.Size(942, 577);
             this.tabControl1.TabIndex = 7;
             // 
             // tabPage1
@@ -206,23 +206,22 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(934, 628);
+            this.tabPage1.Size = new System.Drawing.Size(934, 551);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "DimMetrics";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // listViewDimensions
             // 
-            this.listViewDimensions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.listViewDimensions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewDimensions.BackgroundImageTiled = true;
             this.listViewDimensions.GridLines = true;
             this.listViewDimensions.HideSelection = false;
-            this.listViewDimensions.Location = new System.Drawing.Point(463, 6);
+            this.listViewDimensions.Location = new System.Drawing.Point(473, 6);
             this.listViewDimensions.Name = "listViewDimensions";
             this.listViewDimensions.ShowItemToolTips = true;
-            this.listViewDimensions.Size = new System.Drawing.Size(468, 601);
+            this.listViewDimensions.Size = new System.Drawing.Size(454, 554);
             this.listViewDimensions.TabIndex = 5;
             this.listViewDimensions.TileSize = new System.Drawing.Size(141, 28);
             this.listViewDimensions.UseCompatibleStateImageBehavior = false;
@@ -231,17 +230,16 @@
             // 
             // listViewMetrics
             // 
-            this.listViewMetrics.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listViewMetrics.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.listViewMetrics.BackgroundImageTiled = true;
             this.listViewMetrics.FullRowSelect = true;
             this.listViewMetrics.GridLines = true;
             this.listViewMetrics.HideSelection = false;
-            this.listViewMetrics.Location = new System.Drawing.Point(6, 6);
+            this.listViewMetrics.Location = new System.Drawing.Point(9, 6);
             this.listViewMetrics.Name = "listViewMetrics";
             this.listViewMetrics.ShowItemToolTips = true;
-            this.listViewMetrics.Size = new System.Drawing.Size(454, 601);
+            this.listViewMetrics.Size = new System.Drawing.Size(454, 524);
             this.listViewMetrics.TabIndex = 4;
             this.listViewMetrics.TileSize = new System.Drawing.Size(141, 28);
             this.listViewMetrics.UseCompatibleStateImageBehavior = false;
@@ -258,7 +256,7 @@
             this.dataGridViewDimMetrics.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewDimMetrics.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridViewDimMetrics.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dataGridViewDimMetrics.Location = new System.Drawing.Point(3, 5);
+            this.dataGridViewDimMetrics.Location = new System.Drawing.Point(3, -72);
             this.dataGridViewDimMetrics.Name = "dataGridViewDimMetrics";
             this.dataGridViewDimMetrics.RowTemplate.Height = 21;
             this.dataGridViewDimMetrics.Size = new System.Drawing.Size(935, 609);
@@ -443,7 +441,7 @@
             this.queryTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.queryTextBox.Location = new System.Drawing.Point(90, 34);
+            this.queryTextBox.Location = new System.Drawing.Point(90, 49);
             this.queryTextBox.Name = "queryTextBox";
             this.queryTextBox.Size = new System.Drawing.Size(1156, 19);
             this.queryTextBox.TabIndex = 13;
@@ -453,7 +451,7 @@
             this.errorTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.errorTextBox.ForeColor = System.Drawing.Color.Red;
-            this.errorTextBox.Location = new System.Drawing.Point(90, 59);
+            this.errorTextBox.Location = new System.Drawing.Point(90, 74);
             this.errorTextBox.Name = "errorTextBox";
             this.errorTextBox.Size = new System.Drawing.Size(1156, 19);
             this.errorTextBox.TabIndex = 14;
@@ -461,7 +459,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(51, 63);
+            this.label2.Location = new System.Drawing.Point(51, 78);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(30, 12);
             this.label2.TabIndex = 16;
@@ -469,7 +467,7 @@
             // 
             // get1000
             // 
-            this.get1000.Location = new System.Drawing.Point(311, 86);
+            this.get1000.Location = new System.Drawing.Point(311, 109);
             this.get1000.Name = "get1000";
             this.get1000.Size = new System.Drawing.Size(75, 40);
             this.get1000.TabIndex = 17;
@@ -479,7 +477,7 @@
             // 
             // getAll
             // 
-            this.getAll.Location = new System.Drawing.Point(311, 132);
+            this.getAll.Location = new System.Drawing.Point(311, 155);
             this.getAll.Name = "getAll";
             this.getAll.Size = new System.Drawing.Size(75, 38);
             this.getAll.TabIndex = 18;
@@ -491,7 +489,7 @@
             // 
             this.metricsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.metricsTextBox.Location = new System.Drawing.Point(481, 86);
+            this.metricsTextBox.Location = new System.Drawing.Point(481, 109);
             this.metricsTextBox.Name = "metricsTextBox";
             this.metricsTextBox.Size = new System.Drawing.Size(764, 19);
             this.metricsTextBox.TabIndex = 19;
@@ -500,7 +498,7 @@
             // 
             this.dimensionsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dimensionsTextBox.Location = new System.Drawing.Point(481, 111);
+            this.dimensionsTextBox.Location = new System.Drawing.Point(481, 134);
             this.dimensionsTextBox.Name = "dimensionsTextBox";
             this.dimensionsTextBox.Size = new System.Drawing.Size(765, 19);
             this.dimensionsTextBox.TabIndex = 20;
@@ -509,14 +507,14 @@
             // 
             this.segmentTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.segmentTextBox.Location = new System.Drawing.Point(481, 136);
+            this.segmentTextBox.Location = new System.Drawing.Point(481, 159);
             this.segmentTextBox.Name = "segmentTextBox";
             this.segmentTextBox.Size = new System.Drawing.Size(764, 19);
             this.segmentTextBox.TabIndex = 21;
             // 
             // itemFilter
             // 
-            this.itemFilter.Location = new System.Drawing.Point(430, 200);
+            this.itemFilter.Location = new System.Drawing.Point(430, 223);
             this.itemFilter.Name = "itemFilter";
             this.itemFilter.Size = new System.Drawing.Size(94, 19);
             this.itemFilter.TabIndex = 22;
@@ -524,24 +522,24 @@
             // 
             // filterTextBox
             // 
-            this.filterTextBox.Location = new System.Drawing.Point(694, 157);
+            this.filterTextBox.Location = new System.Drawing.Point(694, 180);
             this.filterTextBox.Name = "filterTextBox";
             this.filterTextBox.Size = new System.Drawing.Size(174, 19);
             this.filterTextBox.TabIndex = 23;
             // 
-            // buttonClearMerics
+            // metricsClearButton
             // 
-            this.buttonClearMerics.Location = new System.Drawing.Point(446, 84);
-            this.buttonClearMerics.Name = "buttonClearMerics";
-            this.buttonClearMerics.Size = new System.Drawing.Size(29, 23);
-            this.buttonClearMerics.TabIndex = 24;
-            this.buttonClearMerics.Text = "C";
-            this.buttonClearMerics.UseVisualStyleBackColor = true;
-            this.buttonClearMerics.Click += new System.EventHandler(this.button6_Click);
+            this.metricsClearButton.Location = new System.Drawing.Point(446, 107);
+            this.metricsClearButton.Name = "metricsClearButton";
+            this.metricsClearButton.Size = new System.Drawing.Size(29, 23);
+            this.metricsClearButton.TabIndex = 24;
+            this.metricsClearButton.Text = "C";
+            this.metricsClearButton.UseVisualStyleBackColor = true;
+            this.metricsClearButton.Click += new System.EventHandler(this.metricsClearButton_Click);
             // 
             // buttonClearDims
             // 
-            this.buttonClearDims.Location = new System.Drawing.Point(446, 111);
+            this.buttonClearDims.Location = new System.Drawing.Point(446, 134);
             this.buttonClearDims.Name = "buttonClearDims";
             this.buttonClearDims.Size = new System.Drawing.Size(29, 23);
             this.buttonClearDims.TabIndex = 25;
@@ -552,7 +550,7 @@
             // labelDimensions
             // 
             this.labelDimensions.AutoSize = true;
-            this.labelDimensions.Location = new System.Drawing.Point(392, 114);
+            this.labelDimensions.Location = new System.Drawing.Point(392, 137);
             this.labelDimensions.Name = "labelDimensions";
             this.labelDimensions.Size = new System.Drawing.Size(31, 24);
             this.labelDimensions.TabIndex = 26;
@@ -561,7 +559,7 @@
             // labelMetrics
             // 
             this.labelMetrics.AutoSize = true;
-            this.labelMetrics.Location = new System.Drawing.Point(392, 86);
+            this.labelMetrics.Location = new System.Drawing.Point(392, 109);
             this.labelMetrics.Name = "labelMetrics";
             this.labelMetrics.Size = new System.Drawing.Size(43, 24);
             this.labelMetrics.TabIndex = 27;
@@ -569,14 +567,14 @@
             // 
             // endDateTextBox
             // 
-            this.endDateTextBox.Location = new System.Drawing.Point(552, 158);
+            this.endDateTextBox.Location = new System.Drawing.Point(552, 181);
             this.endDateTextBox.Name = "endDateTextBox";
             this.endDateTextBox.Size = new System.Drawing.Size(86, 19);
             this.endDateTextBox.TabIndex = 28;
             // 
             // startDateTextBox
             // 
-            this.startDateTextBox.Location = new System.Drawing.Point(443, 158);
+            this.startDateTextBox.Location = new System.Drawing.Point(443, 181);
             this.startDateTextBox.Name = "startDateTextBox";
             this.startDateTextBox.Size = new System.Drawing.Size(95, 19);
             this.startDateTextBox.TabIndex = 29;
@@ -584,7 +582,7 @@
             // dateBetween
             // 
             this.dateBetween.AutoSize = true;
-            this.dateBetween.Location = new System.Drawing.Point(540, 161);
+            this.dateBetween.Location = new System.Drawing.Point(540, 184);
             this.dateBetween.Name = "dateBetween";
             this.dateBetween.Size = new System.Drawing.Size(11, 12);
             this.dateBetween.TabIndex = 31;
@@ -592,28 +590,28 @@
             // 
             // sortTextBox
             // 
-            this.sortTextBox.Location = new System.Drawing.Point(907, 156);
+            this.sortTextBox.Location = new System.Drawing.Point(907, 179);
             this.sortTextBox.Name = "sortTextBox";
             this.sortTextBox.Size = new System.Drawing.Size(174, 19);
             this.sortTextBox.TabIndex = 33;
             // 
             // indexTextBox
             // 
-            this.indexTextBox.Location = new System.Drawing.Point(1134, 156);
+            this.indexTextBox.Location = new System.Drawing.Point(1134, 179);
             this.indexTextBox.Name = "indexTextBox";
             this.indexTextBox.Size = new System.Drawing.Size(69, 19);
             this.indexTextBox.TabIndex = 34;
             // 
             // totalResultsNumtextBox
             // 
-            this.totalResultsNumtextBox.Location = new System.Drawing.Point(528, 200);
+            this.totalResultsNumtextBox.Location = new System.Drawing.Point(528, 223);
             this.totalResultsNumtextBox.Name = "totalResultsNumtextBox";
             this.totalResultsNumtextBox.Size = new System.Drawing.Size(75, 19);
             this.totalResultsNumtextBox.TabIndex = 38;
             // 
             // actualRowsTextBox
             // 
-            this.actualRowsTextBox.Location = new System.Drawing.Point(611, 200);
+            this.actualRowsTextBox.Location = new System.Drawing.Point(611, 223);
             this.actualRowsTextBox.Name = "actualRowsTextBox";
             this.actualRowsTextBox.Size = new System.Drawing.Size(75, 19);
             this.actualRowsTextBox.TabIndex = 39;
@@ -630,7 +628,7 @@
             // filterLinkLabel
             // 
             this.filterLinkLabel.AutoSize = true;
-            this.filterLinkLabel.Location = new System.Drawing.Point(660, 160);
+            this.filterLinkLabel.Location = new System.Drawing.Point(660, 183);
             this.filterLinkLabel.Name = "filterLinkLabel";
             this.filterLinkLabel.Size = new System.Drawing.Size(25, 12);
             this.filterLinkLabel.TabIndex = 41;
@@ -641,7 +639,7 @@
             // sortLinkLabel
             // 
             this.sortLinkLabel.AutoSize = true;
-            this.sortLinkLabel.Location = new System.Drawing.Point(874, 160);
+            this.sortLinkLabel.Location = new System.Drawing.Point(874, 183);
             this.sortLinkLabel.Name = "sortLinkLabel";
             this.sortLinkLabel.Size = new System.Drawing.Size(25, 12);
             this.sortLinkLabel.TabIndex = 42;
@@ -652,7 +650,7 @@
             // startLinkLabel
             // 
             this.startLinkLabel.AutoSize = true;
-            this.startLinkLabel.Location = new System.Drawing.Point(1098, 160);
+            this.startLinkLabel.Location = new System.Drawing.Point(1098, 183);
             this.startLinkLabel.Name = "startLinkLabel";
             this.startLinkLabel.Size = new System.Drawing.Size(29, 12);
             this.startLinkLabel.TabIndex = 43;
@@ -663,7 +661,7 @@
             // dateLinkLabel
             // 
             this.dateLinkLabel.AutoSize = true;
-            this.dateLinkLabel.Location = new System.Drawing.Point(394, 161);
+            this.dateLinkLabel.Location = new System.Drawing.Point(394, 184);
             this.dateLinkLabel.Name = "dateLinkLabel";
             this.dateLinkLabel.Size = new System.Drawing.Size(27, 12);
             this.dateLinkLabel.TabIndex = 44;
@@ -674,7 +672,7 @@
             // segmentLinkLabel
             // 
             this.segmentLinkLabel.AutoSize = true;
-            this.segmentLinkLabel.Location = new System.Drawing.Point(393, 143);
+            this.segmentLinkLabel.Location = new System.Drawing.Point(393, 166);
             this.segmentLinkLabel.Name = "segmentLinkLabel";
             this.segmentLinkLabel.Size = new System.Drawing.Size(48, 12);
             this.segmentLinkLabel.TabIndex = 45;
@@ -685,7 +683,7 @@
             // metDimLabel
             // 
             this.metDimLabel.AutoSize = true;
-            this.metDimLabel.Location = new System.Drawing.Point(428, 185);
+            this.metDimLabel.Location = new System.Drawing.Point(428, 208);
             this.metDimLabel.Name = "metDimLabel";
             this.metDimLabel.Size = new System.Drawing.Size(90, 12);
             this.metDimLabel.TabIndex = 46;
@@ -694,7 +692,7 @@
             // totalResultslabel
             // 
             this.totalResultslabel.AutoSize = true;
-            this.totalResultslabel.Location = new System.Drawing.Point(528, 185);
+            this.totalResultslabel.Location = new System.Drawing.Point(528, 208);
             this.totalResultslabel.Name = "totalResultslabel";
             this.totalResultslabel.Size = new System.Drawing.Size(67, 12);
             this.totalResultslabel.TabIndex = 47;
@@ -703,7 +701,7 @@
             // actualRowslabel
             // 
             this.actualRowslabel.AutoSize = true;
-            this.actualRowslabel.Location = new System.Drawing.Point(609, 185);
+            this.actualRowslabel.Location = new System.Drawing.Point(609, 208);
             this.actualRowslabel.Name = "actualRowslabel";
             this.actualRowslabel.Size = new System.Drawing.Size(64, 12);
             this.actualRowslabel.TabIndex = 48;
@@ -712,7 +710,7 @@
             // sampleLabel
             // 
             this.sampleLabel.AutoSize = true;
-            this.sampleLabel.Location = new System.Drawing.Point(695, 185);
+            this.sampleLabel.Location = new System.Drawing.Point(695, 208);
             this.sampleLabel.Name = "sampleLabel";
             this.sampleLabel.Size = new System.Drawing.Size(46, 12);
             this.sampleLabel.TabIndex = 50;
@@ -720,7 +718,7 @@
             // 
             // sampleTextBox
             // 
-            this.sampleTextBox.Location = new System.Drawing.Point(697, 200);
+            this.sampleTextBox.Location = new System.Drawing.Point(697, 223);
             this.sampleTextBox.Name = "sampleTextBox";
             this.sampleTextBox.Size = new System.Drawing.Size(108, 19);
             this.sampleTextBox.TabIndex = 49;
@@ -755,7 +753,7 @@
             // queryLinkLabel
             // 
             this.queryLinkLabel.AutoSize = true;
-            this.queryLinkLabel.Location = new System.Drawing.Point(6, 37);
+            this.queryLinkLabel.Location = new System.Drawing.Point(6, 52);
             this.queryLinkLabel.Name = "queryLinkLabel";
             this.queryLinkLabel.Size = new System.Drawing.Size(35, 12);
             this.queryLinkLabel.TabIndex = 54;
@@ -768,7 +766,7 @@
             this.groupComboBox.FormattingEnabled = true;
             this.groupComboBox.Items.AddRange(new object[] {
             "-"});
-            this.groupComboBox.Location = new System.Drawing.Point(311, 199);
+            this.groupComboBox.Location = new System.Drawing.Point(311, 222);
             this.groupComboBox.Name = "groupComboBox";
             this.groupComboBox.Size = new System.Drawing.Size(110, 20);
             this.groupComboBox.TabIndex = 56;
@@ -818,12 +816,13 @@
             // queryBookmarkToolStripMenuItem
             // 
             this.queryBookmarkToolStripMenuItem.Name = "queryBookmarkToolStripMenuItem";
-            this.queryBookmarkToolStripMenuItem.Size = new System.Drawing.Size(63, 22);
-            this.queryBookmarkToolStripMenuItem.Text = "Keeped";
+            this.queryBookmarkToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.queryBookmarkToolStripMenuItem.Text = "QueryHistoryClear";
+            this.queryBookmarkToolStripMenuItem.Click += new System.EventHandler(this.queryBookmarkToolStripMenuItem_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(49, 30);
+            this.button1.Location = new System.Drawing.Point(49, 45);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(39, 25);
             this.button1.TabIndex = 61;
@@ -835,7 +834,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1257, 858);
+            this.ClientSize = new System.Drawing.Size(1257, 843);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.viewTextBox);
             this.Controls.Add(this.propertyTextBox);
@@ -866,7 +865,7 @@
             this.Controls.Add(this.labelMetrics);
             this.Controls.Add(this.labelDimensions);
             this.Controls.Add(this.buttonClearDims);
-            this.Controls.Add(this.buttonClearMerics);
+            this.Controls.Add(this.metricsClearButton);
             this.Controls.Add(this.filterTextBox);
             this.Controls.Add(this.itemFilter);
             this.Controls.Add(this.segmentTextBox);
@@ -945,7 +944,7 @@
         private System.Windows.Forms.TextBox segmentTextBox;
         private System.Windows.Forms.TextBox itemFilter;
         private System.Windows.Forms.TextBox filterTextBox;
-        private System.Windows.Forms.Button buttonClearMerics;
+        private System.Windows.Forms.Button metricsClearButton;
         private System.Windows.Forms.Button buttonClearDims;
         private System.Windows.Forms.Label labelDimensions;
         private System.Windows.Forms.Label labelMetrics;

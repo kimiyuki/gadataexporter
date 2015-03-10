@@ -25,8 +25,8 @@ namespace GA_Data_Exporter
         private UserCredential credential;
         private List<string> dimensionsItems = new List<string>();
         private List<string> metricsItems = new List<string>();
-        private AppSettings appSettings = null;
-
+        private List<string> dropDownItems = new List<string>();
+       
         public Form1()
         {
             InitializeComponent();
@@ -47,43 +47,51 @@ namespace GA_Data_Exporter
             {
                 foreach (string s in Properties.Settings.Default.queryHistories.Cast<string>().ToList().Take(10)) 
                 {
-                    putQueryHistory(s);
-                } 
+                    dropDownItems.Add(s);
+                }
+                for (var i = 0; i < dropDownItems.Count; i++)
+                {
+                    putQueryHistory(dropDownItems[i], false);
+                }
             }
-            putQueryHistoryClear();
         }
 
-        private void putQueryHistory(string s)
+        private void putQueryHistory(string s, bool save)
         {
-            saveQueryToSystem(s);
-            string prm = DateTime.Now.ToString("yyyy/MM/dd H:mm") + " : " + System.Text.RegularExpressions.Regex.Replace(s, @".*ids\=ga:[0-9]+", "");
+            s = DateTime.Now.ToString("yy/MM/dd H:mm") + " | " + s; 
+            string prm = System.Text.RegularExpressions.Regex.Replace(s, @"http.*ids\=ga:[0-9]+", "");
             ToolStripMenuItem item = new ToolStripMenuItem();
             item.Text = prm;
             item.Tag = s;
             item.Click += new EventHandler(queryHistoriesToolStripMenuItem_Click);
-            //queryHistoryMenuStrip.Items.Add(item);
-            //last position
             queryHistoriesToolStripMenuItem.DropDownItems.Insert(0, item);
+            if (save)
+            {
+                dropDownItems.Add(s);
+                saveQueryToSystem();
+            }
         }
 
-        private void saveQueryToSystem(string s)
+  
+        private void saveQueryToSystem()
         {
-            Properties.Settings.Default.queryHistories.Add(s);
+            Properties.Settings.Default.queryHistories.Clear();
+            foreach(string s in dropDownItems)
+            {
+                Properties.Settings.Default.queryHistories.Add(s);
+            }
             Properties.Settings.Default.Save();
         }
-        private string _querySpliter(string q)
+        private void queryBookmarkToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            return "a";
+            queryHistoryClear();
         }
-
-        private void putQueryHistoryClear()
+        
+        private void queryHistoryClear()
         {
-            ToolStripMenuItem item = new ToolStripMenuItem();
-            item.Text = "CLEAR";
-            item.Tag = "CLEAR";
-            item.Click += new EventHandler(queryHistoriesToolStripMenuItem_Click);
-            queryHistoriesToolStripMenuItem.DropDownItems.Insert(0, item);
-
+            queryHistoriesToolStripMenuItem.DropDownItems.Clear();
+            dropDownItems.Clear();
+            saveQueryToSystem();
         }
 
         private void queryHistoriesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -93,11 +101,16 @@ namespace GA_Data_Exporter
             if (args == "CLEAR")
             {
                 Properties.Settings.Default.queryHistories.Clear();
+                Properties.Settings.Default.Save();
                 queryHistoriesToolStripMenuItem.DropDownItems.Clear();
-                putQueryHistoryClear();
+                queryHistoryClear();
                 return;
             }
             putParametersByMenu(args);
+        }
+
+        private void perVaseMetrics(string s){
+            ;
         }
 
         private void putParametersByMenu(string s)
@@ -105,15 +118,22 @@ namespace GA_Data_Exporter
             var m = System.Text.RegularExpressions.Regex.Split(s, @"\?|\&");
             Dictionary<string,string> dic = new Dictionary<string,string>();
             dic = m.Select(c => c.Split('=')).Where(c => c.Length > 1).ToDictionary(e => e[0], e => e[1]);
-            if (dic.ContainsKey("metrics")) metricsTextBox.Text = dic["metrics"];
+            if (dic.ContainsKey("metrics"))
+            {
+                metricsTextBox.Text = dic["metrics"];
+                perVaseMetrics(dic["metrics"]);
+            }
+            if (dic.ContainsKey("dimensions"))
+            {
+                dimensionsTextBox.Text = dic["dimensions"];
+            }
             if (dic.ContainsKey("start-date")) startDateTextBox.Text = dic["start-date"];
             if (dic.ContainsKey("end-date")) endDateTextBox.Text = dic["end-date"];
-            if (dic.ContainsKey("dimensions")) dimensionsTextBox.Text = dic["dimensions"];
             if (dic.ContainsKey("filter")) filterTextBox.Text = dic["filter"];
             if (dic.ContainsKey("segment")) segmentTextBox.Text = dic["segment"];
             if (dic.ContainsKey("segment")) sortTextBox.Text = dic["sort"];
         }
-
+    
         private void AuthChangeButton_Click(object sender, EventArgs e)
         {
             (new FileDataStore("ga")).ClearAsync();
@@ -208,46 +228,6 @@ namespace GA_Data_Exporter
             }
         }
 
-
-
-        private void getMetaData1()
-        {
-            MetadataResource.ColumnsResource.ListRequest req = service.Metadata.Columns.List("ga");
-            Columns metadataList = req.Execute();
-            IList<Column> items = metadataList.Items;
-            var sitems = items.Where(c => c.Attributes["status"] != "DEPRECATED").ToList();
-
-            DataTable dt = new DataTable();
-            dt.Columns.Add("id", typeof(string));
-            dt.Columns.Add("group", typeof(string));
-            dt.Columns.Add("ui name", typeof(string));
-            dt.Columns.Add("description", typeof(string));
-            var metrics = sitems.Where(c => c.Attributes["type"] == "METRIC").ToList();
-            for (int k = 0; k < metrics.Count; k++)
-            {
-                DataRow row = dt.NewRow();
-                var metric = metrics[k];
-                row[0] = metrics[k].Id.Replace("ga:","");
-                row[1] = metrics[k].Attributes["group"];
-                row[2] = metrics[k].Attributes["uiName"];
-                row[3] = metrics[k].Attributes["description"];
-                dt.Rows.Add(row);
-            }
-        
-            var dimensions = sitems.Where(c => c.Attributes["type"] == "DIMENSION").ToList();
-            for (int k = 0; k < dimensions.Count; k++)
-            {
-                DataRow row = dt.NewRow();
-                row[0] = dimensions[k].Id.Replace("ga:", "");
-                row[1] = dimensions[k].Attributes["group"];
-                row[2] = dimensions[k].Attributes["uiName"];
-                row[3] = dimensions[k].Attributes["description"];
-                dt.Rows.Add(row);
-            }
-            this.dataGridViewDimMetrics.DataSource = dt;
-
-
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -484,7 +464,7 @@ namespace GA_Data_Exporter
             getAll.Enabled = false;
             getData(10000,1);
             getAll.Enabled = true;
-            putQueryHistory(queryTextBox.Text);
+            putQueryHistory(queryTextBox.Text, true);
         }
 
         private void get1000_Click(object sender, EventArgs e)
@@ -496,7 +476,7 @@ namespace GA_Data_Exporter
             get1000.Enabled = false;
             getData(1000,1);
             get1000.Enabled = true;
-            putQueryHistory(queryTextBox.Text);
+            putQueryHistory(queryTextBox.Text,true);
         }
 
         private GaData getGaData(int max, int index)
@@ -603,15 +583,17 @@ namespace GA_Data_Exporter
             this.labelMetrics.Text = "metrics\n(" + items.Count.ToString() + "/10)";
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void metricsClearButton_Click(object sender, EventArgs e)
         {
-            this.metricsTextBox.Clear();
-            var items = this.listViewMetrics.SelectedItems;
-            this.labelMetrics.Text = "metrics\n(0/10)";
-            foreach(ListViewItem item in items){
+            metricsTextBox.Clear();
+            var items = listViewMetrics.SelectedItems;
+            labelMetrics.Text = "metrics\n(0/10)";
+            foreach (ListViewItem item in items)
+            {
                 item.Selected = false;
             }
         }
+
 
         private void buttonClearDims_Click(object sender, EventArgs e)
         {
@@ -664,7 +646,7 @@ namespace GA_Data_Exporter
             }
 
 
-            if (str.Length < 2)
+            if (str.Length < 1 || str == "-")
             {
                 foreach (var e in metricsItems) { listViewMetrics.Items.Add(System.Text.RegularExpressions.Regex.Replace(e, @",.*","")); }
                 foreach (var e in dimensionsItems) { listViewDimensions.Items.Add(System.Text.RegularExpressions.Regex.Replace(e, @",.*","")); }
@@ -672,7 +654,6 @@ namespace GA_Data_Exporter
             }
 
             //metrics
-       
             var ar = metricsItems.Where(i => i.ToLower().Contains(str)).Select(c => System.Text.RegularExpressions.Regex.Replace(c, @",.*", ""));
             foreach (var a in ar)
             {
@@ -680,7 +661,6 @@ namespace GA_Data_Exporter
             }
 
             //dimensions
-            
             ar = dimensionsItems.Where(i => i.ToLower().Contains(str)).Select(c => System.Text.RegularExpressions.Regex.Replace(c, @",.*", ""));
             foreach (var a in ar)
             {
@@ -804,11 +784,7 @@ namespace GA_Data_Exporter
 
         }
 
-        private void プロジェクト情報ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-           
-        }
-
+ 
         private void AccountTextBox_TextChanged(object sender, EventArgs e)
         {
             string str = AccountTextBox.Text;
@@ -851,6 +827,9 @@ namespace GA_Data_Exporter
             }
         }
 
+        
+
+    
        
       
     
