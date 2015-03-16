@@ -47,6 +47,8 @@
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.segmentDataGridView = new System.Windows.Forms.DataGridView();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.logDataGridView = new System.Windows.Forms.DataGridView();
             this.GaViewDataGridView = new System.Windows.Forms.DataGridView();
             this.buttonDeleteAuth = new System.Windows.Forms.Button();
             this.AuthChangeButton = new System.Windows.Forms.Button();
@@ -79,7 +81,6 @@
             this.startLinkLabel = new System.Windows.Forms.LinkLabel();
             this.dateLinkLabel = new System.Windows.Forms.LinkLabel();
             this.segmentLinkLabel = new System.Windows.Forms.LinkLabel();
-            this.metDimLabel = new System.Windows.Forms.Label();
             this.totalResultslabel = new System.Windows.Forms.Label();
             this.actualRowslabel = new System.Windows.Forms.Label();
             this.sampleLabel = new System.Windows.Forms.Label();
@@ -92,10 +93,12 @@
             this.AccountTextBox = new System.Windows.Forms.TextBox();
             this.propertyTextBox = new System.Windows.Forms.TextBox();
             this.viewTextBox = new System.Windows.Forms.TextBox();
-            this.queryHistoryMenuStrip = new System.Windows.Forms.MenuStrip();
-            this.queryHistoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.queryBookmarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
+            this.bookmarkKeepButton = new System.Windows.Forms.Button();
+            this.searchLogTextBox = new System.Windows.Forms.TextBox();
+            this.set = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.keepLogCheckBox = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gaDataGridViewData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accountDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.propertyDataGridView)).BeginInit();
@@ -109,13 +112,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.viewDetailDataGridView)).BeginInit();
             this.tabPage6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.segmentDataGridView)).BeginInit();
+            this.tabPage8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GaViewDataGridView)).BeginInit();
-            this.queryHistoryMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // filePathTextBox
             // 
-            this.filePathTextBox.Location = new System.Drawing.Point(13, 118);
+            this.filePathTextBox.Location = new System.Drawing.Point(13, 94);
             this.filePathTextBox.Name = "filePathTextBox";
             this.filePathTextBox.Size = new System.Drawing.Size(263, 19);
             this.filePathTextBox.TabIndex = 1;
@@ -148,7 +152,7 @@
             this.accountDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             this.accountDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.accountDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.accountDataGridView.Location = new System.Drawing.Point(12, 250);
+            this.accountDataGridView.Location = new System.Drawing.Point(12, 226);
             this.accountDataGridView.Name = "accountDataGridView";
             this.accountDataGridView.RowTemplate.Height = 21;
             this.accountDataGridView.Size = new System.Drawing.Size(292, 99);
@@ -157,7 +161,7 @@
             // 
             // buttonGetAuth
             // 
-            this.buttonGetAuth.Location = new System.Drawing.Point(13, 198);
+            this.buttonGetAuth.Location = new System.Drawing.Point(13, 174);
             this.buttonGetAuth.Name = "buttonGetAuth";
             this.buttonGetAuth.Size = new System.Drawing.Size(75, 23);
             this.buttonGetAuth.TabIndex = 5;
@@ -173,7 +177,7 @@
             this.propertyDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             this.propertyDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.propertyDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.propertyDataGridView.Location = new System.Drawing.Point(13, 375);
+            this.propertyDataGridView.Location = new System.Drawing.Point(13, 351);
             this.propertyDataGridView.Name = "propertyDataGridView";
             this.propertyDataGridView.RowTemplate.Height = 21;
             this.propertyDataGridView.Size = new System.Drawing.Size(292, 112);
@@ -192,7 +196,8 @@
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage7);
-            this.tabControl1.Location = new System.Drawing.Point(311, 252);
+            this.tabControl1.Controls.Add(this.tabPage8);
+            this.tabControl1.Location = new System.Drawing.Point(311, 228);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(942, 577);
@@ -200,8 +205,12 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.itemFilter);
+            this.tabPage1.Controls.Add(this.label4);
+            this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.listViewDimensions);
             this.tabPage1.Controls.Add(this.listViewMetrics);
+            this.tabPage1.Controls.Add(this.groupComboBox);
             this.tabPage1.Controls.Add(this.dataGridViewDimMetrics);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -218,10 +227,10 @@
             this.listViewDimensions.BackgroundImageTiled = true;
             this.listViewDimensions.GridLines = true;
             this.listViewDimensions.HideSelection = false;
-            this.listViewDimensions.Location = new System.Drawing.Point(473, 6);
+            this.listViewDimensions.Location = new System.Drawing.Point(473, 44);
             this.listViewDimensions.Name = "listViewDimensions";
             this.listViewDimensions.ShowItemToolTips = true;
-            this.listViewDimensions.Size = new System.Drawing.Size(454, 554);
+            this.listViewDimensions.Size = new System.Drawing.Size(454, 496);
             this.listViewDimensions.TabIndex = 5;
             this.listViewDimensions.TileSize = new System.Drawing.Size(141, 28);
             this.listViewDimensions.UseCompatibleStateImageBehavior = false;
@@ -236,10 +245,10 @@
             this.listViewMetrics.FullRowSelect = true;
             this.listViewMetrics.GridLines = true;
             this.listViewMetrics.HideSelection = false;
-            this.listViewMetrics.Location = new System.Drawing.Point(9, 6);
+            this.listViewMetrics.Location = new System.Drawing.Point(9, 44);
             this.listViewMetrics.Name = "listViewMetrics";
             this.listViewMetrics.ShowItemToolTips = true;
-            this.listViewMetrics.Size = new System.Drawing.Size(454, 524);
+            this.listViewMetrics.Size = new System.Drawing.Size(454, 496);
             this.listViewMetrics.TabIndex = 4;
             this.listViewMetrics.TileSize = new System.Drawing.Size(141, 28);
             this.listViewMetrics.UseCompatibleStateImageBehavior = false;
@@ -256,10 +265,10 @@
             this.dataGridViewDimMetrics.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewDimMetrics.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridViewDimMetrics.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dataGridViewDimMetrics.Location = new System.Drawing.Point(3, -72);
+            this.dataGridViewDimMetrics.Location = new System.Drawing.Point(3, -69);
             this.dataGridViewDimMetrics.Name = "dataGridViewDimMetrics";
             this.dataGridViewDimMetrics.RowTemplate.Height = 21;
-            this.dataGridViewDimMetrics.Size = new System.Drawing.Size(935, 609);
+            this.dataGridViewDimMetrics.Size = new System.Drawing.Size(935, 629);
             this.dataGridViewDimMetrics.TabIndex = 3;
             // 
             // tabPage2
@@ -268,7 +277,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(934, 628);
+            this.tabPage2.Size = new System.Drawing.Size(934, 551);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Data";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -279,7 +288,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(934, 628);
+            this.tabPage3.Size = new System.Drawing.Size(934, 551);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Goals";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -310,7 +319,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(934, 628);
+            this.tabPage4.Size = new System.Drawing.Size(934, 551);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "ViewDetails";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -336,7 +345,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(934, 628);
+            this.tabPage5.Size = new System.Drawing.Size(934, 551);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Filters";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -347,7 +356,7 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(934, 628);
+            this.tabPage6.Size = new System.Drawing.Size(934, 551);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Segments";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -376,10 +385,46 @@
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(934, 628);
+            this.tabPage7.Size = new System.Drawing.Size(934, 551);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "MCF";
             this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // tabPage8
+            // 
+            this.tabPage8.Controls.Add(this.keepLogCheckBox);
+            this.tabPage8.Controls.Add(this.searchLogTextBox);
+            this.tabPage8.Controls.Add(this.logDataGridView);
+            this.tabPage8.Location = new System.Drawing.Point(4, 22);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage8.Size = new System.Drawing.Size(934, 551);
+            this.tabPage8.TabIndex = 7;
+            this.tabPage8.Text = "log";
+            this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // logDataGridView
+            // 
+            this.logDataGridView.AllowUserToAddRows = false;
+            this.logDataGridView.AllowUserToDeleteRows = false;
+            this.logDataGridView.AllowUserToOrderColumns = true;
+            this.logDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.logDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.logDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.logDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+            this.logDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.logDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.set});
+            this.logDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.logDataGridView.Location = new System.Drawing.Point(1, 37);
+            this.logDataGridView.Name = "logDataGridView";
+            this.logDataGridView.RowTemplate.Height = 21;
+            this.logDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.logDataGridView.Size = new System.Drawing.Size(932, 511);
+            this.logDataGridView.TabIndex = 3;
+            this.logDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.logDataGridView_CellClick);
             // 
             // GaViewDataGridView
             // 
@@ -389,7 +434,7 @@
             this.GaViewDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             this.GaViewDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GaViewDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.GaViewDataGridView.Location = new System.Drawing.Point(13, 514);
+            this.GaViewDataGridView.Location = new System.Drawing.Point(13, 490);
             this.GaViewDataGridView.Name = "GaViewDataGridView";
             this.GaViewDataGridView.RowTemplate.Height = 21;
             this.GaViewDataGridView.Size = new System.Drawing.Size(291, 320);
@@ -398,7 +443,7 @@
             // 
             // buttonDeleteAuth
             // 
-            this.buttonDeleteAuth.Location = new System.Drawing.Point(106, 198);
+            this.buttonDeleteAuth.Location = new System.Drawing.Point(106, 174);
             this.buttonDeleteAuth.Name = "buttonDeleteAuth";
             this.buttonDeleteAuth.Size = new System.Drawing.Size(75, 23);
             this.buttonDeleteAuth.TabIndex = 9;
@@ -408,7 +453,7 @@
             // 
             // AuthChangeButton
             // 
-            this.AuthChangeButton.Location = new System.Drawing.Point(201, 198);
+            this.AuthChangeButton.Location = new System.Drawing.Point(201, 174);
             this.AuthChangeButton.Name = "AuthChangeButton";
             this.AuthChangeButton.Size = new System.Drawing.Size(75, 23);
             this.AuthChangeButton.TabIndex = 10;
@@ -418,7 +463,7 @@
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(14, 143);
+            this.saveButton.Location = new System.Drawing.Point(14, 119);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(103, 23);
             this.saveButton.TabIndex = 11;
@@ -428,7 +473,7 @@
             // 
             // changePathAndSaveButton
             // 
-            this.changePathAndSaveButton.Location = new System.Drawing.Point(138, 143);
+            this.changePathAndSaveButton.Location = new System.Drawing.Point(138, 119);
             this.changePathAndSaveButton.Name = "changePathAndSaveButton";
             this.changePathAndSaveButton.Size = new System.Drawing.Size(135, 23);
             this.changePathAndSaveButton.TabIndex = 12;
@@ -441,7 +486,7 @@
             this.queryTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.queryTextBox.Location = new System.Drawing.Point(90, 49);
+            this.queryTextBox.Location = new System.Drawing.Point(90, 25);
             this.queryTextBox.Name = "queryTextBox";
             this.queryTextBox.Size = new System.Drawing.Size(1156, 19);
             this.queryTextBox.TabIndex = 13;
@@ -451,7 +496,7 @@
             this.errorTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.errorTextBox.ForeColor = System.Drawing.Color.Red;
-            this.errorTextBox.Location = new System.Drawing.Point(90, 74);
+            this.errorTextBox.Location = new System.Drawing.Point(90, 50);
             this.errorTextBox.Name = "errorTextBox";
             this.errorTextBox.Size = new System.Drawing.Size(1156, 19);
             this.errorTextBox.TabIndex = 14;
@@ -459,7 +504,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(51, 78);
+            this.label2.Location = new System.Drawing.Point(51, 54);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(30, 12);
             this.label2.TabIndex = 16;
@@ -467,7 +512,7 @@
             // 
             // get1000
             // 
-            this.get1000.Location = new System.Drawing.Point(311, 109);
+            this.get1000.Location = new System.Drawing.Point(311, 85);
             this.get1000.Name = "get1000";
             this.get1000.Size = new System.Drawing.Size(75, 40);
             this.get1000.TabIndex = 17;
@@ -477,7 +522,7 @@
             // 
             // getAll
             // 
-            this.getAll.Location = new System.Drawing.Point(311, 155);
+            this.getAll.Location = new System.Drawing.Point(311, 131);
             this.getAll.Name = "getAll";
             this.getAll.Size = new System.Drawing.Size(75, 38);
             this.getAll.TabIndex = 18;
@@ -489,7 +534,7 @@
             // 
             this.metricsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.metricsTextBox.Location = new System.Drawing.Point(481, 109);
+            this.metricsTextBox.Location = new System.Drawing.Point(481, 85);
             this.metricsTextBox.Name = "metricsTextBox";
             this.metricsTextBox.Size = new System.Drawing.Size(764, 19);
             this.metricsTextBox.TabIndex = 19;
@@ -498,7 +543,7 @@
             // 
             this.dimensionsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dimensionsTextBox.Location = new System.Drawing.Point(481, 134);
+            this.dimensionsTextBox.Location = new System.Drawing.Point(481, 110);
             this.dimensionsTextBox.Name = "dimensionsTextBox";
             this.dimensionsTextBox.Size = new System.Drawing.Size(765, 19);
             this.dimensionsTextBox.TabIndex = 20;
@@ -507,14 +552,14 @@
             // 
             this.segmentTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.segmentTextBox.Location = new System.Drawing.Point(481, 159);
+            this.segmentTextBox.Location = new System.Drawing.Point(481, 135);
             this.segmentTextBox.Name = "segmentTextBox";
             this.segmentTextBox.Size = new System.Drawing.Size(764, 19);
             this.segmentTextBox.TabIndex = 21;
             // 
             // itemFilter
             // 
-            this.itemFilter.Location = new System.Drawing.Point(430, 223);
+            this.itemFilter.Location = new System.Drawing.Point(131, 17);
             this.itemFilter.Name = "itemFilter";
             this.itemFilter.Size = new System.Drawing.Size(94, 19);
             this.itemFilter.TabIndex = 22;
@@ -522,14 +567,14 @@
             // 
             // filterTextBox
             // 
-            this.filterTextBox.Location = new System.Drawing.Point(694, 180);
+            this.filterTextBox.Location = new System.Drawing.Point(694, 156);
             this.filterTextBox.Name = "filterTextBox";
             this.filterTextBox.Size = new System.Drawing.Size(174, 19);
             this.filterTextBox.TabIndex = 23;
             // 
             // metricsClearButton
             // 
-            this.metricsClearButton.Location = new System.Drawing.Point(446, 107);
+            this.metricsClearButton.Location = new System.Drawing.Point(446, 83);
             this.metricsClearButton.Name = "metricsClearButton";
             this.metricsClearButton.Size = new System.Drawing.Size(29, 23);
             this.metricsClearButton.TabIndex = 24;
@@ -539,7 +584,7 @@
             // 
             // buttonClearDims
             // 
-            this.buttonClearDims.Location = new System.Drawing.Point(446, 134);
+            this.buttonClearDims.Location = new System.Drawing.Point(446, 110);
             this.buttonClearDims.Name = "buttonClearDims";
             this.buttonClearDims.Size = new System.Drawing.Size(29, 23);
             this.buttonClearDims.TabIndex = 25;
@@ -550,7 +595,7 @@
             // labelDimensions
             // 
             this.labelDimensions.AutoSize = true;
-            this.labelDimensions.Location = new System.Drawing.Point(392, 137);
+            this.labelDimensions.Location = new System.Drawing.Point(392, 113);
             this.labelDimensions.Name = "labelDimensions";
             this.labelDimensions.Size = new System.Drawing.Size(31, 24);
             this.labelDimensions.TabIndex = 26;
@@ -559,7 +604,7 @@
             // labelMetrics
             // 
             this.labelMetrics.AutoSize = true;
-            this.labelMetrics.Location = new System.Drawing.Point(392, 109);
+            this.labelMetrics.Location = new System.Drawing.Point(392, 85);
             this.labelMetrics.Name = "labelMetrics";
             this.labelMetrics.Size = new System.Drawing.Size(43, 24);
             this.labelMetrics.TabIndex = 27;
@@ -567,14 +612,14 @@
             // 
             // endDateTextBox
             // 
-            this.endDateTextBox.Location = new System.Drawing.Point(552, 181);
+            this.endDateTextBox.Location = new System.Drawing.Point(552, 157);
             this.endDateTextBox.Name = "endDateTextBox";
             this.endDateTextBox.Size = new System.Drawing.Size(86, 19);
             this.endDateTextBox.TabIndex = 28;
             // 
             // startDateTextBox
             // 
-            this.startDateTextBox.Location = new System.Drawing.Point(443, 181);
+            this.startDateTextBox.Location = new System.Drawing.Point(443, 157);
             this.startDateTextBox.Name = "startDateTextBox";
             this.startDateTextBox.Size = new System.Drawing.Size(95, 19);
             this.startDateTextBox.TabIndex = 29;
@@ -582,7 +627,7 @@
             // dateBetween
             // 
             this.dateBetween.AutoSize = true;
-            this.dateBetween.Location = new System.Drawing.Point(540, 184);
+            this.dateBetween.Location = new System.Drawing.Point(540, 160);
             this.dateBetween.Name = "dateBetween";
             this.dateBetween.Size = new System.Drawing.Size(11, 12);
             this.dateBetween.TabIndex = 31;
@@ -590,28 +635,28 @@
             // 
             // sortTextBox
             // 
-            this.sortTextBox.Location = new System.Drawing.Point(907, 179);
+            this.sortTextBox.Location = new System.Drawing.Point(907, 155);
             this.sortTextBox.Name = "sortTextBox";
             this.sortTextBox.Size = new System.Drawing.Size(174, 19);
             this.sortTextBox.TabIndex = 33;
             // 
             // indexTextBox
             // 
-            this.indexTextBox.Location = new System.Drawing.Point(1134, 179);
+            this.indexTextBox.Location = new System.Drawing.Point(1134, 155);
             this.indexTextBox.Name = "indexTextBox";
             this.indexTextBox.Size = new System.Drawing.Size(69, 19);
             this.indexTextBox.TabIndex = 34;
             // 
             // totalResultsNumtextBox
             // 
-            this.totalResultsNumtextBox.Location = new System.Drawing.Point(528, 223);
+            this.totalResultsNumtextBox.Location = new System.Drawing.Point(319, 199);
             this.totalResultsNumtextBox.Name = "totalResultsNumtextBox";
             this.totalResultsNumtextBox.Size = new System.Drawing.Size(75, 19);
             this.totalResultsNumtextBox.TabIndex = 38;
             // 
             // actualRowsTextBox
             // 
-            this.actualRowsTextBox.Location = new System.Drawing.Point(611, 223);
+            this.actualRowsTextBox.Location = new System.Drawing.Point(402, 199);
             this.actualRowsTextBox.Name = "actualRowsTextBox";
             this.actualRowsTextBox.Size = new System.Drawing.Size(75, 19);
             this.actualRowsTextBox.TabIndex = 39;
@@ -619,7 +664,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 100);
+            this.label3.Location = new System.Drawing.Point(12, 76);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(84, 12);
             this.label3.TabIndex = 40;
@@ -628,7 +673,7 @@
             // filterLinkLabel
             // 
             this.filterLinkLabel.AutoSize = true;
-            this.filterLinkLabel.Location = new System.Drawing.Point(660, 183);
+            this.filterLinkLabel.Location = new System.Drawing.Point(660, 159);
             this.filterLinkLabel.Name = "filterLinkLabel";
             this.filterLinkLabel.Size = new System.Drawing.Size(25, 12);
             this.filterLinkLabel.TabIndex = 41;
@@ -639,7 +684,7 @@
             // sortLinkLabel
             // 
             this.sortLinkLabel.AutoSize = true;
-            this.sortLinkLabel.Location = new System.Drawing.Point(874, 183);
+            this.sortLinkLabel.Location = new System.Drawing.Point(874, 159);
             this.sortLinkLabel.Name = "sortLinkLabel";
             this.sortLinkLabel.Size = new System.Drawing.Size(25, 12);
             this.sortLinkLabel.TabIndex = 42;
@@ -650,7 +695,7 @@
             // startLinkLabel
             // 
             this.startLinkLabel.AutoSize = true;
-            this.startLinkLabel.Location = new System.Drawing.Point(1098, 183);
+            this.startLinkLabel.Location = new System.Drawing.Point(1098, 159);
             this.startLinkLabel.Name = "startLinkLabel";
             this.startLinkLabel.Size = new System.Drawing.Size(29, 12);
             this.startLinkLabel.TabIndex = 43;
@@ -661,7 +706,7 @@
             // dateLinkLabel
             // 
             this.dateLinkLabel.AutoSize = true;
-            this.dateLinkLabel.Location = new System.Drawing.Point(394, 184);
+            this.dateLinkLabel.Location = new System.Drawing.Point(394, 160);
             this.dateLinkLabel.Name = "dateLinkLabel";
             this.dateLinkLabel.Size = new System.Drawing.Size(27, 12);
             this.dateLinkLabel.TabIndex = 44;
@@ -672,7 +717,7 @@
             // segmentLinkLabel
             // 
             this.segmentLinkLabel.AutoSize = true;
-            this.segmentLinkLabel.Location = new System.Drawing.Point(393, 166);
+            this.segmentLinkLabel.Location = new System.Drawing.Point(393, 142);
             this.segmentLinkLabel.Name = "segmentLinkLabel";
             this.segmentLinkLabel.Size = new System.Drawing.Size(48, 12);
             this.segmentLinkLabel.TabIndex = 45;
@@ -680,19 +725,10 @@
             this.segmentLinkLabel.Text = "segment";
             this.segmentLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.segmentLinkLabel_LinkClicked);
             // 
-            // metDimLabel
-            // 
-            this.metDimLabel.AutoSize = true;
-            this.metDimLabel.Location = new System.Drawing.Point(428, 208);
-            this.metDimLabel.Name = "metDimLabel";
-            this.metDimLabel.Size = new System.Drawing.Size(90, 12);
-            this.metDimLabel.TabIndex = 46;
-            this.metDimLabel.Text = "metricsDimFilter";
-            // 
             // totalResultslabel
             // 
             this.totalResultslabel.AutoSize = true;
-            this.totalResultslabel.Location = new System.Drawing.Point(528, 208);
+            this.totalResultslabel.Location = new System.Drawing.Point(319, 184);
             this.totalResultslabel.Name = "totalResultslabel";
             this.totalResultslabel.Size = new System.Drawing.Size(67, 12);
             this.totalResultslabel.TabIndex = 47;
@@ -701,7 +737,7 @@
             // actualRowslabel
             // 
             this.actualRowslabel.AutoSize = true;
-            this.actualRowslabel.Location = new System.Drawing.Point(609, 208);
+            this.actualRowslabel.Location = new System.Drawing.Point(400, 184);
             this.actualRowslabel.Name = "actualRowslabel";
             this.actualRowslabel.Size = new System.Drawing.Size(64, 12);
             this.actualRowslabel.TabIndex = 48;
@@ -710,7 +746,7 @@
             // sampleLabel
             // 
             this.sampleLabel.AutoSize = true;
-            this.sampleLabel.Location = new System.Drawing.Point(695, 208);
+            this.sampleLabel.Location = new System.Drawing.Point(486, 184);
             this.sampleLabel.Name = "sampleLabel";
             this.sampleLabel.Size = new System.Drawing.Size(46, 12);
             this.sampleLabel.TabIndex = 50;
@@ -718,7 +754,7 @@
             // 
             // sampleTextBox
             // 
-            this.sampleTextBox.Location = new System.Drawing.Point(697, 223);
+            this.sampleTextBox.Location = new System.Drawing.Point(488, 199);
             this.sampleTextBox.Name = "sampleTextBox";
             this.sampleTextBox.Size = new System.Drawing.Size(108, 19);
             this.sampleTextBox.TabIndex = 49;
@@ -726,7 +762,7 @@
             // accountLabel
             // 
             this.accountLabel.AutoSize = true;
-            this.accountLabel.Location = new System.Drawing.Point(12, 234);
+            this.accountLabel.Location = new System.Drawing.Point(12, 210);
             this.accountLabel.Name = "accountLabel";
             this.accountLabel.Size = new System.Drawing.Size(114, 12);
             this.accountLabel.TabIndex = 51;
@@ -735,7 +771,7 @@
             // propertyLabel
             // 
             this.propertyLabel.AutoSize = true;
-            this.propertyLabel.Location = new System.Drawing.Point(12, 360);
+            this.propertyLabel.Location = new System.Drawing.Point(12, 336);
             this.propertyLabel.Name = "propertyLabel";
             this.propertyLabel.Size = new System.Drawing.Size(115, 12);
             this.propertyLabel.TabIndex = 52;
@@ -744,7 +780,7 @@
             // viewLabel
             // 
             this.viewLabel.AutoSize = true;
-            this.viewLabel.Location = new System.Drawing.Point(11, 499);
+            this.viewLabel.Location = new System.Drawing.Point(11, 475);
             this.viewLabel.Name = "viewLabel";
             this.viewLabel.Size = new System.Drawing.Size(97, 12);
             this.viewLabel.TabIndex = 53;
@@ -753,7 +789,7 @@
             // queryLinkLabel
             // 
             this.queryLinkLabel.AutoSize = true;
-            this.queryLinkLabel.Location = new System.Drawing.Point(6, 52);
+            this.queryLinkLabel.Location = new System.Drawing.Point(6, 28);
             this.queryLinkLabel.Name = "queryLinkLabel";
             this.queryLinkLabel.Size = new System.Drawing.Size(35, 12);
             this.queryLinkLabel.TabIndex = 54;
@@ -766,7 +802,7 @@
             this.groupComboBox.FormattingEnabled = true;
             this.groupComboBox.Items.AddRange(new object[] {
             "-"});
-            this.groupComboBox.Location = new System.Drawing.Point(311, 222);
+            this.groupComboBox.Location = new System.Drawing.Point(10, 17);
             this.groupComboBox.Name = "groupComboBox";
             this.groupComboBox.Size = new System.Drawing.Size(110, 20);
             this.groupComboBox.TabIndex = 56;
@@ -774,7 +810,7 @@
             // 
             // AccountTextBox
             // 
-            this.AccountTextBox.Location = new System.Drawing.Point(131, 228);
+            this.AccountTextBox.Location = new System.Drawing.Point(131, 204);
             this.AccountTextBox.Name = "AccountTextBox";
             this.AccountTextBox.Size = new System.Drawing.Size(94, 19);
             this.AccountTextBox.TabIndex = 57;
@@ -782,7 +818,7 @@
             // 
             // propertyTextBox
             // 
-            this.propertyTextBox.Location = new System.Drawing.Point(132, 355);
+            this.propertyTextBox.Location = new System.Drawing.Point(132, 331);
             this.propertyTextBox.Name = "propertyTextBox";
             this.propertyTextBox.Size = new System.Drawing.Size(94, 19);
             this.propertyTextBox.TabIndex = 58;
@@ -790,44 +826,69 @@
             // 
             // viewTextBox
             // 
-            this.viewTextBox.Location = new System.Drawing.Point(131, 494);
+            this.viewTextBox.Location = new System.Drawing.Point(131, 470);
             this.viewTextBox.Name = "viewTextBox";
             this.viewTextBox.Size = new System.Drawing.Size(94, 19);
             this.viewTextBox.TabIndex = 59;
             this.viewTextBox.TextChanged += new System.EventHandler(this.viewTextBox_TextChanged);
             // 
-            // queryHistoryMenuStrip
+            // bookmarkKeepButton
             // 
-            this.queryHistoryMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.queryHistoriesToolStripMenuItem,
-            this.queryBookmarkToolStripMenuItem});
-            this.queryHistoryMenuStrip.Location = new System.Drawing.Point(0, 0);
-            this.queryHistoryMenuStrip.Name = "queryHistoryMenuStrip";
-            this.queryHistoryMenuStrip.Size = new System.Drawing.Size(1257, 26);
-            this.queryHistoryMenuStrip.TabIndex = 60;
-            this.queryHistoryMenuStrip.Text = "menuStrip1";
+            this.bookmarkKeepButton.Location = new System.Drawing.Point(49, 21);
+            this.bookmarkKeepButton.Name = "bookmarkKeepButton";
+            this.bookmarkKeepButton.Size = new System.Drawing.Size(39, 25);
+            this.bookmarkKeepButton.TabIndex = 61;
+            this.bookmarkKeepButton.Text = "keep";
+            this.bookmarkKeepButton.UseVisualStyleBackColor = true;
             // 
-            // queryHistoriesToolStripMenuItem
+            // searchLogTextBox
             // 
-            this.queryHistoriesToolStripMenuItem.Name = "queryHistoriesToolStripMenuItem";
-            this.queryHistoriesToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
-            this.queryHistoriesToolStripMenuItem.Text = "QueryHistories";
+            this.searchLogTextBox.Location = new System.Drawing.Point(148, 12);
+            this.searchLogTextBox.Name = "searchLogTextBox";
+            this.searchLogTextBox.Size = new System.Drawing.Size(114, 19);
+            this.searchLogTextBox.TabIndex = 50;
+            this.searchLogTextBox.TextChanged += new System.EventHandler(this.searchLogTextBox_TextChanged);
             // 
-            // queryBookmarkToolStripMenuItem
+            // set
             // 
-            this.queryBookmarkToolStripMenuItem.Name = "queryBookmarkToolStripMenuItem";
-            this.queryBookmarkToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
-            this.queryBookmarkToolStripMenuItem.Text = "QueryHistoryClear";
-            this.queryBookmarkToolStripMenuItem.Click += new System.EventHandler(this.queryBookmarkToolStripMenuItem_Click);
+            this.set.Frozen = true;
+            this.set.HeaderText = "setQuery";
+            this.set.Name = "set";
+            this.set.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.set.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.set.Text = "set";
+            this.set.Width = 76;
             // 
-            // button1
+            // keepLogCheckBox
             // 
-            this.button1.Location = new System.Drawing.Point(49, 45);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(39, 25);
-            this.button1.TabIndex = 61;
-            this.button1.Text = "keep";
-            this.button1.UseVisualStyleBackColor = true;
+            this.keepLogCheckBox.AutoSize = true;
+            this.keepLogCheckBox.Location = new System.Drawing.Point(26, 13);
+            this.keepLogCheckBox.Name = "keepLogCheckBox";
+            this.keepLogCheckBox.Size = new System.Drawing.Size(113, 16);
+            this.keepLogCheckBox.TabIndex = 51;
+            this.keepLogCheckBox.Text = "ShowKeptQueries";
+            this.keepLogCheckBox.UseVisualStyleBackColor = true;
+            this.keepLogCheckBox.CheckedChanged += new System.EventHandler(this.keepLogCheckBox_CheckedChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 12F);
+            this.label1.Location = new System.Drawing.Point(398, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 16);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "Metrics";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("MS UI Gothic", 12F);
+            this.label4.Location = new System.Drawing.Point(481, 19);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(82, 16);
+            this.label4.TabIndex = 29;
+            this.label4.Text = "Dimensions";
             // 
             // Form1
             // 
@@ -835,11 +896,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1257, 843);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.bookmarkKeepButton);
             this.Controls.Add(this.viewTextBox);
             this.Controls.Add(this.propertyTextBox);
             this.Controls.Add(this.AccountTextBox);
-            this.Controls.Add(this.groupComboBox);
             this.Controls.Add(this.queryLinkLabel);
             this.Controls.Add(this.viewLabel);
             this.Controls.Add(this.propertyLabel);
@@ -848,7 +908,6 @@
             this.Controls.Add(this.sampleTextBox);
             this.Controls.Add(this.actualRowslabel);
             this.Controls.Add(this.totalResultslabel);
-            this.Controls.Add(this.metDimLabel);
             this.Controls.Add(this.segmentLinkLabel);
             this.Controls.Add(this.dateLinkLabel);
             this.Controls.Add(this.startLinkLabel);
@@ -867,7 +926,6 @@
             this.Controls.Add(this.buttonClearDims);
             this.Controls.Add(this.metricsClearButton);
             this.Controls.Add(this.filterTextBox);
-            this.Controls.Add(this.itemFilter);
             this.Controls.Add(this.segmentTextBox);
             this.Controls.Add(this.dimensionsTextBox);
             this.Controls.Add(this.metricsTextBox);
@@ -886,7 +944,6 @@
             this.Controls.Add(this.buttonGetAuth);
             this.Controls.Add(this.accountDataGridView);
             this.Controls.Add(this.filePathTextBox);
-            this.Controls.Add(this.queryHistoryMenuStrip);
             this.Name = "Form1";
             this.Text = "Google Analytics Data Exporter";
             ((System.ComponentModel.ISupportInitialize)(this.gaDataGridViewData)).EndInit();
@@ -894,6 +951,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.propertyDataGridView)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDimMetrics)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
@@ -902,9 +960,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.viewDetailDataGridView)).EndInit();
             this.tabPage6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.segmentDataGridView)).EndInit();
+            this.tabPage8.ResumeLayout(false);
+            this.tabPage8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GaViewDataGridView)).EndInit();
-            this.queryHistoryMenuStrip.ResumeLayout(false);
-            this.queryHistoryMenuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -961,7 +1020,6 @@
         private System.Windows.Forms.LinkLabel startLinkLabel;
         private System.Windows.Forms.LinkLabel dateLinkLabel;
         private System.Windows.Forms.LinkLabel segmentLinkLabel;
-        private System.Windows.Forms.Label metDimLabel;
         private System.Windows.Forms.Label totalResultslabel;
         private System.Windows.Forms.Label actualRowslabel;
         private System.Windows.Forms.Label sampleLabel;
@@ -976,10 +1034,14 @@
         private System.Windows.Forms.TextBox viewTextBox;
         private System.Windows.Forms.DataGridView viewDetailDataGridView;
         private System.Windows.Forms.DataGridView segmentDataGridView;
-        private System.Windows.Forms.MenuStrip queryHistoryMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem queryHistoriesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem queryBookmarkToolStripMenuItem;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button bookmarkKeepButton;
+        private System.Windows.Forms.TabPage tabPage8;
+        private System.Windows.Forms.DataGridView logDataGridView;
+        private System.Windows.Forms.TextBox searchLogTextBox;
+        private System.Windows.Forms.DataGridViewButtonColumn set;
+        private System.Windows.Forms.CheckBox keepLogCheckBox;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label1;
     }
 }
 

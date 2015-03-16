@@ -51,12 +51,12 @@ namespace GA_Data_Exporter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Collections.Specialized.StringCollection queryKeeped {
+        public global::System.Collections.Specialized.StringCollection bookmarkedQueries {
             get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["queryKeeped"]));
+                return ((global::System.Collections.Specialized.StringCollection)(this["bookmarkedQueries"]));
             }
             set {
-                this["queryKeeped"] = value;
+                this["bookmarkedQueries"] = value;
             }
         }
     }

@@ -11,7 +11,7 @@
   &lt;string&gt;CLEAR&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
-    <Setting Name="queryKeeped" Type="System.Collections.Specialized.StringCollection" Scope="User">
+    <Setting Name="bookmarkedQueries" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

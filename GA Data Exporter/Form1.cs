@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Google.Apis;
 using Google.Apis.Util.Store;
@@ -16,6 +17,8 @@ using Google.Apis.Analytics.v3;
 using Google.Apis.Services;
 using Google.Apis.Requests;
 using Google.Apis.Analytics.v3.Data;
+using System.Data.SQLite;
+using System.Web;
 
 namespace GA_Data_Exporter
 {
@@ -26,7 +29,9 @@ namespace GA_Data_Exporter
         private List<string> dimensionsItems = new List<string>();
         private List<string> metricsItems = new List<string>();
         private List<string> dropDownItems = new List<string>();
-       
+        private List<string> bookmarkedDropDownItems = new List<string>();
+        private string db_file = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "/log.db";
+
         public Form1()
         {
             InitializeComponent();
@@ -43,97 +48,94 @@ namespace GA_Data_Exporter
             {
                 filePathTextBox.Text = Properties.Settings.Default.filepath;
             }
-            if (Properties.Settings.Default.queryHistories != null )
-            {
-                foreach (string s in Properties.Settings.Default.queryHistories.Cast<string>().ToList().Take(10)) 
+            create_log_table(false);
+            retrieveQueryHistory();
+        }
+
+        private void create_log_table(bool update)
+        {
+
+    
+            if(File.Exists(db_file)){
+                if (update)
                 {
-                    dropDownItems.Add(s);
+                    File.Delete(db_file);
                 }
-                for (var i = 0; i < dropDownItems.Count; i++)
+                else
                 {
-                    putQueryHistory(dropDownItems[i], false);
+                    return;
                 }
+                
             }
+
+            using(var conn = new SQLiteConnection("Data Source="+db_file)){
+                conn.Open();
+                using(SQLiteCommand command = conn.CreateCommand())
+                {
+                    command.CommandText = "create table log(id INTEGER  PRIMARY KEY AUTOINCREMENT,keep INTEGER, timestamp TEXT, query TEXT)";
+                    command.ExecuteNonQuery();
+                }
+                conn.Close();
+           }
+        
         }
 
         private void putQueryHistory(string s, bool save)
         {
-            s = DateTime.Now.ToString("yy/MM/dd H:mm") + " | " + s; 
-            string prm = System.Text.RegularExpressions.Regex.Replace(s, @"http.*ids\=ga:[0-9]+", "");
-            ToolStripMenuItem item = new ToolStripMenuItem();
-            item.Text = prm;
-            item.Tag = s;
-            item.Click += new EventHandler(queryHistoriesToolStripMenuItem_Click);
-            queryHistoriesToolStripMenuItem.DropDownItems.Insert(0, item);
-            if (save)
-            {
-                dropDownItems.Add(s);
-                saveQueryToSystem();
-            }
+            insertHistory(s);
+            retrieveQueryHistory();
         }
 
-  
-        private void saveQueryToSystem()
-        {
-            Properties.Settings.Default.queryHistories.Clear();
-            foreach(string s in dropDownItems)
-            {
-                Properties.Settings.Default.queryHistories.Add(s);
-            }
-            Properties.Settings.Default.Save();
-        }
-        private void queryBookmarkToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            queryHistoryClear();
-        }
-        
-        private void queryHistoryClear()
-        {
-            queryHistoriesToolStripMenuItem.DropDownItems.Clear();
-            dropDownItems.Clear();
-            saveQueryToSystem();
-        }
 
-        private void queryHistoriesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void insertHistory(string s)
         {
-            ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
-            string args = menuItem.Tag.ToString();
-            if (args == "CLEAR")
+            s = Regex.Replace(s, @".*ids\=ga\:[0-9]+\&", "");
+            using (var conn = new SQLiteConnection("Data Source=" + db_file))
             {
-                Properties.Settings.Default.queryHistories.Clear();
-                Properties.Settings.Default.Save();
-                queryHistoriesToolStripMenuItem.DropDownItems.Clear();
-                queryHistoryClear();
-                return;
+                conn.Open();
+                using (SQLiteCommand command = conn.CreateCommand())
+                {
+                    command.CommandText = "insert into log values(NULL,0,'" + DateTime.Now.ToString("yyyy-MM-dd HH:mm") + "','" + s + "')";
+                    command.ExecuteNonQuery();
+                }
+                conn.Close();
             }
-            putParametersByMenu(args);
-        }
+         }
 
-        private void perVaseMetrics(string s){
-            ;
-        }
-
-        private void putParametersByMenu(string s)
-        {
-            var m = System.Text.RegularExpressions.Regex.Split(s, @"\?|\&");
-            Dictionary<string,string> dic = new Dictionary<string,string>();
-            dic = m.Select(c => c.Split('=')).Where(c => c.Length > 1).ToDictionary(e => e[0], e => e[1]);
-            if (dic.ContainsKey("metrics"))
-            {
-                metricsTextBox.Text = dic["metrics"];
-                perVaseMetrics(dic["metrics"]);
-            }
-            if (dic.ContainsKey("dimensions"))
-            {
-                dimensionsTextBox.Text = dic["dimensions"];
-            }
-            if (dic.ContainsKey("start-date")) startDateTextBox.Text = dic["start-date"];
-            if (dic.ContainsKey("end-date")) endDateTextBox.Text = dic["end-date"];
-            if (dic.ContainsKey("filter")) filterTextBox.Text = dic["filter"];
-            if (dic.ContainsKey("segment")) segmentTextBox.Text = dic["segment"];
-            if (dic.ContainsKey("segment")) sortTextBox.Text = dic["sort"];
-        }
     
+        private void retrieveQueryHistory()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("keep", typeof(bool));
+            dt.Columns.Add("timestamp", typeof(string));
+            dt.Columns.Add("query", typeof(string));
+            using (var conn = new SQLiteConnection("Data Source=" + db_file))
+            {
+                conn.Open();
+                using (SQLiteCommand command = conn.CreateCommand())
+                {
+                    command.CommandText = "select * from log";
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            DataRow row = dt.NewRow();
+                            row[0] = reader["keep"].ToString() == "1" ? true : false;
+                            row[1] = reader["timestamp"].ToString();
+                            row[2] = reader["query"].ToString();
+                            dt.Rows.Add(row);
+                        }
+                    }
+                }
+                conn.Close();
+            }
+            dt.DefaultView.Sort = "timestamp DESC";
+            logDataGridView.DataSource = dt;
+            logDataGridView.Columns[0].CellTemplate.Value = "set";
+           
+        }
+
+           
         private void AuthChangeButton_Click(object sender, EventArgs e)
         {
             (new FileDataStore("ga")).ClearAsync();
@@ -476,7 +478,7 @@ namespace GA_Data_Exporter
             get1000.Enabled = false;
             getData(1000,1);
             get1000.Enabled = true;
-            putQueryHistory(queryTextBox.Text,true);
+            putQueryHistory(queryTextBox.Text, true);
         }
 
         private GaData getGaData(int max, int index)
@@ -827,6 +829,70 @@ namespace GA_Data_Exporter
             }
         }
 
+        private void logDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex < 0) return;
+            DataGridView dt = (DataGridView)sender;
+            if (dt.Columns[e.ColumnIndex].Name == "set")
+            {
+                setParameter(dt[dt.Columns["query"].Index, e.RowIndex].Value.ToString());
+            }
+        }
+
+        private void setParameter(string s)
+        {
+            metricsTextBox.Text = "";
+            dimensionsTextBox.Text = "";
+            segmentTextBox.Text = "";
+            filterTextBox.Text = "";
+            sortTextBox.Text = "";
+            startDateTextBox.Text = "";
+            endDateTextBox.Text = "";
+            Regex ItemRegex = new Regex(@"((?:^|\&)[^&]+)");
+            foreach(Match m in ItemRegex.Matches(s))
+            {
+                if (m.Value.Contains("metrics=")) metricsTextBox.Text = m.Value.Replace("metrics=", "").Replace("&","");
+                if (m.Value.Contains("dimensions=")) dimensionsTextBox.Text = m.Value.Replace("dimensions=", "").Replace("&","");
+                if (m.Value.Contains("filter=")) filterTextBox.Text = Uri.UnescapeDataString( m.Value.Replace("&filter=", "")).Replace("+"," ");
+                if (m.Value.Contains("segment=")) segmentTextBox.Text =  Uri.UnescapeDataString( m.Value.Replace("&segment=", "")).Replace("+"," ");
+                if (m.Value.Contains("start-date")) startDateTextBox.Text = m.Value.Replace("&start-date=", "");
+                if (m.Value.Contains("end-date")) endDateTextBox.Text = m.Value.Replace("&end-date=", "");
+                if (m.Value.Contains("sort")) sortTextBox.Text = Uri.UnescapeDataString(m.Value.Replace("&sort=", "")).Replace("+", " ");
+ 
+            }
+           
+        }
+
+        private void searchLogTextBox_TextChanged(object sender, EventArgs e)
+        {
+            keepLogFilter(searchLogTextBox.Text, keepLogCheckBox.Checked);
+        }
+        private void keepLogCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            keepLogFilter(searchLogTextBox.Text, keepLogCheckBox.Checked);
+        }
+
+        private void keepLogFilter(string txt, bool check)
+        {
+            if (txt.Length > 0 && check)
+            {
+                (logDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format("query LIKE '%{0}%' OR timestamp LIKE '%{0}%' AND keep = 1", txt);
+            }
+            else if(txt.Length >0 && !check)
+            {
+                (logDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format("query LIKE '%{0}%' OR timestamp LIKE '%{0}%'", txt);
+            }
+            else if (txt.Length == 0 && check)
+            {
+                (logDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Format("keep = 1");
+            }
+            else if(Text.Length == 0 && !check)
+            {
+                (logDataGridView.DataSource as DataTable).DefaultView.RowFilter = string.Empty;
+            }
+        }
+    
+       
         
 
     
