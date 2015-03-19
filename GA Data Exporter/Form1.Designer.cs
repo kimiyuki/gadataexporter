@@ -99,6 +99,7 @@
             this.keepLogCheckBox = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.dataSearchTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.gaDataGridViewData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accountDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.propertyDataGridView)).BeginInit();
@@ -137,11 +138,11 @@
             this.gaDataGridViewData.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.gaDataGridViewData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gaDataGridViewData.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.gaDataGridViewData.Location = new System.Drawing.Point(6, 6);
+            this.gaDataGridViewData.Location = new System.Drawing.Point(6, 45);
             this.gaDataGridViewData.Name = "gaDataGridViewData";
             this.gaDataGridViewData.RowTemplate.Height = 21;
             this.gaDataGridViewData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.gaDataGridViewData.Size = new System.Drawing.Size(892, 588);
+            this.gaDataGridViewData.Size = new System.Drawing.Size(922, 500);
             this.gaDataGridViewData.TabIndex = 2;
             // 
             // accountDataGridView
@@ -273,6 +274,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.dataSearchTextBox);
             this.tabPage2.Controls.Add(this.gaDataGridViewData);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
@@ -890,6 +892,14 @@
             this.label4.TabIndex = 29;
             this.label4.Text = "Dimensions";
             // 
+            // dataSearchTextBox
+            // 
+            this.dataSearchTextBox.Location = new System.Drawing.Point(6, 20);
+            this.dataSearchTextBox.Name = "dataSearchTextBox";
+            this.dataSearchTextBox.Size = new System.Drawing.Size(187, 19);
+            this.dataSearchTextBox.TabIndex = 23;
+            this.dataSearchTextBox.TextChanged += new System.EventHandler(this.dataSearchTextBox_TextChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -954,6 +964,7 @@
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDimMetrics)).EndInit();
             this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.goalDataGridView)).EndInit();
             this.tabPage4.ResumeLayout(false);
@@ -1042,6 +1053,7 @@
         private System.Windows.Forms.CheckBox keepLogCheckBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox dataSearchTextBox;
     }
 }
 
