@@ -227,8 +227,8 @@ namespace GA_Data_Exporter
                     dimensionsItems.Add(item);
                 }
             }
-            var group1 = metricsItems.Select(c =>    System.Text.RegularExpressions.Regex.Replace(c.Text, @".*,", ""));
-            var group2 = dimensionsItems.Select(c => System.Text.RegularExpressions.Regex.Replace(c.Text, @".*,", ""));
+            var group1 = metricsItems.Select(c => System.Text.RegularExpressions.Regex.Replace(c.ToolTipText, @":.*", ""));
+            var group2 = dimensionsItems.Select(c => System.Text.RegularExpressions.Regex.Replace(c.ToolTipText, @":.*", ""));
             var groups = group1.Concat(group2).Distinct();
             foreach (string g in groups)
             {
@@ -617,17 +617,17 @@ namespace GA_Data_Exporter
         private void itemFilter_TextChanged(object sender, EventArgs e)
         {
             var str = itemFilter.Text;
-            _itemFilter(str);
+            _itemFilter(str,false);
             
         }
         private void groupComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var str = groupComboBox.SelectedItem.ToString().ToLower();
-            _itemFilter(str);
+            _itemFilter(str,true);
 
         }
     
-        private void _itemFilter(string str)
+        private void _itemFilter(string str, bool group)
         {
             List<string> metItems = new List<string>();
             foreach (ListViewItem i in listViewMetrics.SelectedItems) { metItems.Add(i.Text); }
@@ -664,14 +664,14 @@ namespace GA_Data_Exporter
             }
 
             //metrics
-            var ar = metricsItems.Where(i => i.Text.ToLower().Contains(str));
+            var ar = metricsItems.Where(i => group ? Regex.Replace(i.ToolTipText.ToLower(),":.*","") == str : i.Text.ToLower().Contains(str));
             foreach (var a in ar)
             {
                 listViewMetrics.Items.Add(a);
             }
 
             //dimensions
-            ar = dimensionsItems.Where(i => i.Text.ToLower().Contains(str));
+            ar = dimensionsItems.Where(i => group ? Regex.Replace(i.ToolTipText.ToLower(),":.*","") == str : i.Text.ToLower().Contains(str));
             foreach (var a in ar)
             {
                 listViewDimensions.Items.Add(a);
