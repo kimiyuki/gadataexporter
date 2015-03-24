@@ -34,30 +34,5 @@ namespace GA_Data_Exporter.Properties {
                 this["filepath"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
-            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
-            "tring>CLEAR</string>\r\n</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection queryHistories {
-            get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["queryHistories"]));
-            }
-            set {
-                this["queryHistories"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Collections.Specialized.StringCollection bookmarkedQueries {
-            get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["bookmarkedQueries"]));
-            }
-            set {
-                this["bookmarkedQueries"] = value;
-            }
-        }
     }
 }

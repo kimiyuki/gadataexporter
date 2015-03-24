@@ -902,19 +902,22 @@ namespace GA_Data_Exporter
 
         private void dataSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            /*
             string txt = dataSearchTextBox.Text;
             DataTable dt = gaDataGridViewData.DataSource as DataTable;
-    
-            DataRow[] rows = (
-                from row in dt.AsEnumerable()
-                let value = string.Join(",",row.ItemArray.Select(c => c.ToString()))
-                where 
-                )
+         
+            if (txt.Length < 2)
+            {
+                dt.DefaultView.RowFilter = String.Empty;
+                return;
+            }
+            List<string> colnames = new List<string>();
+            foreach(DataGridViewColumn col in gaDataGridViewData.Columns){
+                if(col.ValueType.Name == "String") colnames.Add(col.HeaderText + " LIKE '*" + txt + "*'");
+            }
+            string q = String.Join(" or ", colnames);
+            //q = "userType LIKE '*new*' or fullReferrer LIKE '*google*'";
+            dt.DefaultView.RowFilter = q;
 
-            string value = string.Join(",",gaDataGridViewData.Rows.Cast<DataGridViewRow>().Select(row => row.Cells.Cast<DataGridViewCell>().Select(c => c.Value.ToString()).ToArray()));
-            dt.AsEnumerable().Select(row => )
-             */
         }
     
        

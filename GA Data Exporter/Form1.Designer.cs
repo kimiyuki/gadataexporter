@@ -35,10 +35,15 @@
             this.propertyDataGridView = new System.Windows.Forms.DataGridView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.itemFilter = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.listViewDimensions = new System.Windows.Forms.ListView();
             this.listViewMetrics = new System.Windows.Forms.ListView();
+            this.groupComboBox = new System.Windows.Forms.ComboBox();
             this.dataGridViewDimMetrics = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dataSearchTextBox = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.goalDataGridView = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -48,7 +53,10 @@
             this.segmentDataGridView = new System.Windows.Forms.DataGridView();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.keepLogCheckBox = new System.Windows.Forms.CheckBox();
+            this.searchLogTextBox = new System.Windows.Forms.TextBox();
             this.logDataGridView = new System.Windows.Forms.DataGridView();
+            this.set = new System.Windows.Forms.DataGridViewButtonColumn();
             this.GaViewDataGridView = new System.Windows.Forms.DataGridView();
             this.buttonDeleteAuth = new System.Windows.Forms.Button();
             this.AuthChangeButton = new System.Windows.Forms.Button();
@@ -62,7 +70,6 @@
             this.metricsTextBox = new System.Windows.Forms.TextBox();
             this.dimensionsTextBox = new System.Windows.Forms.TextBox();
             this.segmentTextBox = new System.Windows.Forms.TextBox();
-            this.itemFilter = new System.Windows.Forms.TextBox();
             this.filterTextBox = new System.Windows.Forms.TextBox();
             this.metricsClearButton = new System.Windows.Forms.Button();
             this.buttonClearDims = new System.Windows.Forms.Button();
@@ -89,17 +96,10 @@
             this.propertyLabel = new System.Windows.Forms.Label();
             this.viewLabel = new System.Windows.Forms.Label();
             this.queryLinkLabel = new System.Windows.Forms.LinkLabel();
-            this.groupComboBox = new System.Windows.Forms.ComboBox();
             this.AccountTextBox = new System.Windows.Forms.TextBox();
             this.propertyTextBox = new System.Windows.Forms.TextBox();
             this.viewTextBox = new System.Windows.Forms.TextBox();
             this.bookmarkKeepButton = new System.Windows.Forms.Button();
-            this.searchLogTextBox = new System.Windows.Forms.TextBox();
-            this.set = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.keepLogCheckBox = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.dataSearchTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.gaDataGridViewData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accountDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.propertyDataGridView)).BeginInit();
@@ -221,6 +221,34 @@
             this.tabPage1.Text = "DimMetrics";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // itemFilter
+            // 
+            this.itemFilter.Location = new System.Drawing.Point(131, 17);
+            this.itemFilter.Name = "itemFilter";
+            this.itemFilter.Size = new System.Drawing.Size(94, 19);
+            this.itemFilter.TabIndex = 22;
+            this.itemFilter.TextChanged += new System.EventHandler(this.itemFilter_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("MS UI Gothic", 12F);
+            this.label4.Location = new System.Drawing.Point(481, 19);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(82, 16);
+            this.label4.TabIndex = 29;
+            this.label4.Text = "Dimensions";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 12F);
+            this.label1.Location = new System.Drawing.Point(398, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 16);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "Metrics";
+            // 
             // listViewDimensions
             // 
             this.listViewDimensions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -231,7 +259,7 @@
             this.listViewDimensions.Location = new System.Drawing.Point(473, 44);
             this.listViewDimensions.Name = "listViewDimensions";
             this.listViewDimensions.ShowItemToolTips = true;
-            this.listViewDimensions.Size = new System.Drawing.Size(454, 496);
+            this.listViewDimensions.Size = new System.Drawing.Size(457, 496);
             this.listViewDimensions.TabIndex = 5;
             this.listViewDimensions.TileSize = new System.Drawing.Size(141, 28);
             this.listViewDimensions.UseCompatibleStateImageBehavior = false;
@@ -255,6 +283,17 @@
             this.listViewMetrics.UseCompatibleStateImageBehavior = false;
             this.listViewMetrics.View = System.Windows.Forms.View.Tile;
             this.listViewMetrics.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listViewMetrics_ItemSelectionChanged);
+            // 
+            // groupComboBox
+            // 
+            this.groupComboBox.FormattingEnabled = true;
+            this.groupComboBox.Items.AddRange(new object[] {
+            "-"});
+            this.groupComboBox.Location = new System.Drawing.Point(10, 17);
+            this.groupComboBox.Name = "groupComboBox";
+            this.groupComboBox.Size = new System.Drawing.Size(110, 20);
+            this.groupComboBox.TabIndex = 56;
+            this.groupComboBox.SelectedIndexChanged += new System.EventHandler(this.groupComboBox_SelectedIndexChanged);
             // 
             // dataGridViewDimMetrics
             // 
@@ -283,6 +322,14 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Data";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dataSearchTextBox
+            // 
+            this.dataSearchTextBox.Location = new System.Drawing.Point(6, 20);
+            this.dataSearchTextBox.Name = "dataSearchTextBox";
+            this.dataSearchTextBox.Size = new System.Drawing.Size(187, 19);
+            this.dataSearchTextBox.TabIndex = 23;
+            this.dataSearchTextBox.TextChanged += new System.EventHandler(this.dataSearchTextBox_TextChanged);
             // 
             // tabPage3
             // 
@@ -405,6 +452,25 @@
             this.tabPage8.Text = "log";
             this.tabPage8.UseVisualStyleBackColor = true;
             // 
+            // keepLogCheckBox
+            // 
+            this.keepLogCheckBox.AutoSize = true;
+            this.keepLogCheckBox.Location = new System.Drawing.Point(26, 13);
+            this.keepLogCheckBox.Name = "keepLogCheckBox";
+            this.keepLogCheckBox.Size = new System.Drawing.Size(113, 16);
+            this.keepLogCheckBox.TabIndex = 51;
+            this.keepLogCheckBox.Text = "ShowKeptQueries";
+            this.keepLogCheckBox.UseVisualStyleBackColor = true;
+            this.keepLogCheckBox.CheckedChanged += new System.EventHandler(this.keepLogCheckBox_CheckedChanged);
+            // 
+            // searchLogTextBox
+            // 
+            this.searchLogTextBox.Location = new System.Drawing.Point(148, 12);
+            this.searchLogTextBox.Name = "searchLogTextBox";
+            this.searchLogTextBox.Size = new System.Drawing.Size(114, 19);
+            this.searchLogTextBox.TabIndex = 50;
+            this.searchLogTextBox.TextChanged += new System.EventHandler(this.searchLogTextBox_TextChanged);
+            // 
             // logDataGridView
             // 
             this.logDataGridView.AllowUserToAddRows = false;
@@ -427,6 +493,16 @@
             this.logDataGridView.Size = new System.Drawing.Size(932, 511);
             this.logDataGridView.TabIndex = 3;
             this.logDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.logDataGridView_CellClick);
+            // 
+            // set
+            // 
+            this.set.Frozen = true;
+            this.set.HeaderText = "setQuery";
+            this.set.Name = "set";
+            this.set.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.set.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.set.Text = "set";
+            this.set.Width = 76;
             // 
             // GaViewDataGridView
             // 
@@ -558,14 +634,6 @@
             this.segmentTextBox.Name = "segmentTextBox";
             this.segmentTextBox.Size = new System.Drawing.Size(764, 19);
             this.segmentTextBox.TabIndex = 21;
-            // 
-            // itemFilter
-            // 
-            this.itemFilter.Location = new System.Drawing.Point(131, 17);
-            this.itemFilter.Name = "itemFilter";
-            this.itemFilter.Size = new System.Drawing.Size(94, 19);
-            this.itemFilter.TabIndex = 22;
-            this.itemFilter.TextChanged += new System.EventHandler(this.itemFilter_TextChanged);
             // 
             // filterTextBox
             // 
@@ -799,17 +867,6 @@
             this.queryLinkLabel.Text = "Query";
             this.queryLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.queryLinkLabel_LinkClicked);
             // 
-            // groupComboBox
-            // 
-            this.groupComboBox.FormattingEnabled = true;
-            this.groupComboBox.Items.AddRange(new object[] {
-            "-"});
-            this.groupComboBox.Location = new System.Drawing.Point(10, 17);
-            this.groupComboBox.Name = "groupComboBox";
-            this.groupComboBox.Size = new System.Drawing.Size(110, 20);
-            this.groupComboBox.TabIndex = 56;
-            this.groupComboBox.SelectedIndexChanged += new System.EventHandler(this.groupComboBox_SelectedIndexChanged);
-            // 
             // AccountTextBox
             // 
             this.AccountTextBox.Location = new System.Drawing.Point(131, 204);
@@ -842,63 +899,6 @@
             this.bookmarkKeepButton.TabIndex = 61;
             this.bookmarkKeepButton.Text = "keep";
             this.bookmarkKeepButton.UseVisualStyleBackColor = true;
-            // 
-            // searchLogTextBox
-            // 
-            this.searchLogTextBox.Location = new System.Drawing.Point(148, 12);
-            this.searchLogTextBox.Name = "searchLogTextBox";
-            this.searchLogTextBox.Size = new System.Drawing.Size(114, 19);
-            this.searchLogTextBox.TabIndex = 50;
-            this.searchLogTextBox.TextChanged += new System.EventHandler(this.searchLogTextBox_TextChanged);
-            // 
-            // set
-            // 
-            this.set.Frozen = true;
-            this.set.HeaderText = "setQuery";
-            this.set.Name = "set";
-            this.set.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.set.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.set.Text = "set";
-            this.set.Width = 76;
-            // 
-            // keepLogCheckBox
-            // 
-            this.keepLogCheckBox.AutoSize = true;
-            this.keepLogCheckBox.Location = new System.Drawing.Point(26, 13);
-            this.keepLogCheckBox.Name = "keepLogCheckBox";
-            this.keepLogCheckBox.Size = new System.Drawing.Size(113, 16);
-            this.keepLogCheckBox.TabIndex = 51;
-            this.keepLogCheckBox.Text = "ShowKeptQueries";
-            this.keepLogCheckBox.UseVisualStyleBackColor = true;
-            this.keepLogCheckBox.CheckedChanged += new System.EventHandler(this.keepLogCheckBox_CheckedChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 12F);
-            this.label1.Location = new System.Drawing.Point(398, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 16);
-            this.label1.TabIndex = 28;
-            this.label1.Text = "Metrics";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("MS UI Gothic", 12F);
-            this.label4.Location = new System.Drawing.Point(481, 19);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(82, 16);
-            this.label4.TabIndex = 29;
-            this.label4.Text = "Dimensions";
-            // 
-            // dataSearchTextBox
-            // 
-            this.dataSearchTextBox.Location = new System.Drawing.Point(6, 20);
-            this.dataSearchTextBox.Name = "dataSearchTextBox";
-            this.dataSearchTextBox.Size = new System.Drawing.Size(187, 19);
-            this.dataSearchTextBox.TabIndex = 23;
-            this.dataSearchTextBox.TextChanged += new System.EventHandler(this.dataSearchTextBox_TextChanged);
             // 
             // Form1
             // 
