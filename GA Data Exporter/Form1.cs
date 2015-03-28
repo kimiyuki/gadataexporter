@@ -33,6 +33,7 @@ namespace GA_Data_Exporter
         private List<string> dropDownItems = new List<string>();
         private List<string> bookmarkedDropDownItems = new List<string>();
         private string db_file = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "/log.db";
+        private GaData gaData;
 
         public Form1()
         {
@@ -487,7 +488,7 @@ namespace GA_Data_Exporter
             putQueryHistory(queryTextBox.Text, true);
         }
 
-        private GaData getGaData(int max, int index)
+        private bool getGaData(int max, int index)
         {
             string id = GaViewDataGridView.SelectedCells[0].Value.ToString();
             string metrics = metricsTextBox.Text;
@@ -504,22 +505,36 @@ namespace GA_Data_Exporter
             req.Sort = sortTextBox.Text == "" ? null : sortTextBox.Text;
             req.Segment = segmentTextBox.Text == "" ? null : segmentTextBox.Text;
             req.SamplingLevel = DataResource.GaResource.GetRequest.SamplingLevelEnum.DEFAULT;
-            GaData ret = req.Execute();
-            if(ret.ContainsSampledData.Value){
-                sampleTextBox.Text = Math.Round((decimal)((float)ret.SampleSize / (float)ret.SampleSpace)*100, 2).ToString() +
-                    "%(" + ret.SampleSize.ToString() + "/" + ret.SampleSpace.ToString() +")";
+            
+            try
+            {
+                gaData = req.Execute();
+            }
+            catch (System.Exception ex)
+            {
+                errorTextBox.Text = ex.Message;
+                return false;
+            }
+            if(gaData.ContainsSampledData.Value){
+                sampleTextBox.Text = Math.Round((decimal)((float)gaData.SampleSize / (float)gaData.SampleSpace) * 100, 2).ToString() +
+                    "%(" + gaData.SampleSize.ToString() + "/" + gaData.SampleSpace.ToString() + ")";
             }else{
                 sampleTextBox.Text = "WholeData";
             }
-            return(ret);
+            return(true);
         }
 
         private void getData(int max, int index){
-            try
+            List<GaData> ret = new List<GaData>();
+            if (getGaData(max, 1))
             {
-                List<GaData> ret = new List<GaData>();
-                ret.Add(getGaData(max, 1));
-                totalResultsNumtextBox.Text = ret[0].TotalResults.ToString();
+                ret.Add(gaData);
+            }
+            else
+            {
+                return;
+            }
+           totalResultsNumtextBox.Text = ret[0].TotalResults.ToString();
                 if (ret[0].TotalResults > 10000 && max == 10000)
                 {
                     if (ret[0].TotalResults > 100000)
@@ -532,7 +547,14 @@ namespace GA_Data_Exporter
                     }
                     for (int i = 10001; i < ret[0].TotalResults; i = i + 10000)
                     {
-                        ret.Add(getGaData(max, i));
+                        if (getGaData(max, i))
+                        {
+                            ret.Add(gaData);
+                        }
+                        else
+                        {
+                            return;
+                        }
                         actualRowsTextBox.Text = i.ToString();
                     }
                 }
@@ -572,12 +594,6 @@ namespace GA_Data_Exporter
                 }
                 gaDataGridViewData.DataSource = dt;
                 actualRowsTextBox.Text = dt.Rows.Count.ToString();
-            }
-            catch (System.Exception ex)
-            {
-                errorTextBox.Text = ex.Message;
-                return;
-            }
         }
 
         private void listViewMetrics_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
